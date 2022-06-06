@@ -1,4 +1,3 @@
-const { date } = require('joi');
 const { parse } = require('node-html-parser');
 const request = require('request');
 
@@ -22,7 +21,7 @@ const getGradeBook = (Wilma2SID) => {
             if (response.body == '') return reject({ error: 'Invalid credentials', message: response.statusCode, status: 401 })
 
             const grades = parseGrades(response.body);
-
+            console.log('Done');
             return resolve(grades);
         });
     });
@@ -77,6 +76,7 @@ const parseGrades = (raw) => {
         'Teknologia',
         'OTA-opinnot',
         'Korkeakouluopinnot',
+        'Lukiokoulutusta täydentävä oma äidinkieli (venäjä)',
         'Muut opinnot',
     ]
     const courses = [];
@@ -100,7 +100,7 @@ const parseGrades = (raw) => {
                     if (subjectList.includes(data)) {
                         console.log("subject: " + data);
                         subjects.push(data);
-                        result[data] = { courses: {}, grade: null, points: null }
+                        result[data] = { grade: null, points: null, courses: {} }
                     }
                     else {
                         courses.push(data);

@@ -1,8 +1,9 @@
 const express = require('express');
 const DataBase = require('./database/database');
-const courseTray = require('./routers/CourseSelectorRouter');
 const login = require('./routers/login');
 const gradebook = require('./routers/gradebook');
+const news = require('./routers/news');
+const schedule = require('./routers/schedule');
 
 const app = express(); // setup server
 const PORT = process.env.PORT || 3000; // Bind port
@@ -20,9 +21,10 @@ app.use((req, res, next) => {
 });
 
 // Routers
-app.use('/api/', courseTray);
 app.use('/api/', login);
 app.use('/api/', gradebook);
+app.use('/api/', news);
+app.use('/api/', schedule);
 
 // PORT
 app.listen(PORT, () => {

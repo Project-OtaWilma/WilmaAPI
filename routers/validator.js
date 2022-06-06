@@ -8,6 +8,10 @@ const postLogin = Joi.object({
     password: Joi.string().required()
 });
 
+const getNewsById = Joi.object({
+    id: Joi.string().min(5).required()
+})
+
 
 const getCourseByCode = Joi.object({
     code: Joi.string().max(10).required()
@@ -64,6 +68,9 @@ module.exports = {
     schemas: {
         login: {
             postLogin,
+        },
+        news: {
+            getNewsById,
         },
         courseTray: {
             getCourseByCode,
