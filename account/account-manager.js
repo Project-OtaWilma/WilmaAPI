@@ -1,5 +1,5 @@
 const request = require('request');
-const utility = require('../utility/cookie');
+const utility = require('../utility/utility');
 
 const GenerateSessiondDetails = () => {
     return new Promise((resolve, reject) => {
@@ -12,7 +12,7 @@ const GenerateSessiondDetails = () => {
             if (error) return reject({ error: 'Error occured while trying to retrieve details from https://espoo.inschool.fi/', message: response, status: 501 });
 
             if (response.statusCode == 200) {
-                utility.parseCookie(response.headers['set-cookie'][0])
+                utility.cookies.parseCookie(response.headers['set-cookie'][0])
                     .then(session => {
                         return resolve(session);
                     })
@@ -48,7 +48,7 @@ const Login = (login = { Username: String, Password: String, SessionID: String, 
         request(options, async function (error, response) {
             if (error) return reject({ error: 'Error occured while trying to reach https://espoo.inschool.fi/login/', message: response, status: 501 });
             if (response.statusCode == 303) {
-                utility.parseCookie(response.headers['set-cookie'][1])
+                utility.cookies.parseCookie(response.headers['set-cookie'][1])
                     .then(session => {
                         return resolve(session);
                     })
@@ -84,36 +84,10 @@ const StartSession = async (login = { Username: String, Password: String, Curren
     });
 }
 
-const ValidateSession = (session) => {
 
-    return new Promise((resolve, reject) => {
-        var options = {
-            'method': 'GET',
-            'url': 'https://espoo.inschool.fi/',
-            'headers': {
-                'Cookie': `Wilma2SID=${session}`,
-            },
-            'followRedirect': false,
-        };
-
-        request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to connect to Wilma', message: response });
-
-            switch (response.statusCode) {
-                case 200:
-                    return resolve({ valid: true });
-                case 302:
-                    return resolve({ valid: false });
-                default:
-                    return reject({ error: 'Wilma reponded in a unextect way', message: response })
-            }
-        });
-    });
-}
 
 module.exports = {
     GenerateSessiondDetails,
     Login,
-    StartSession,
-    ValidateSession
+    StartSession
 }

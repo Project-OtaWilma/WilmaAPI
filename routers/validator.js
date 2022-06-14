@@ -13,21 +13,28 @@ const getNewsById = Joi.object({
 })
 
 
-const getCourseByCode = Joi.object({
-    code: Joi.string().max(10).required()
+const getScheduleByDate = Joi.object({
+    date: Joi.date().required()
+})
+
+
+const sendMessage = Joi.object({
+    receiverType: Joi.string().valid('personnel', 'teacher').required(),
+    receiver: Joi.string().required(),
+    subject: Joi.string().required(),
+    content: Joi.string().required(),
 });
 
-const getCoursesByTeacher = Joi.object({
-    teacher: Joi.string().max(128).required()
+const getMessageByID = Joi.object({
+    id: Joi.string().required()
 });
 
-const getCoursesByBar = Joi.object({
-    period: Joi.number().required(),
-    bar: Joi.number().required()
+const GetTrayByPeriod = Joi.object({
+    id: Joi.string().required()
 });
 
-const getCoursesByPeriod = Joi.object({
-    period: Joi.number().required()
+const GetCourseByID = Joi.object({
+    id: Joi.string().required()
 });
 
 
@@ -52,7 +59,7 @@ const validateRequestBody = (req, res, schema = {}) => {
     return result.value;
 }
 
-const validateRequestHeaders = (req, res) => {
+const validateWilma2SID = (req, res) => {
     const Wilma2SID = req.headers.wilma2sid;
 
     if (!Wilma2SID) {
@@ -61,6 +68,17 @@ const validateRequestHeaders = (req, res) => {
     }
 
     return Wilma2SID;
+}
+
+const validateStudentID = (req, res) => {
+    const StudentID = req.headers.studentid;
+
+    if (!StudentID) {
+        res.status(400).send({ error: 'Missing student identifier (formKey)' });
+        return null;
+    }
+
+    return StudentID;
 }
 
 
@@ -72,16 +90,22 @@ module.exports = {
         news: {
             getNewsById,
         },
+        schedule: {
+            getScheduleByDate,
+        },
+        messages: {
+            sendMessage,
+            getMessageByID
+        },
         courseTray: {
-            getCourseByCode,
-            getCoursesByTeacher,
-            getCoursesByBar,
-            getCoursesByPeriod,
+            GetTrayByPeriod,
+            GetCourseByID
         }
     },
     validators: {
         validateRequestBody,
         validateRequestParameters,
-        validateRequestHeaders,
+        validateWilma2SID,
+        validateStudentID,
     }
 }

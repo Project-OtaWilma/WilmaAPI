@@ -1,6 +1,8 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
 
+const { news } = require('../requests/responses');
+
 // https://espoo.inschool.fi/news/22854
 
 const getNewsInbox = (Wilma2SID) => {
@@ -17,14 +19,20 @@ const getNewsInbox = (Wilma2SID) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve gradebook', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve news', message: response, status: 501 });
 
-            // Wilma2SID was incorrect
-            if (response.body == '') return reject({ error: 'Invalid credentials', message: response.statusCode, status: 401 })
-
-
-            const news = parseNewsInbox(response.body);
-            return resolve(news);
+            news.validateNewsGet(response)
+                .then(() => {
+                    try {
+                        const list = parseNewsInbox(response.body);
+                        return resolve(list);
+                    } catch(err) {
+                        return reject({err: 'Failed to parse the list of news', message: err, status: 500});
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                })
         });
     });
 }
@@ -43,20 +51,25 @@ const getNewsById = (Wilma2SID, NewsID) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve gradebook', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve news', message: response, status: 501 });
 
-            // Wilma2SID was incorrect
-            if (response.body == '') return reject({ error: 'Invalid credentials', message: response.statusCode, status: 401 })
-
-            // Invalid ID
-            if (response.statusCode != 200) return reject({ error: "Invalid ID - Couldn't find or didn't have permission to reach news with specified ID", message: response.statusCode, status: 404 })
-
-            const news = parseNewsById(response.body);
-            return resolve(news);
+            news.validateNewsGetByID(response)
+                .then(() => {
+                    try {
+                        const list = parseNewsById(response.body);
+                        return resolve(list);
+                    } catch(err) {
+                        return reject({err: 'Failed to parse the contant of the news', message: err, status: 500});
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                });
         });
     });
 }
 
+// Parser - v0.0.1 (13/06/2022)
 const parseNewsInbox = (raw) => {
     const document = parse(raw);
     const sections = ['Pysyvät tiedotteet', 'Vanhat tiedotteet']
@@ -64,13 +77,9 @@ const parseNewsInbox = (raw) => {
     const result = { 'Nykyiset tiedotteet': [] };
 
     document.getElementsByTagName('div').filter(div => div.rawAttrs = 'class="panel-body"' && div.childNodes.filter(el => el.rawTagName == 'h2').length > 0).forEach(div => {
-        // console.log(div.toString())
 
         div.childNodes.forEach(c => {
-            // .filter(el => el.rawTagName == 'h2')
-            // .filter(el => el.rawTagName == 'a').toString())
             const data = c.rawText;
-            // Title
 
             if (c.rawTagName == 'h2') {
                 titles.push(data);
@@ -95,8 +104,6 @@ const parseNewsInbox = (raw) => {
                     const link = sender.split(' ')[0].split('href=')[1] ? sender.split(' ')[0].split('href=')[1].replace('"', '') : null;
 
                     result['Nykyiset tiedotteet'].push({ date: titles[titles.length - 1], subject: subject, description: description, href: href, sender: { name: name, href: link } });
-
-                    // console.log({ subject: subject, description: description, href: href, sender: { name: name, href: link } });
                 }
 
             }
@@ -106,17 +113,10 @@ const parseNewsInbox = (raw) => {
     return result;
 }
 
+// Parser - v0.0.1 (13/06/2022)
 const parseNewsById = (raw) => {
     const document = parse(raw);
     const sections = ['Pysyvät tiedotteet', 'Vanhat tiedotteet', 'Viimeaikaiset tiedotteet'];
-    const langDecoder = {
-        '&auml': 'ä',
-        '&Auml': 'Ä',
-        '&ouml': 'ö',
-        '&Ouml': 'Ö',
-        '&aring': 'å',
-        '&Aring': 'Ä'
-    }
 
     const result = {
         title: null,
@@ -135,7 +135,7 @@ const parseNewsById = (raw) => {
         }
     }).filter(c => c && (c.p || c.title));
 
-    return { result }
+    return result;
 }
 
 module.exports = {

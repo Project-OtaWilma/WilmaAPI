@@ -7,8 +7,9 @@ const { getNewsInbox, getNewsById } = require('../requests/news');
 
 router.get('/news', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateRequestHeaders(req, res);
-    console.log(Wilma2SID);
+    const Wilma2SID = validators.validateWilma2SID(req, res);
+
+    if (!Wilma2SID) return;
 
     getNewsInbox(Wilma2SID)
         .then(news => {
@@ -22,13 +23,12 @@ router.get('/news', async (req, res) => {
 
 router.get('/news/:id=?', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateRequestHeaders(req, res);
+    const Wilma2SID = validators.validateWilma2SID(req, res);
     const result = validators.validateRequestParameters(req, res, schemas.news.getNewsById);
 
     // Invalid ID
+    if (!Wilma2SID) return;
     if (!result) return;
-
-    console.log(Wilma2SID);
 
     getNewsById(Wilma2SID, result.id)
         .then(news => {

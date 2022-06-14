@@ -2,16 +2,26 @@ const express = require('express');
 const router = express.Router();
 const { schemas, validators } = require('./validator');
 
-const { generateSchedule } = require('../requests/schedule');
+const { getSchedule } = require('../requests/schedule');
 
-
-router.get('/schedule', async (req, res) => {
+router.get('/schedule/:date', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateRequestHeaders(req, res);
-    console.log(Wilma2SID);
+    const Wilma2SID = validators.validateWilma2SID(req, res);
+    const StudentID = validators.validateStudentID(req, res);
 
-    const schedule = await generateSchedule(Wilma2SID).catch(err => { return res.status(err.status).json(err) });
-    res.json(schedule);
+    const result = validators.validateRequestParameters(req, res, schemas.schedule.getScheduleByDate);
+
+    if(!Wilma2SID) return
+    if(!StudentID) return
+    if(!result) return
+
+    getSchedule(Wilma2SID, StudentID, result.date)
+    .then(data => {
+        res.json(data.Schedule);
+    })
+    .catch(err => {
+        return res.status(err.status).json(err)
+    });
 });
 
 

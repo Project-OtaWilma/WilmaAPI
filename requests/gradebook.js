@@ -1,6 +1,8 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
 
+const { grades } = require('../requests/responses');
+
 const getGradeBook = (Wilma2SID) => {
     return new Promise((resolve, reject) => {
         var options = {
@@ -18,15 +20,24 @@ const getGradeBook = (Wilma2SID) => {
             if (error) return reject({ error: 'Failed to retrieve gradebook', message: response, status: 501 });
 
             // Wilma2SID was incorrect
-            if (response.body == '') return reject({ error: 'Invalid credentials', message: response.statusCode, status: 401 })
+            grades.validateGradebookGet(response)
+            .then(() => {
+                try {
 
-            const grades = parseGrades(response.body);
-            console.log('Done');
-            return resolve(grades);
+                    const gradebook = parseGrades(response.body);
+                    return resolve(gradebook);
+                } catch(err) {
+                    return reject({err: 'Failed to parse grades', message: err, status: 500});
+                }
+            })
+            .catch(err => {
+                return reject(err);
+            })
+
         });
     });
 }
-
+// Parser - v0.0.1 (13/06/2022)
 const parseGrades = (raw) => {
     const document = parse(raw);
     const grades = ['P', 'S', 'K'];
@@ -98,7 +109,6 @@ const parseGrades = (raw) => {
                 // Subjects
                 else if (td.nodeType == 1) {
                     if (subjectList.includes(data)) {
-                        console.log("subject: " + data);
                         subjects.push(data);
                         result[data] = { grade: null, points: null, courses: {} }
                     }

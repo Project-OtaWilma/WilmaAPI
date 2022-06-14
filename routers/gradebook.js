@@ -7,11 +7,17 @@ const { getGradeBook } = require('../requests/gradebook');
 
 router.get('/gradebook', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateRequestHeaders(req, res);
-    console.log(Wilma2SID);
+    const Wilma2SID = validators.validateWilma2SID(req, res);
 
-    const grades = await getGradeBook(Wilma2SID).catch(err => { return res.status(err.status).json(err) });
-    res.json(grades);
+    if(!Wilma2SID) return;
+
+    getGradeBook(Wilma2SID)
+    .then(grades => {
+        res.json(grades);
+    })
+    .catch(err => {
+        return res.status(err.status).json(err)
+    });
 });
 
 
