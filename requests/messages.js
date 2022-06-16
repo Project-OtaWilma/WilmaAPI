@@ -128,7 +128,7 @@ const getMessageByID = (Wilma2SID, id) => {
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'GET',
-            'url': `https://espoo.inschool.fi/messages/${id}?printable`,
+            'url': `https://espoo.inschool.fi/messages/${id}?format=json`,
             'headers': {
                 'Cookie': `Wilma2SID=${Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -143,8 +143,9 @@ const getMessageByID = (Wilma2SID, id) => {
             messages.validateMessageGetByID(response)
                 .then(() => {
                     try {
-                        const content = parseMessageContent(response.body);
+                        const content = JSON.parse(response.body);
                         return resolve(content);
+                        
                     } catch(err) {
                         console.log(err);
                         return reject({err: 'Failed to parse message content', message: err, status: 500}) 
@@ -155,35 +156,6 @@ const getMessageByID = (Wilma2SID, id) => {
                 });
         });
     });
-}
-
-const parseMessageContent = (raw) => {
-    const document = parse(raw);
-    const filter = ['head', 'h1', 'th', 'td', 'tr','div']
-    const title = document.getElementsByTagName('h1')[0].textContent;
-
-    const receivers = document.getElementsByTagName('td')[0].textContent;
-    const senders = document.getElementsByTagName('td')[1].textContent;
-    const dateTime = document.getElementsByTagName('td')[2].textContent;
-    const answers = document.getElementsByTagName('td')[3] ? document.getElementsByTagName('td')[3].textContent : null;
-
-    const content = {receivers: receivers, senders: senders, dateTime: dateTime, answers: answers, html: []}
-
-    document
-    .getElementsByTagName('html')[0]
-    .childNodes
-    .filter(c => c.rawTagName && !filter.includes(c.rawTagName))
-    .filter(c => c.textContent.trim())
-    .forEach(c => {
-        if(c.childNodes.length > 1) {
-            content.html.push({tage: c.rawTagName, content: c.childNodes.filter(c => c.textContent.trim()).map(c => {return {tag: c.rawTagName, content: c.textContent.trim()} })});
-        }
-        else {
-            content.html.push({tag: c.rawTagName, content: c.textContent})
-        }
-    })
-
-    return content;
 }
 
 module.exports = {

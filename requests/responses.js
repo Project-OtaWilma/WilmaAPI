@@ -43,18 +43,7 @@ const validateMessageGetByID = (res) => {
             return reject({err: "Invalid credentials", status: 401})
         }
 
-        utility.parsers.parseTitle(res.body)
-        .then(title => {
-            if(disallowed.includes(title)) {
-                return reject({err: 'Failed to retrieve message - Invalid message or mising permissions', message: title, status: 401});
-            }
-    
-            return resolve(true);
-        })
-        .catch(err => {
-            return reject(err);
-        })
-
+        return resolve(true);
     });
 }
 
