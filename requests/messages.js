@@ -9,7 +9,7 @@ const postMessageNew = (Wilma2SID, studentID, receiverType, receiver, subject, c
         'personnel': 'r_personnel',
         'teacher': 'r_teacher'
     }
-    
+
     return new Promise((resolve, reject) => {
         const form = {
             'formkey': studentID,
@@ -32,42 +32,42 @@ const postMessageNew = (Wilma2SID, studentID, receiverType, receiver, subject, c
             'followAllRedirects': true,
             form: form
         };
-    
+
         request(options, async function (error, response) {
             if (error) return reject({ error: 'Failed to post message', message: response, status: 501 });
 
             // Validate response
             messages.validateMessagePost(response)
-            .then(() => {
-                return resolve({status: response.statusCode});
-            })
-            .catch(err => {
-                return reject(err)
-            });
+                .then(() => {
+                    return resolve({ status: response.statusCode });
+                })
+                .catch(err => {
+                    return reject(err)
+                });
         });
     })
 }
 
 const sendMessage = (Wilma2SID, receiverType, receiver, subject, content) => {
     return new Promise((resolve, reject) => {
-        
+
         utility.requests.getStudentID(Wilma2SID).then(studentID => {
 
             postMessageNew(Wilma2SID, studentID, receiverType, receiver, subject, content).then(status => {
                 return resolve(status);
             })
-            .catch(err => {
-                return reject(err);
-            })
+                .catch(err => {
+                    return reject(err);
+                })
 
         })
-        .catch(err => {
-            return reject(err);
-        });
+            .catch(err => {
+                return reject(err);
+            });
     });
 }
 
-const getMessageInbox = (Wilma2SID) => {
+const getMessageInbox = (Wilma2SID, limit) => {
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'GET',
@@ -86,7 +86,9 @@ const getMessageInbox = (Wilma2SID) => {
             messages.validateMessageGet(response)
                 .then(() => {
                     const json = JSON.parse(response.body);
-                    return resolve(json);
+                    const list = json.Messages.slice(0, limit);
+
+                    return resolve(list);
                 })
                 .catch(err => {
                     return reject(err);
@@ -145,10 +147,10 @@ const getMessageByID = (Wilma2SID, id) => {
                     try {
                         const content = JSON.parse(response.body);
                         return resolve(content);
-                        
-                    } catch(err) {
+
+                    } catch (err) {
                         console.log(err);
-                        return reject({err: 'Failed to parse message content', message: err, status: 500}) 
+                        return reject({ err: 'Failed to parse message content', message: err, status: 500 })
                     }
                 })
                 .catch(err => {

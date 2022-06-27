@@ -1,9 +1,10 @@
+const { object } = require('joi');
 const { parse } = require('node-html-parser');
 const request = require('request');
 
 const { grades } = require('../requests/responses');
 
-const getGradeBook = (Wilma2SID) => {
+const getGradeBook = (Wilma2SID, limit, filter) => {
     return new Promise((resolve, reject) => {
         var options = {
             'method': 'GET',
@@ -21,27 +22,36 @@ const getGradeBook = (Wilma2SID) => {
 
             // Wilma2SID was incorrect
             grades.validateGradebookGet(response)
-            .then(() => {
-                try {
+                .then(() => {
+                    try {
+                        const gradebook = parseGrades(response.body, limit, filter);
+                        return resolve(gradebook);
+                    } catch (err) {
+                        console.log(err);
+                        return reject({ err: 'Failed to parse grades', message: err, status: 500 });
+                    }
+                })
+                .catch(err => {
 
-                    const gradebook = parseGrades(response.body);
-                    return resolve(gradebook);
-                } catch(err) {
-                    return reject({err: 'Failed to parse grades', message: err, status: 500});
-                }
-            })
-            .catch(err => {
-                return reject(err);
-            })
+                    return reject(err);
+                })
 
         });
     });
 }
-// Parser - v0.0.1 (13/06/2022)
-const parseGrades = (raw) => {
+
+const parseGrades = (raw, limit, filter) => {
     const document = parse(raw);
     const grades = ['P', 'S', 'K'];
-    const sections = ['Suoritukset kurssityypeittäin', 'ECTS', 'Lu21 pakollinen moduuli', 'Lu21 valtakunnallinen valinnainen moduuli', 'Lu21 paikallinen opintojakso', 'Yhteensä'];
+    const sections = [
+        'Suoritukset kurssityypeittäin',
+        'ECTS',
+        'Lu21 pakollinen moduuli',
+        'Lu21 valtakunnallinen valinnainen moduuli',
+        'Lu21 paikallinen opintojakso',
+        'Yhteensä'
+    ];
+
     const subjectList = [
         'Äidinkieli ja kirjallisuus, suomen kieli ja kirjallisuus',
         'Äidinkieli ja kirjallisuus, suomi toisena kielenä ja kirjallisuus',
@@ -87,75 +97,107 @@ const parseGrades = (raw) => {
         'Teknologia',
         'OTA-opinnot',
         'Korkeakouluopinnot',
+        'Lukiokoulutusta täydentävä oma äidinkieli (unkari)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (arabia)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (farsi/dari)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (kurdi)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (mandariinikiina)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (somali)',
         'Lukiokoulutusta täydentävä oma äidinkieli (venäjä)',
+        'Talous ja nuoret',
         'Muut opinnot',
     ]
-    const courses = [];
-    const titles = [];
-    const subjects = [];
-    let result = {};
+
+    const optionalSubjectList = [
+        'Liikunta',
+        'Musiikki',
+        'Kuvataide',
+        'Opinto-ohjaus',
+        'Teatteri',
+        'Media',
+        'Lukiodiplomit',
+        'Temaattiset opinnot',
+        'Teknologia',
+        'OTA-opinnot',
+        'Korkeakouluopinnot',
+        'Talous ja nuoret',
+        'Muut opinnot'
+    ]
+
+    const c = []; // Courses
+    const t = []; // Titles
+    const s = []; // Subjects
+    const am = []; // Average (mandatory)
+    const om = []; // Average (optional)
+    let r = {}; // Result
 
     document.getElementsByTagName('tr').forEach(tr => {
         tr.childNodes.filter(td => td.rawText.trim()).forEach(td => {
 
             td.childNodes.filter(td => (td.rawText.trim())).forEach(td => {
-                const data = td.rawText.trim();
+                const d = td.rawText.trim();
 
-                // Titles
-                if (sections.includes(data)) {
-                    titles.push(data);
-                    result[data] = null;
+                if (sections.includes(d)) {
+                    t.push(d);
+                    r[d] = null;
                 }
-                // Subjects
-                else if (td.nodeType == 1) {
-                    if (subjectList.includes(data)) {
-                        subjects.push(data);
-                        result[data] = { grade: null, points: null, courses: {} }
+                else if (td.nodeType == 1 && Object.keys(r).length < (limit + 1)) {
+                    if (subjectList.includes(d)) {
+                        s.push(d);
+                        r[d] = { grade: null, points: null, courses: {} }
                     }
                     else {
-                        courses.push(data);
-                        result[subjects[subjects.length - 1]].courses[data] = { grade: null, points: null, date: null, teacher: null, info: null }
+                        const h = d.split(' ')[0].trim();
+                        c.push(d);
+                        r[s[s.length - 1]].courses[d] = { code: h, grade: null, points: null, date: null, teacher: null, info: null }
                     }
                 }
-                // Course information
                 else if (td.nodeType == 3) {
-                    // Date
-                    if (titles.length > 0) {
-                        result[titles[titles.length - 1]] = data;
+                    if (t.length > 0) {
+                        r[t[t.length - 1]] = d;
                     }
-                    else if (data.split('.').length > 1) {
-                        if (Object.keys(result[subjects[subjects.length - 1]].courses).length > 0) {
-                            if (!result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].date) {
-                                result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].date = data;
-                            }
-                        }
-                    }
-                    //  Grades and points
-                    else if (Number.isInteger(Number.parseInt(data)) || grades.includes(data)) {
-                        if (!result[subjects[subjects.length - 1]].grade && subjects[subjects.length - 1] != 'Teknologia') {
-                            result[subjects[subjects.length - 1]].grade = data;
-                        }
-                        else if (!result[subjects[subjects.length - 1]].points && subjects[subjects.length - 1] != 'Teknologia') {
-                            result[subjects[subjects.length - 1]].points = data;
-                        }
-                        else if (Object.keys(result[subjects[subjects.length - 1]].courses).length > 0) {
-                            if (!result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].grade) {
-                                result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].grade = data;
-                            }
-                            else if (!result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].points) {
-                                result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].points = data;
-                            }
-                        }
+                    else if (Object.keys(r).length < (limit + 1)) {
 
-                    }
-                    // Teacher and additional information
-                    else {
-                        if (Object.keys(result[subjects[subjects.length - 1]].courses).length > 0) {
-                            if (!result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].teacher) {
-                                result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].teacher = data;
+                        if (d.split('.').length > 1) {
+                            if (Object.keys(r[s[s.length - 1]].courses).length > 0) {
+                                if (!r[s[s.length - 1]].courses[c[c.length - 1]].date) {
+                                    r[s[s.length - 1]].courses[c[c.length - 1]].date = d;
+                                }
                             }
-                            else if (!result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].info) {
-                                result[subjects[subjects.length - 1]].courses[courses[courses.length - 1]].info = data;
+                        }
+                        else if (Number.isInteger(Number.parseInt(d)) || grades.includes(d)) {
+                            if (!r[s[s.length - 1]].grade && s[s.length - 1] != 'Teknologia') {
+
+                                if (Number.isInteger(Number.parseInt(d))) {
+                                    if (!optionalSubjectList.includes(s[s.length - 1])) {
+                                        am.push(Number.parseInt(d));
+                                    }
+
+                                    om.push(Number.parseInt(d));
+                                }
+                                r[s[s.length - 1]].grade = d;
+                            }
+                            else if (!r[s[s.length - 1]].points && s[s.length - 1] != 'Teknologia') {
+                                r[s[s.length - 1]].points = d;
+                            }
+                            else if (Object.keys(r[s[s.length - 1]].courses).length > 0) {
+                                if (!r[s[s.length - 1]].courses[c[c.length - 1]].grade) {
+                                    r[s[s.length - 1]].courses[c[c.length - 1]].grade = d;
+                                }
+                                else if (!r[s[s.length - 1]].courses[c[c.length - 1]].points) {
+                                    r[s[s.length - 1]].courses[c[c.length - 1]].points = d;
+                                }
+                            }
+
+                        }
+                        else {
+                            if (Object.keys(r[s[s.length - 1]].courses).length > 0) {
+                                if (!r[s[s.length - 1]].courses[c[c.length - 1]].teacher) {
+                                    r[s[s.length - 1]].courses[c[c.length - 1]].teacher = d;
+                                }
+                                else if (!r[s[s.length - 1]].courses[c[c.length - 1]].info) {
+                                    r[s[s.length - 1]].courses[c[c.length - 1]].info = d;
+                                }
                             }
                         }
                     }
@@ -166,7 +208,24 @@ const parseGrades = (raw) => {
         })
 
     });
-    return result;
+
+    if (s.length > limit) {
+        delete r[s[s.length - 1]]
+    }
+
+    Object.keys(r).forEach(t => {
+        if (!r[t]) {
+            delete r[t];
+        }
+        else if (Object.keys(r[t]).includes(filter)) {
+            delete r[t][filter];
+        }
+    });
+
+    r['Keskiarvo'] = (om.reduce((a, b) => a + b, 0) / om.length).toFixed(2);
+    r['Lukuaineiden keskiarvo'] = (am.reduce((a, b) => a + b, 0) / am.length).toFixed(2);
+
+    return r;
 }
 
 module.exports = {

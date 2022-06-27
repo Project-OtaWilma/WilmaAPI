@@ -38,6 +38,7 @@ const GetCourseByID = Joi.object({
 });
 
 
+
 const validateRequestParameters = (req, res, schema = {}) => {
     const result = schema.validate(req.params);
     if (result.error) {

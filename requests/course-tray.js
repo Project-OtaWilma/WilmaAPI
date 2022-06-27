@@ -1,7 +1,7 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
 
-const { courseTray  } = require('../requests/responses');
+const { courseTray } = require('../requests/responses');
 
 const getTrayList = (Wilma2SID) => {
     return new Promise((resolve, reject) => {
@@ -21,17 +21,17 @@ const getTrayList = (Wilma2SID) => {
 
             // Wilma2SID was incorrect
             courseTray.validateCourseTrayGetList(response)
-            .then(() => {
-                try {
-                    const list = parseTrayList(response.body);
-                    return resolve(list);
-                } catch(err) {
-                    return reject({err: 'Failed to parse course-tray', message: err, status: 500});
-                }
-            })
-            .catch(err => {
-                return reject(err);
-            });
+                .then(() => {
+                    try {
+                        const list = parseTrayList(response.body);
+                        return resolve(list);
+                    } catch (err) {
+                        return reject({ err: 'Failed to parse course-tray', message: err, status: 500 });
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                });
         });
     });
 }
@@ -65,19 +65,19 @@ const getTrayByPeriod = (Wilma2SID, StudentID, target) => {
             // Wilma2SID was incorrect
 
             courseTray.validateCourseTrayGetByPeriod(response)
-            .then(() => {
-                try {
-                    const list = parseTray(response.body);
-                    return resolve(list);
-                } catch(err) {
-                    console.log(err);
-                    return reject({err: 'Failed to parse course-tray', message: err, status: 500});
-                }
-            })
-            .catch(err => {
-                return reject(err);
-            });
-            
+                .then(() => {
+                    try {
+                        const list = parseTray(response.body);
+                        return resolve(list);
+                    } catch (err) {
+                        console.log(err);
+                        return reject({ err: 'Failed to parse course-tray', message: err, status: 500 });
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                });
+
         });
     });
 }
@@ -102,22 +102,23 @@ const getCourseByID = (Wilma2SID, target) => {
             // Wilma2SID was incorrect
 
             courseTray.validateCourseTrayGetCourse(response)
-            .then(() => {
-                try {
-                    const list = parseCourse(response.body);
-                    return resolve(list);
-                } catch(err) {
-                    console.log(err);
-                    return reject({err: 'Failed to parse the course information', message: err, status: 500});
-                }
-            })
-            .catch(err => {
-                return reject(err);
-            });
-            
+                .then(() => {
+                    try {
+                        const list = parseCourse(response.body);
+                        return resolve(list);
+                    } catch (err) {
+                        console.log(err);
+                        return reject({ err: 'Failed to parse the course information', message: err, status: 500 });
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                });
+
         });
     });
 }
+
 
 const selectCourse = (Wilma2SID, StudentID, target) => {
     return new Promise((resolve, reject) => {
@@ -146,19 +147,19 @@ const selectCourse = (Wilma2SID, StudentID, target) => {
 
 
             courseTray.validateCourseTrayGetByPeriod(response)
-            .then(() => {
-                try {
-                    const status = parsePostResponse(response.body);
-                    return resolve(status);
-                } catch(err) {
-                    console.log(err);
-                    return reject({err: 'Failed to parse response', message: err, status: 500});
-                }
-            })
-            .catch(err => {
-                return reject(err);
-            });
-            
+                .then(() => {
+                    try {
+                        const status = parsePostResponse(response.body);
+                        return resolve(status);
+                    } catch (err) {
+                        console.log(err);
+                        return reject({ err: 'Failed to parse response', message: err, status: 500 });
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                });
+
         });
     });
 }
@@ -190,19 +191,19 @@ const deSelectCourse = (Wilma2SID, StudentID, target) => {
 
 
             courseTray.validateCourseTrayGetByPeriod(response)
-            .then(() => {
-                try {
-                    const status = parsePostResponse(response.body);
-                    return resolve(status);
-                } catch(err) {
-                    console.log(err);
-                    return reject({err: 'Failed to parse response', message: err, status: 500});
-                }
-            })
-            .catch(err => {
-                return reject(err);
-            });
-            
+                .then(() => {
+                    try {
+                        const status = parsePostResponse(response.body);
+                        return resolve(status);
+                    } catch (err) {
+                        console.log(err);
+                        return reject({ err: 'Failed to parse response', message: err, status: 500 });
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                });
+
         });
     });
 }
@@ -219,7 +220,7 @@ const parseTrayList = (raw) => {
     }
 
     document.getElementById('own-schools').childNodes.forEach(e => {
-        switch(e.rawTagName) {
+        switch (e.rawTagName) {
             case 'h4':
                 titles.push(e.textContent);
                 trays.own[titles[titles.length - 1]] = [];
@@ -232,7 +233,7 @@ const parseTrayList = (raw) => {
                         name: data.textContent.trim(),
                         href: data.attrs.href
                     };
-                    
+
                     trays.own[titles[titles.length - 1]].push(tray);
                 });
                 break;
@@ -255,7 +256,7 @@ const parseTray = (raw) => {
     data.childNodes.filter(el => el.rawTagName).forEach((el, i) => {
         let title;
         let courses;
-        if(i == 0) {
+        if (i == 0) {
             title = el.childNodes[1].textContent;
             courses = el.childNodes[2];
         }
@@ -283,34 +284,34 @@ const parseTray = (raw) => {
                 }
             };
 
-            
+
             course.code = c.textContent;
             course.subject = course.code.replace(/[0-9]/g, '').replace('.', '');
-            
+
             const data = c.rawAttrs.split('"');
             const info = data[5].trim().split('\\n')
-            
+
             course.class = data[3].trim().replace('\\', '');
             course.hash = data[1].trim().replace('\\', '');
 
             info.forEach(d => {
-                if(d == 'Ryhmä on lukittu.') {
+                if (d == 'Ryhmä on lukittu.') {
                     course.info.locked = true;
                 }
 
-                if(d == 'Ryhmä on jo täynnä.') {
+                if (d == 'Ryhmä on jo täynnä.') {
                     course.info.full = true;
                 }
 
-                if(d.includes('Opettaja:')) {
+                if (d.includes('Opettaja:')) {
                     course.info.teacher = d.split(': ')[1];
                 }
 
-                if(d.includes('opiskelijaa')) {
+                if (d.includes('opiskelijaa')) {
                     course.students = Number.parseInt(d.split(' ')[0]);
                 }
 
-                if(d.includes('Tämä kurssi on jo suoritettu.')) {
+                if (d.includes('Tämä kurssi on jo suoritettu.')) {
                     course.info.graded = true;
                     course.info.grade = d.split('Arvosana: ')[1];
                 }
@@ -324,7 +325,6 @@ const parseTray = (raw) => {
     return result;
 }
 
-// Parser - v0.0.1 (10/06/2022)
 const parseCourse = (raw) => {
     const regex = ['</td></tr>', '<tr><th>', '</th><td>', '</table>', '<table>'];
     const ignore = [0, 37];
@@ -360,7 +360,7 @@ const parseCourse = (raw) => {
             }
         })
 
-    
+
 
     course.forEach(d => {
         data[d.key] = Parse(d.value.flat());
@@ -371,18 +371,18 @@ const parseCourse = (raw) => {
 }
 
 const Parse = (value) => {
-    if(!value) return null;
+    if (!value) return null;
     return value.length > 1 ? value : value[0];
 }
 
 const parsePostResponse = (raw) => {
     return new Promise((resolve, reject) => {
 
-        if(raw.includes('srvError')) {
-            return reject({err: "Couldn't update your selection", message: raw.trim().split('srvEndOfResponse()')[0].trim(), status: 303});
+        if (raw.includes('srvError')) {
+            return reject({ err: "Couldn't update your selection", message: raw.trim().split('srvEndOfResponse()')[0].trim(), status: 303 });
         }
 
-        return resolve({success: true});
+        return resolve({ success: true });
     })
 }
 

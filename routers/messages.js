@@ -14,29 +14,27 @@ router.post('/messages', async (req, res) => {
     if (!request) return;
 
     sendMessage(Wilma2SID, request.receiverType, request.receiver, request.subject, request.content)
-    .then(session => {
-        res.json(session);
-    })
-    .catch(err => {
-        res.status(err.status).json(err);
-    });
+        .then(session => {
+            res.json(session);
+        })
+        .catch(err => {
+            res.status(err.status).json(err);
+        });
 });
 
 router.get('/messages/inbox', async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
-    const request = validators.validateRequestBody(req, res, schemas.messages.sendMessage);
-
+    const limit = req.query.limit ? req.query.limit : 1000;
     if (!Wilma2SID) return;
-    if (!request) return;
 
-    getMessageInbox(Wilma2SID)
-    .then(session => {
-        res.json(session);
-    })
-    .catch(err => {
-        res.status(err.status).json(err);
-    });
+    getMessageInbox(Wilma2SID, limit)
+        .then(session => {
+            res.json(session);
+        })
+        .catch(err => {
+            res.status(err.status).json(err);
+        });
 });
 
 router.get('/messages/outbox', async (req, res) => {
@@ -48,12 +46,12 @@ router.get('/messages/outbox', async (req, res) => {
     if (!request) return;
 
     getMessageOutBox(Wilma2SID)
-    .then(session => {
-        res.json(session);
-    })
-    .catch(err => {
-        res.status(err.status).json(err);
-    });
+        .then(session => {
+            res.json(session);
+        })
+        .catch(err => {
+            res.status(err.status).json(err);
+        });
 });
 
 router.get('/messages/:id', async (req, res) => {

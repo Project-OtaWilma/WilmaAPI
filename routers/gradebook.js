@@ -6,18 +6,20 @@ const { getGradeBook } = require('../requests/gradebook');
 
 
 router.get('/gradebook', async (req, res) => {
-    // validation
+    // Validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
+    const limit = req.query.limit ? Number.parseInt(req.query.limit) : 100;
+    const filter = req.query.filter ? req.query.filter : null;
 
-    if(!Wilma2SID) return;
+    if (!Wilma2SID) return;
 
-    getGradeBook(Wilma2SID)
-    .then(grades => {
-        res.json(grades);
-    })
-    .catch(err => {
-        return res.status(err.status).json(err)
-    });
+    getGradeBook(Wilma2SID, limit, filter)
+        .then(grades => {
+            res.json(grades);
+        })
+        .catch(err => {
+            return res.status(err.status).json(err)
+        });
 });
 
 
