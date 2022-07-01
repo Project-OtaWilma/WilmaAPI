@@ -1,7 +1,7 @@
 {
     "Äidinkieli ja kirjallisuus, suomen kieli ja kirjallisuus": {
         "ÄI01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -11,7 +11,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -21,7 +21,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -31,7 +31,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -41,7 +41,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -51,7 +51,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -61,7 +61,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI07": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -71,7 +71,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI08": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -81,7 +81,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI09": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Vuorovaikutus 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -91,7 +91,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI10": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kirjoittaminen 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -101,7 +101,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI11": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Tekstien tulkinta 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -111,7 +111,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Luova kirjoittaminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -120,7 +120,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kirjallisuusdiplomi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -129,7 +129,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI14": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kielenhuolto",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -138,7 +138,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI15": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Äidinkielen tukikurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -147,7 +147,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI16": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Median maailma",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -156,7 +156,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI17": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Verkkoviestintä",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -165,7 +165,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI18": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kirjallisuusklubi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -174,7 +174,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI19": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Ilmaisutaidon ja improvisaation perusteet",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -183,7 +183,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ÄI20": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Ilmaisutaito ja improvisaatio, jatko",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -194,7 +194,7 @@
     },
     "Äidinkieli ja kirjallisuus, suomi toisena kielenä ja kirjallisuus": {
         "S201": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -204,7 +204,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S202": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -214,7 +214,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S203": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -224,7 +224,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S204": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -234,7 +234,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S205": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -244,7 +244,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S206": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -254,7 +254,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S207": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -264,7 +264,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S208": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -274,7 +274,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S209": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Vuorovaikutus 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -284,7 +284,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S210": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kirjoittaminen 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -294,7 +294,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "S211": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Tekstien tulkinta 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -306,7 +306,7 @@
     },
     "Ruotsi, A-oppimäärä": {
         "RUA01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Opiskelutaidot ja kieli-identiteetin rakentaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -316,7 +316,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ruotsin kieli ja vuorovaikutusosaaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1,5",
@@ -326,7 +326,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli ja kulttuuri luovan ilmaisun välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -336,7 +336,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ruotsin kieli vaikuttamisen välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -346,7 +346,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kestävä tulevaisuus ja tiede",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -356,7 +356,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ruotsin kieli jatko-opinnoissa ja työelämässä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -366,7 +366,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA07": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ympäristö ja kestävä elämäntapa",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -376,7 +376,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA08": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Viesti ja vaikuta puhuen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -386,7 +386,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Abikertaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -394,7 +394,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kieliopin kertaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -402,7 +402,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUA11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kirjoittamisen syventäminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -413,7 +413,7 @@
     },
     "Ruotsi, B1-oppimäärä": {
         "RUB11": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Opiskelutaidot ja kieli-identiteetin rakentaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -423,7 +423,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUB12": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ruotsin kieli arjessani",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1,5",
@@ -433,7 +433,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUB13": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kulttuuri ja mediat",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -443,7 +443,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUB14": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ympäristömme",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -453,7 +453,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUB15": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Opiskelu- ja työelämä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -463,7 +463,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUB16": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Viesti ja vaikuta puhuen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -473,7 +473,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUB17": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kestävä elämäntapa",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -483,21 +483,21 @@
             "OPS": "huomautus LOPS2021"
         },
         "RUB18": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kieliopin kertaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
             "Kuvaus": "Kurssi on yhteinen B- ja A-ruotsin lukijoille (a-ruotsin kurssi RUA10) Kurssin tarkoituksena on vahvistaa aikaisemmin opittua ja erityisesti pyrkiä selventämään kieliopin keskeisiä ongelmakohtia. Lisäksi kurssilla vahvistetaan ja syvennetään peruskieliopin tuntemusta ja autetaan opiskelijoita tiedostamaan omat ongelmakohtansa ja kehittymään niiltä osin. Kurssilla tutustutaan ruotsin kielen keskeisiin kielioppirakenteisiin ja ylioppilastutkinnon rakenneosioihin. Kurssi perustuu runsaaseen suulliseen ja kirjalliseen, pääasiassa itseohjautuvaan harjoitteluun."
         },
         "RUB19": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Abikertaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
             "Kuvaus": "Kurssin tavoitteena on kehittää ja syventää kielitaitoa monipuolisesti vaativalla tasolla sekä valmistaa opiskelijoita ylioppilaskirjoituksiin. Kerrataan kurssien 1-7 sanastoa. Kurssilla hiotaan ylioppilastutkinnossa tarvittavia valmiuksia ja taitoja. Opiskelijat kirjoittavat vähintään kolme lyhyttä viestiä ja kolme pidempää kirjoitelmaa. Kurssin aikana tutustutaan ylioppilastutkinnon kielikokeeseen ja sen eri osa-alueisiin sekä kokeen arviointikriteereihin."
         },
         "RUB10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kirjoittamisen syventäminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
@@ -506,7 +506,7 @@
     },
     "Englanti, A-oppimäärä": {
         "ENA01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Opiskelutaidot ja kieli-identiteetin rakentaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -516,7 +516,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Englanti globaalina kielenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1,5",
@@ -526,7 +526,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Englannin kieli ja kulttuuri luovan ilmaisun välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -536,7 +536,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Englannin kieli vaikuttamisen välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -546,7 +546,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kestävä tulevaisuus ja tiede",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -556,7 +556,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Englannin kieli jatko-opinnoissa ja työelämässä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -566,7 +566,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA07": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ympäristö ja kestävä elämäntapa",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -576,7 +576,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA08": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Viesti ja vaikuta puhuen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -586,7 +586,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kohti yo-koetta",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -594,7 +594,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Englannin kielioppi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -602,7 +602,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kirjoittamisen kurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -610,7 +610,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ENA12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Basic English",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -621,7 +621,7 @@
     },
     "Espanja, A-oppimäärä": {
         "EAA01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Opiskelutaidot ja kieli-identiteetin rakentaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -631,7 +631,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAA02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli globaalissa maailmassa ja vuorovaikutusosaaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1,5",
@@ -641,7 +641,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAA03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli ja kulttuuri luovan ilmaisun välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -651,7 +651,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAA04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli vaikuttamisen välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -661,7 +661,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAA05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kestävä tulevaisuus ja tiede",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -671,7 +671,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAA06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli jatko-opinnoissa ja työelämässä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -681,7 +681,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAA07": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ympäristö ja kestävä elämäntapa",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -691,7 +691,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAA08": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Viesti ja vaikuta puhuen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -703,7 +703,7 @@
     },
     "Italia, B3-oppimäärä": {
         "IAB301": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -713,7 +713,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "IAB302": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -723,7 +723,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "IAB303": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -733,7 +733,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "IAB304": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -743,7 +743,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "IAB305": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -753,7 +753,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "IAB306": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -763,7 +763,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "IAB307": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -773,7 +773,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "IAB308": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -785,7 +785,7 @@
     },
     "Ranska, A-oppimäärä": {
         "RAA01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Opiskelutaidot ja kieli-identiteetin rakentaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -795,7 +795,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAA02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli globaalissa maailmassa ja vuorovaikutusosaaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1,5",
@@ -805,7 +805,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAA03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli ja kulttuuri luovan ilmaisun välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -815,7 +815,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAA04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli vaikuttamisen välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -825,7 +825,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAA05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kestävä tulevaisuus ja tiede",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -835,7 +835,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAA06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli jatko-opinnoissa ja työelämässä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -845,7 +845,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAA07": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ympäristö ja kestävä elämäntapa",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -855,7 +855,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAA08": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Viesti ja vaikuta puhuen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -865,14 +865,14 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAA09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Abikurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
             "Kuvaus": "Kurssilla kerrataan ranskan kielen oppimäärää ja valmistaudutaan ylioppilastutkintoon sekä Ranskan valtion DELF B2-tason kielitutkintoon monipuolisten suullisten ja kirjallisten harjoitusten avulla. Tehdään tehtäviä Abitti-ympäristössä, mikä antaa varmuutta yo-kokeeseen. Kurssi arvioidaan suoritusmerkinnällä (S)."
         },
         "RAA10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Vaihto-ohjelma tai vierailu ranskankielisessä maassa",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
@@ -881,7 +881,7 @@
     },
     "Saksa, A-oppimäärä": {
         "SAA01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Opiskelutaidot ja kieli-identiteetin rakentaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -891,7 +891,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAA02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli globaalissa maailmassa ja vuorovaikutusosaaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1,5",
@@ -901,7 +901,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAA03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli ja kulttuuri luovan ilmaisun välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -911,7 +911,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAA04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli vaikuttamisen välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -921,7 +921,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAA05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kestävä tulevaisuus ja tiede",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -931,7 +931,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAA06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli jatko-opinnoissa ja työelämässä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -941,7 +941,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAA07": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ympäristö ja kestävä elämäntapa",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -951,7 +951,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAA08": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Viesti ja vaikuta puhuen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -961,7 +961,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAA11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Austauschprogramm",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -972,7 +972,7 @@
     },
     "Venäjä, A-oppimäärä": {
         "VEA01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Opiskelutaidot ja kieli-identiteetin rakentaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -982,7 +982,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEA02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli globaalissa maailmassa ja vuorovaikutusosaaminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1,5",
@@ -992,7 +992,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEA03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli ja kulttuuri luovan ilmaisun välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -1002,7 +1002,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEA04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli vaikuttamisen välineenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -1012,7 +1012,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEA05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kestävä tulevaisuus ja tiede",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -1022,7 +1022,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEA06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kieli jatko-opinnoissa ja työelämässä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -1032,7 +1032,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEA07": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ympäristö ja kestävä elämäntapa",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1042,7 +1042,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEA08": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Viesti ja vaikuta puhuen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1054,7 +1054,7 @@
     },
     "Espanja, B2-oppimäärä": {
         "EAB201": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1064,7 +1064,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB202": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1074,7 +1074,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB203": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1084,7 +1084,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB204": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1094,7 +1094,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB205": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1104,7 +1104,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB206": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1114,7 +1114,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB207": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason jatko 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1124,7 +1124,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB208": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason jatko 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1136,7 +1136,7 @@
     },
     "Ranska, B2-oppimäärä": {
         "RAB201": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1146,7 +1146,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB202": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1156,7 +1156,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB203": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1166,7 +1166,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB204": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1176,7 +1176,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB205": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1186,7 +1186,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB206": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1196,7 +1196,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB207": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason jatko 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1206,7 +1206,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB208": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason jatko 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1216,10 +1216,10 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB209": {
-            "type": "c-type141 a-val"
+            "type": "c-type141"
         },
         "RAB210": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Vaihto-ohjelma tai vierailu ranskankielisessä maassa",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
@@ -1228,7 +1228,7 @@
     },
     "Saksa, B2-oppimäärä": {
         "SAB201": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1238,7 +1238,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB202": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1248,7 +1248,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB203": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1258,7 +1258,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB204": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1268,7 +1268,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB205": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1278,7 +1278,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB206": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1288,7 +1288,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB207": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason jatko 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1298,7 +1298,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB208": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason jatko 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1310,7 +1310,7 @@
     },
     "Venäjä, B2-oppimäärä": {
         "VEB201": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1320,7 +1320,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB202": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1330,7 +1330,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB203": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1340,7 +1340,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB204": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1350,7 +1350,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB205": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1360,7 +1360,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB206": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1370,7 +1370,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB207": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason jatko 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1380,7 +1380,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB208": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason jatko 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1392,7 +1392,7 @@
     },
     "Espanja, B3-oppimäärä": {
         "EAB301": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1402,7 +1402,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB302": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1412,7 +1412,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB303": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1422,7 +1422,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB304": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1432,7 +1432,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB305": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1442,7 +1442,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB306": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1452,7 +1452,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB307": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1462,7 +1462,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "EAB308": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1474,7 +1474,7 @@
     },
     "Ranska, B3-oppimäärä": {
         "RAB301": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1485,7 +1485,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB302": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1496,7 +1496,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB303": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1507,7 +1507,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB304": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1517,7 +1517,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB305": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1527,7 +1527,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB306": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1537,7 +1537,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB307": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1547,7 +1547,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB308": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1557,14 +1557,14 @@
             "OPS": "huomautus LOPS2021"
         },
         "RAB309": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Abikertaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
             "Kuvaus": "Abikertaus"
         },
         "RAB310": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Vaihto-ohjelma tai vierailu ranskankielisessä maassa",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
@@ -1573,7 +1573,7 @@
     },
     "Saksa, B3-oppimäärä": {
         "SAB301": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1584,7 +1584,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB302": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1594,7 +1594,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB303": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1604,7 +1604,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB304": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1614,7 +1614,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB305": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1624,7 +1624,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB306": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1634,7 +1634,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB307": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1644,7 +1644,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "SAB308": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1656,7 +1656,7 @@
     },
     "Venäjä, B3-oppimäärä": {
         "VEB301": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1666,7 +1666,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB302": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1676,7 +1676,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB303": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1686,7 +1686,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB304": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1696,7 +1696,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB305": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1706,7 +1706,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB306": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1716,7 +1716,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB307": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1726,7 +1726,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "VEB308": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1738,7 +1738,7 @@
     },
     "Kiina, B3-oppimäärä": {
         "KIB301": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1748,7 +1748,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KIB302": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1758,7 +1758,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KIB303": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1768,7 +1768,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KIB304": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1778,7 +1778,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KIB305": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1788,7 +1788,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KIB306": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1798,7 +1798,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KIB307": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1808,7 +1808,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KIB308": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1820,7 +1820,7 @@
     },
     "Japani, B3-oppimäärä": {
         "JPB301": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1830,7 +1830,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "JPB302": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1840,7 +1840,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "JPB303": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustason alkeet 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1850,7 +1850,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "JPB304": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 1",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1860,7 +1860,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "JPB305": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 2",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1870,7 +1870,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "JPB306": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 3",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1880,7 +1880,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "JPB307": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 4",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1890,7 +1890,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "JPB308": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Perustaso 5",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -1902,7 +1902,7 @@
     },
     "Matematiikan yhteinen opintokokonaisuus": {
         "MAY01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Luvut ja yhtälöt",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -1915,7 +1915,7 @@
     },
     "Matematiikan pitkä oppimäärä": {
         "MAA01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Luvut ja yhtälöt (MAY1)",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintopisteitä": "2",
@@ -1924,7 +1924,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Funktiot ja yhtälöt 1",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintopisteitä": "3",
@@ -1933,7 +1933,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Geometria",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintopisteitä": "2",
@@ -1942,7 +1942,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Analyyttinen geometria ja vektorit",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintopisteitä": "3",
@@ -1951,7 +1951,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Funktiot ja yhtälöt 2",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -1961,7 +1961,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Derivaatta",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1,5",
@@ -1971,7 +1971,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA07": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Integraalilaskenta",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -1981,7 +1981,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA08": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Tilastot ja todennäköisyys",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintopisteitä": "2",
@@ -1990,7 +1990,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA09": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Talousmatematiikka",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2000,7 +2000,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA10": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "3D-geometria",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2010,7 +2010,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA11": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Algoritmit ja lukuteoria",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2020,7 +2020,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA12": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Analyysi ja jatkuva jakauma",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2030,7 +2030,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Matematiikan maailma",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2039,7 +2039,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA14": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Euklidinen tasogeometria",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2048,7 +2048,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA15": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Lineaarialgebra",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2057,7 +2057,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA16": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kompleksiluvut ja tasokäyrät",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2066,7 +2066,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA17": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Analyysin jatkokurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2075,7 +2075,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA18": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Sannäsin matematiikkaleiri",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2084,7 +2084,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA20": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Yliopistomatematiikkaan tutustuminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2093,7 +2093,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAA21": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "MAA21",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2104,7 +2104,7 @@
     },
     "Matematiikan lyhyt oppimäärä": {
         "MAB01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Luvut ja yhtälöt (MAY1)",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2114,7 +2114,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Lausekkeet ja yhtälöt",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2124,7 +2124,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Geometria",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2134,7 +2134,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB04": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Matemaattisia malleja",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2144,7 +2144,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB05": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Tilastot ja todennäköisyys",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2154,7 +2154,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB06": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Talousmatematiikan alkeet",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2164,7 +2164,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB07": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Talousmatematiikka",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2174,7 +2174,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB08": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Matemaattinen analyysi",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2184,7 +2184,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB09": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Tilastolliset ja todennäköisyysjakaumat",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2194,14 +2194,14 @@
             "OPS": "huomautus LOPS2021"
         },
         "MAB10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kertauskurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
             "OPS": "huomautus LOPS2021"
         },
         "MAB11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Muut suoritukset",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
@@ -2211,7 +2211,7 @@
     },
     "Biologia": {
         "BI01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Elämä ja evoluutio",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2222,7 +2222,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ekologian perusteet",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2232,7 +2232,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ihmisen vaikutukset ekosysteemeihin",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2242,7 +2242,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Solu ja perinnöllisyys",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2252,7 +2252,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI05": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ihmisen biologia",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2262,7 +2262,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI06": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Biotekniikka ja sen sovellukset",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2272,7 +2272,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BID07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Biologian töitä",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2281,7 +2281,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Itämeren ekologian kenttäopinnot",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2290,7 +2290,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Biologia nyt",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2299,7 +2299,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Evoluutio ja systematiikka",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2308,7 +2308,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kertaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2317,7 +2317,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Valtameri biologian kenttäjakso",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2326,7 +2326,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kasvibiologian salaisuuksia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2335,7 +2335,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "BI14": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Mehiläisbiologia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2346,7 +2346,7 @@
     },
     "Maantiede": {
         "GE01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Maailma muutoksessa",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2357,7 +2357,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "GE02": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Sininen planeetta",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2367,7 +2367,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "GE03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Yhteinen maailma",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2377,7 +2377,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "GE04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Geomedia – tutki, osallistu ja vaikuta",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2387,7 +2387,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "GE05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kehittyvien maiden maantiedettä",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2396,7 +2396,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "GE06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Maatieteen retkeilyopinnot",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2407,7 +2407,7 @@
     },
     "Fysiikka": {
         "FY01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Fysiikka luonnontieteenä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2417,7 +2417,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Fysiikka, ympäristö ja yhteiskunta",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2427,7 +2427,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Energia ja lämpö",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2437,7 +2437,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Voima ja liike",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2447,7 +2447,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY05": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Jaksollinen liike ja aallot",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2457,7 +2457,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY06": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Sähkö",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2467,7 +2467,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY07": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Sähkömagnetismi ja valo",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2477,7 +2477,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY08": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Aine, säteily ja kvantittuminen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2487,7 +2487,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Fysiikan kokonaiskuva",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2496,7 +2496,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Fysiikan tutkimusmenetelmät 1",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2505,7 +2505,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Fysiikan tutkimusmenetelmät",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2514,7 +2514,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Fysiikan mittaukset ja mittalaitteet",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2523,7 +2523,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Suhteellisuusteoria ja fysiikan matemaattiset menetelmät",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2532,7 +2532,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY14": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Tähtitieteen perusteet",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2541,7 +2541,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY15": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kokeellisuus, mallintaminen ja ohjelmointi fysiikassa",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2550,7 +2550,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY16": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Hiukkasfysiikan opintomatka",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2560,7 +2560,7 @@
             "OPS": "huomautus uusi yhteinen ops"
         },
         "FY17": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Fysiikan korkeakoulu ja tutkimusyhteistyö",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2569,7 +2569,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY18": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Yhteistyö muun oppiaineen kanssa",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2578,7 +2578,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FY19": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "FY19",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
@@ -2587,7 +2587,7 @@
     },
     "Kemia": {
         "KE01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kemia ja minä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2597,7 +2597,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kemia ja kestävä tulevaisuus",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "0,5",
@@ -2607,7 +2607,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Molekyylit ja mallit",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2617,7 +2617,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kemiallinen reaktio",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2627,7 +2627,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE05": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kemiallinen energia ja kiertotalous",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2637,7 +2637,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE06": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kemiallinen tasapaino",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2647,7 +2647,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Molekyyligastronomiaa ja muita kemian sovelluksia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2655,7 +2655,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kiertotalousratkaisuja ja energian varastointia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2663,7 +2663,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kemiaa nyt ja tulevaisuudessa",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2671,7 +2671,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Laboratoriotyöskentelyä",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2680,7 +2680,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Biokemia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2689,7 +2689,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KE13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Taidetta kemian keinoin",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2697,7 +2697,7 @@
             "Kuvaus": "KE13 Taidetta kemian keinoin (2 op)Opintojaksolla tutustutaan joihinkin kuvataiteessa käytettäviin kemiallisiin menetelmiin, kuten syanotypiaan ja pigmenttien valmistukseen, syvennetään ymmärrystä kemiaan liittyvistä ilmiöistä, kuten liukoisuuden merkityksestä taiteen kontekstissa ja saadaan kokemuksia kemiallisten prosessien käytöstä taiteellisen ilmaisun välineenä ja väriin liittyvistä ilmiöistä. Opintojakso toteutetaan mahdollisuuksien mukaan intensiivijaksoina. Opintojaksolla käytetään monipuolisia työmenetelmiä ja sisältöjä sekä kemian että kuvataiteen puolelta ja tehdään mahdollisesti vierailut Aalto-yliopistoon ja johonkin yritykseen sekä Kansallisgalleriaan. Opintojakson suorittaminen edellyttää läsnäoloa ja opintojaksolla annettujen tehtävien tekemistä ja palauttamista. Lasketaan erityislukion opintopisteisiin."
         },
         "KE14": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Lääkekemia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2708,7 +2708,7 @@
     },
     "Filosofia": {
         "FI01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Johdatus filosofiseen ajatteluun",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2718,7 +2718,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FI02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Etiikka",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2728,7 +2728,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FI03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Yhteiskuntafilosofia",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2738,7 +2738,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FI04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Totuus",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2748,7 +2748,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FI05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Estetiikka",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2757,7 +2757,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FI06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Filosofian kertaava opintojakso",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2766,7 +2766,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FI07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Tekoäly-opintojakso",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2775,7 +2775,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "FI08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Väittele ja vakuuta",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2786,7 +2786,7 @@
     },
     "Psykologia": {
         "PS01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Toimiva ja oppiva ihminen",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2797,7 +2797,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "PS02": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kehittyvä ihminen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2807,7 +2807,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "PS03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Tietoa käsittelevä ihminen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2817,7 +2817,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "PS04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Tunteet ja mielenterveys",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2827,7 +2827,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "PS05": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Yksilöllinen ja yhteisöllinen ihminen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2837,7 +2837,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "PS06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Sosiaalipsykologian tutkimusopinnot",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2846,7 +2846,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "PS07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Mediapsykologian opinnot",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2855,7 +2855,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "PS08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Psykologian ylioppilaskirjoituksiin valmistava opintojakso",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2864,7 +2864,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "PS09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Oikeuspsykologia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2875,7 +2875,7 @@
     },
     "Historia": {
         "HI01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ihminen, ympäristö ja historia",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2885,7 +2885,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Kansainväliset suhteet",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2895,7 +2895,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Itsenäisen Suomen historia",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -2905,7 +2905,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Eurooppalainen ihminen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2915,7 +2915,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI05": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ruotsin itämaasta Suomeksi",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2925,7 +2925,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI06": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Maailman kulttuurit kohtaavat",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -2935,7 +2935,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Historian kertaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2944,7 +2944,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kaupunkihistorian opintojakso",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2953,7 +2953,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Maailmantila nyt",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2962,7 +2962,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Luonnontieteellisen maailmankuvan kehitys",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2971,7 +2971,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Elokuva, aika ja yhteiskunta",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2980,7 +2980,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "HI12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Globaalin talouden historia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -2991,7 +2991,7 @@
     },
     "Yhteiskuntaoppi": {
         "YH01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Suomalainen yhteiskunta",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3001,7 +3001,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Taloustieto",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3011,7 +3011,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH03": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Suomi, Eurooppa ja muuttuva maailma",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3021,7 +3021,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Lakitieto",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3031,7 +3031,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Yhteiskuntaopin kertauskurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3040,7 +3040,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Taloustiedon jatko",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3049,7 +3049,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kohti Kauppista",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3058,7 +3058,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "The Project China Kiina-kurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3067,7 +3067,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Bisnes 1",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3076,7 +3076,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Bisnes 2 jatko",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3085,7 +3085,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Bisnes 3 jatko",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3094,7 +3094,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Sijoittajaklubi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3103,7 +3103,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Bisnes 5 Tekniikka, talous ja yrittäjyys",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3112,7 +3112,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH14": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Vuosi yrittäjyyttä",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3121,7 +3121,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "YH15": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Lakitiedon jatkokurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3132,7 +3132,7 @@
     },
     "Uskonto/elämänkatsomustieto": {
         "ET01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Minä ja hyvä elämä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3142,7 +3142,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ET02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Minä ja yhteiskunta",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3152,7 +3152,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ET03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kulttuurit",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3162,7 +3162,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ET04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Katsomukset",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3172,7 +3172,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ET05": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Uskonnot ja uskonnottomuus",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3182,7 +3182,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ET06": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Tulevaisuus",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3194,7 +3194,7 @@
     },
     "Terveystieto": {
         "TE01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Terveys voimavarana",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3204,7 +3204,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TE02": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Ympäristö ja terveys",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3214,7 +3214,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TE03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Yhteiskunta ja terveys",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3224,7 +3224,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TE04": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Terveystiedon kertaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3235,7 +3235,7 @@
     },
     "Liikunta": {
         "LI01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Osaava liikkuja",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3245,7 +3245,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Aktiivinen elämä",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3255,7 +3255,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Uudet mahdollisuudet",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3265,7 +3265,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Yhdessä liikkuen",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3275,7 +3275,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI05": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Virkistystä liikunnasta",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3285,7 +3285,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Vanhat tanssit ja etiketti",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3294,7 +3294,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Talviliikunta",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3303,7 +3303,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Retkeily",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3312,7 +3312,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Liikunnan intensiivijakso urheiluopistolla",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3321,7 +3321,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Liikettä kouluun, liikuntatutor-opintojakso",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3330,7 +3330,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kesytä stressi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3339,7 +3339,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LI12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Gotlannin pyöräilykurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3350,7 +3350,7 @@
     },
     "Musiikki": {
         "MU01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Intro – kaikki soimaan",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3360,7 +3360,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Syke – soiva ilmaisu",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3370,7 +3370,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Genre - globaali uteliaisuus",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3380,7 +3380,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Demo - luovasti yhdessä",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3390,7 +3390,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kuoro",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3399,7 +3399,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Teatterimusiikki 1",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3408,7 +3408,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Teatterimusiikki 2",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3417,7 +3417,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Bändi- ja biisipaja",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3426,7 +3426,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Konserttiproduktio-\"Kevätkavalkadi\"",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3435,7 +3435,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Musiikkiteknologia ja nuotinnus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3444,7 +3444,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Yleinen musiikkitieto",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3453,7 +3453,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Harrastekurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3462,7 +3462,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MU13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Musiikkia näyttämöllä-idealismia, politiikkaa, inkvisitiota, rikoksia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3473,7 +3473,7 @@
     },
     "Kuvataide": {
         "KU01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Omat kuvat, jaetut kulttuurit",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3483,7 +3483,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Ympäristön tilat, paikat ja ilmiöt",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3493,7 +3493,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU03": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Kuva viestii ja vaikuttaa",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3503,7 +3503,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU04": {
-            "type": "c-type137 a-val",
+            "type": "c-type137",
             "name": "Taiteen monet maailmat",
             "Tyyppi": "Lu21 valtakunnallinen valinnainen moduuli",
             "Opintoviikkoja": "1",
@@ -3513,7 +3513,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Piirrosilmaisu ja taidegrafiikka",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3522,7 +3522,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Luova maalausilmaisu",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3531,7 +3531,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Inspiroiva valokuvaus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3540,7 +3540,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Digikuvapaja",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3549,7 +3549,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kolmiulotteisen työskentelyn paja",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3558,7 +3558,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Designproggis",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3567,7 +3567,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Syventymisprojekti-oma kuvataiteellinen produktioni (itsenäisesti suoritettava)",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3576,7 +3576,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KU12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Visuaalisten alojen valmennuskurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3587,7 +3587,7 @@
     },
     "Opinto-ohjaus": {
         "OP01": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Minä opiskelijana",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3597,7 +3597,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OP02": {
-            "type": "c-type136 a-val",
+            "type": "c-type136",
             "name": "Jatko-opinnot, työelämä ja tulevaisuus",
             "Tyyppi": "Lu21 pakollinen moduuli",
             "Opintoviikkoja": "1",
@@ -3607,7 +3607,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OP03": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Töissä!",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3618,7 +3618,7 @@
     },
     "Teatteri": {
         "TEA01": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Teatterin perusteet",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3627,7 +3627,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA02": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Rooli- ja kohtausharjoittelu",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3636,7 +3636,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA03": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Improvisaatio",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3645,7 +3645,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA04": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Esityksen valmistelu",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3654,7 +3654,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Esityksen toteuttaminen 1- Harjoitusprosessi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3663,7 +3663,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Esityksen toteuttaminen 2- Kenraaliharjoitus, esitykset, yleisön kohtaaminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3672,7 +3672,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Puvustus, lavastus, maskeeraus-Teatterin visuaaliset elementit",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3681,7 +3681,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Lyhytproduktio",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3690,7 +3690,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Teatteritieto",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3699,7 +3699,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Ohjaajantyö, teatteri ja elokuva",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3708,7 +3708,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Ohjaajantyö, käytännön työpaja",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3717,7 +3717,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Näyttelijäntyö, syventävä",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3726,7 +3726,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Valo-, ääni- ja videotekniikan perusteet",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3735,7 +3735,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEA14": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Näytelmäkäsikirjoitus",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3746,7 +3746,7 @@
     },
     "Media": {
         "ME01": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Median perusteet",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3755,7 +3755,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ME02": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Elokuvailmaisun perusteet",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3764,7 +3764,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ME03": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Dokumentti",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3773,7 +3773,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ME04": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Fiktio",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3782,7 +3782,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ME05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Editointi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3791,7 +3791,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ME06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Mediataide ja animaatio",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3800,7 +3800,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ME07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Elokuvafestivaali",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3809,7 +3809,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ME08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Tuotanto",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3818,7 +3818,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "ME09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Elokuvan historia",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3829,7 +3829,7 @@
     },
     "Lukiodiplomit": {
         "KOLD1": {
-            "type": "c-type138 a-val",
+            "type": "c-type138",
             "name": "Kotitalouden lukiodiplomi",
             "Tyyppi": "Lu21 lukiodiplomi",
             "Opintoviikkoja": "1",
@@ -3839,7 +3839,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KULD2": {
-            "type": "c-type138 a-val",
+            "type": "c-type138",
             "name": "Kuvataiteen lukiodiplomi",
             "Tyyppi": "Lu21 lukiodiplomi",
             "Opintoviikkoja": "1",
@@ -3849,7 +3849,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "KÄLD3": {
-            "type": "c-type138 a-val",
+            "type": "c-type138",
             "name": "Käsityön lukiodiplomi",
             "Tyyppi": "Lu21 lukiodiplomi",
             "Opintoviikkoja": "1",
@@ -3859,7 +3859,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "LILD4": {
-            "type": "c-type138 a-val",
+            "type": "c-type138",
             "name": "Liikunnan lukiodiplomi",
             "Tyyppi": "Lu21 lukiodiplomi",
             "Opintoviikkoja": "1",
@@ -3869,7 +3869,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MELD5": {
-            "type": "c-type138 a-val",
+            "type": "c-type138",
             "name": "Median lukiodiplomi",
             "Tyyppi": "Lu21 lukiodiplomi",
             "Opintoviikkoja": "1",
@@ -3879,7 +3879,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MULD6": {
-            "type": "c-type138 a-val",
+            "type": "c-type138",
             "name": "Musiikin lukiodiplomi",
             "Tyyppi": "Lu21 lukiodiplomi",
             "Opintoviikkoja": "1",
@@ -3889,7 +3889,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TELD08": {
-            "type": "c-type138 a-val",
+            "type": "c-type138",
             "name": "Teatterin lukiodiplomi",
             "Tyyppi": "Lu21 lukiodiplomi",
             "Opintopisteitä": "2",
@@ -3899,7 +3899,7 @@
     },
     "Temaattiset opinnot": {
         "TO01": {
-            "type": "c-type146 a-val",
+            "type": "c-type146",
             "name": "Kohti lukio-opintoja",
             "Tyyppi": "Lu21 temaattiset opinnot -opintojakso",
             "Opintoviikkoja": "1",
@@ -3910,7 +3910,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TO02": {
-            "type": "c-type146 a-val",
+            "type": "c-type146",
             "name": "Kestävä tulevaisuus",
             "Tyyppi": "Lu21 temaattiset opinnot -opintojakso",
             "Opintoviikkoja": "1",
@@ -3921,7 +3921,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TO03": {
-            "type": "c-type146 a-val",
+            "type": "c-type146",
             "name": "Lukiokohtainen temaattinen opintojakso",
             "Tyyppi": "Lu21 temaattiset opinnot -opintojakso",
             "Opintoviikkoja": "1",
@@ -3934,7 +3934,7 @@
     },
     "Teknologia": {
         "TEC01": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Ohjelmointi (Python)",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3944,7 +3944,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEC02": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Arduino I",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3953,7 +3953,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEC03": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "IoT-sovellukset",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3962,7 +3962,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEC04": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "IoT-sovellukset",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3971,7 +3971,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEC05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "3D mallintaminen ja tulostaminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3980,7 +3980,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEC06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kvanttilaskenta",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3989,7 +3989,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEC07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Luova ongelmanratkaisu esim. Robotiikan avulla  ja First Global Challenge kilpailu",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -3998,7 +3998,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEC09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Introduction to web development-verkkokurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4007,7 +4007,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TEC10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Lukion Fysiikkaa ja matematiikkaa ohjelmoimalla",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4018,7 +4018,7 @@
     },
     "OTA-opinnot": {
         "OTA01": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Tutorina toimiminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4027,7 +4027,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA02": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Otaniemen lukion ja opiskelijakunnan hyväksy toimiminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4036,7 +4036,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA03": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "AV-tiimissä toimiminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4045,7 +4045,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA04": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Sometiimissä toimiminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4054,7 +4054,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Digitutorina toimiminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4063,7 +4063,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Liikettä kouluun, liikuntatutorina toimiminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4072,7 +4072,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA07": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kestävän kehityksen toiminta",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4081,7 +4081,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA08": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Taidetta kaikilla aisteilla",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4090,7 +4090,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA09": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Taidepassi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4099,7 +4099,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA10": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Monitaiteellinen musiikkiproduktio",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4108,7 +4108,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA11": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Science-kurssi 1 – monitieteinen ajattelu",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4117,7 +4117,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA12": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Sience-kurssi 2- Tieteellisen tutkimuksen tekeminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4126,7 +4126,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OTA13": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Tiedepassi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4137,7 +4137,7 @@
     },
     "Korkeakouluopinnot": {
         "MOO01": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Ohjelmoinnin MOOC",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4146,7 +4146,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MOO02": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Ohjelmoinnin MOOC2",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4156,7 +4156,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "GSE01": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Taloustieteen kurssi",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintopisteitä": "2",
@@ -4167,7 +4167,7 @@
     },
     "Muut opinnot": {
         "MUO1": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Muut opinnot 1",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4178,7 +4178,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MUO2": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Muut opinnot 2",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4187,7 +4187,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MUO3": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Muut opinnot 3",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4196,7 +4196,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "MUO4": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Muut opinnot 4",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4207,7 +4207,7 @@
     },
     "OÄIun": {
         "OÄIun1": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4218,7 +4218,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIun2": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4229,7 +4229,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIun3": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4240,7 +4240,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIun4": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4251,7 +4251,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIun5": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4262,7 +4262,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIun6": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4273,7 +4273,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIun7": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4284,7 +4284,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIun8": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4297,7 +4297,7 @@
     },
     "OÄIar": {
         "OÄIar1": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4308,7 +4308,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIar2": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4319,7 +4319,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIar3": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4330,7 +4330,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIar4": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4341,7 +4341,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIar5": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4352,7 +4352,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIar6": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4363,7 +4363,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIar7": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4374,7 +4374,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIar8": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4387,7 +4387,7 @@
     },
     "OÄIfa": {
         "OÄIfa1": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4398,7 +4398,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIfa2": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4409,7 +4409,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIfa3": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4420,7 +4420,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIfa4": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4431,7 +4431,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIfa5": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4442,7 +4442,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIfa6": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4453,7 +4453,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIfa7": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4464,7 +4464,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIfa8": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4477,7 +4477,7 @@
     },
     "OÄIku": {
         "OÄIku1": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4488,7 +4488,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIku2": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4499,7 +4499,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIku3": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4510,7 +4510,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIku4": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4521,7 +4521,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIku5": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4532,7 +4532,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIku6": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4543,7 +4543,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIku7": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4554,7 +4554,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIku8": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4567,7 +4567,7 @@
     },
     "OÄIma": {
         "OÄIma1": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4578,7 +4578,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIma2": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4589,7 +4589,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIma3": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4600,7 +4600,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIma4": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4611,7 +4611,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIma5": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4622,7 +4622,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIma6": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4633,7 +4633,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIma7": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4644,7 +4644,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIma8": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4657,7 +4657,7 @@
     },
     "OÄIso": {
         "OÄIso1": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4668,7 +4668,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIso2": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4679,7 +4679,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIso3": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4690,7 +4690,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIso4": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4701,7 +4701,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIso5": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4712,7 +4712,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIso6": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4723,7 +4723,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIso7": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4734,7 +4734,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIso8": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4747,7 +4747,7 @@
     },
     "OÄIve": {
         "OÄIve1": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta ja kirjoittaminen",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4758,7 +4758,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIve2": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kieli- ja tekstitietoisuus",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4769,7 +4769,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIve3": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4780,7 +4780,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIve4": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4791,7 +4791,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIve5": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Tekstien tulkinta 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4802,7 +4802,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIve6": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjoittaminen 1",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4813,7 +4813,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIve7": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Vuorovaikutus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "0,5",
@@ -4824,7 +4824,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "OÄIve8": {
-            "type": "c-type151 a-val",
+            "type": "c-type151",
             "name": "Kirjallisuus 2",
             "Tyyppi": "Lu21 oman äidinkielen opintojakso",
             "Opintoviikkoja": "1",
@@ -4837,7 +4837,7 @@
     },
     "Talous ja nuoret": {
         "TAT01": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Oman talouden hallinta",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4846,7 +4846,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TAT02": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Työelämäosaaminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4857,7 +4857,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TAT03": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Yrittäjyysosaaminen",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4868,7 +4868,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TAT04": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Sijoittajakoulu",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4879,7 +4879,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TAT05": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Kesäyrittäjäohjelma",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",
@@ -4890,7 +4890,7 @@
             "OPS": "huomautus LOPS2021"
         },
         "TAT06": {
-            "type": "c-type141 a-val",
+            "type": "c-type141",
             "name": "Yritystoiminnan suunnittelu",
             "Tyyppi": "Lu21 paikallinen opintojakso",
             "Opintoviikkoja": "1",

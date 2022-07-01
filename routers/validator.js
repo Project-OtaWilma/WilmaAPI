@@ -42,7 +42,7 @@ const GetCourseByID = Joi.object({
 const validateRequestParameters = (req, res, schema = {}) => {
     const result = schema.validate(req.params);
     if (result.error) {
-        res.status(400).send({ error: result.error.details[0].message });
+        res.status(400).send({ err: result.error.details[0].message, status: 400 });
         return null;
     }
 
@@ -53,7 +53,7 @@ const validateRequestBody = (req, res, schema = {}) => {
     const result = schema.validate(req.body);
 
     if (result.error) {
-        res.status(400).send({ error: result.error.details[0].message });
+        res.status(400).send({ err: result.error.details[0].message, status: 400 });
         return null;
     }
 
@@ -64,7 +64,7 @@ const validateWilma2SID = (req, res) => {
     const Wilma2SID = req.headers.wilma2sid;
 
     if (!Wilma2SID) {
-        res.status(400).send({ error: 'Missing session-authenticator (Wilma2SID)' });
+        res.status(400).send({ err: 'Missing session-authenticator (Wilma2SID)', status: 400 });
         return null;
     }
 
@@ -75,7 +75,7 @@ const validateStudentID = (req, res) => {
     const StudentID = req.headers.studentid;
 
     if (!StudentID) {
-        res.status(400).send({ error: 'Missing student identifier (formKey)' });
+        res.status(400).send({ err: 'Missing student identifier (formKey)', status: 400 });
         return null;
     }
 

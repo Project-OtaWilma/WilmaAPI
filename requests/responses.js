@@ -1,21 +1,36 @@
-const { response } = require('express');
-const { parse } = require('node-html-parser');
 const utility = require('../utility/utility');
+
+
+const validateAccountGetStudentID = (res) => {
+    return new Promise((resolve, reject) => {
+        if (!res.body) {
+            return reject({ err: 'Something went wrong with the login process', status: 500 })
+        }
+
+        utility.parsers.parseStudent(res.body)
+            .then(studentID => {
+                return resolve(studentID);
+            })
+            .catch(err => {
+                return reject({ err: 'Failed to retrieve StudentID', status: 501 });
+            });
+    });
+}
 
 const validateMessagePost = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials", status: 401 })
         }
 
         utility.parsers.parseTitle(res.body)
             .then(title => {
 
-                switch(title) {
+                switch (title) {
                     case 'Viestit - Wilma':
                         return resolve(true);
                     default:
-                        return reject({err: "Couldn't send message - Invalid request", status: 400});
+                        return reject({ err: "Couldn't send message - Invalid request", status: 400 });
                 }
 
             })
@@ -27,8 +42,8 @@ const validateMessagePost = (res) => {
 
 const validateMessageGet = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials", status: 401 })
         }
 
         return resolve(true);
@@ -39,8 +54,8 @@ const validateMessageGetByID = (res) => {
     const disallowed = ['Käyttö estetty - Wilma']
     return new Promise((resolve, reject) => {
 
-        if(!res.body) {
-            return reject({err: "Invalid credentials", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials", status: 401 })
         }
 
         return resolve(true);
@@ -49,25 +64,25 @@ const validateMessageGetByID = (res) => {
 
 const validateScheduleGet = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials", status: 401 })
         }
 
-        switch(res.statusCode) {
+        switch (res.statusCode) {
             case 200:
                 return resolve(true);
             case 403:
-                return reject({ error: "Invalid credentials (StudentID)", message: res.statusCode, status: 404 });
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
             default:
-                return reject({ error: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
         }
     });
 }
 
 const validateNewsGet = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials (Wilma2SID)", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials (Wilma2SID)", status: 401 })
         }
 
         return resolve(true);
@@ -76,25 +91,25 @@ const validateNewsGet = (res) => {
 
 const validateNewsGetByID = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials", status: 401 })
         }
-        
-        switch(res.statusCode) {
+
+        switch (res.statusCode) {
             case 200:
                 return resolve(true);
             case 403:
-                return reject({ error: "Invalid ID - Couldn't find or didn't have permission to reach news with specified ID", message: res.statusCode, status: 404 });
+                return reject({ err: "Invalid ID - Couldn't find or didn't have permission to reach news with specified ID", message: res.statusCode, status: 400 });
             default:
-                return reject({ error: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
         }
     });
 }
 
 const validateGradebookGet = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials", status: 401 })
         }
 
         return resolve(true);
@@ -103,8 +118,8 @@ const validateGradebookGet = (res) => {
 
 const validateCourseTrayGetList = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials", status: 401 })
         }
 
         return resolve(true);
@@ -113,42 +128,45 @@ const validateCourseTrayGetList = (res) => {
 
 const validateCourseTrayGetByPeriod = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials (Wilma2SID)", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials (Wilma2SID)", status: 401 })
         }
 
-        switch(res.statusCode) {
+        switch (res.statusCode) {
             case 200:
                 return resolve(true);
             case 403:
-                return reject({ error: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
             case 500:
-                return reject({ error: "Invalid tray identifier - Couldn't find a tray with specified ID", message: res.statusCode, status: 404 });
+                return reject({ er: "Invalid tray identifier - Couldn't find a tray with specified ID", message: res.statusCode, status: 400 });
             default:
-                return reject({ error: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
         }
     });
 }
 
 const validateCourseTrayGetCourse = (res) => {
     return new Promise((resolve, reject) => {
-        if(!res.body) {
-            return reject({err: "Invalid credentials", status: 401})
+        if (!res.body) {
+            return reject({ err: "Invalid credentials", status: 401 })
         }
 
-        switch(res.statusCode) {
+        switch (res.statusCode) {
             case 200:
                 return resolve(true);
             case 500:
-                return reject({ error: "Invalid course identifier - Couldn't find a course with specified ID", message: res.statusCode, status: 404 });
+                return reject({ err: "Invalid course identifier - Couldn't find a course with specified ID", message: res.statusCode, status: 400 });
             default:
-                return reject({ error: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
         }
     });
 }
 
 
 module.exports = {
+    account: {
+        validateAccountGetStudentID
+    },
     messages: {
         validateMessagePost,
         validateMessageGet,
