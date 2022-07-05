@@ -5,7 +5,7 @@ const { news } = require('../requests/responses');
 
 // https://espoo.inschool.fi/news/22854
 
-const getNewsInbox = (Wilma2SID) => {
+const getNewsInbox = (Wilma2SID, path, limit) => {
     return new Promise((resolve, reject) => {
         var options = {
             'method': 'GET',
@@ -24,9 +24,10 @@ const getNewsInbox = (Wilma2SID) => {
             news.validateNewsGet(response)
                 .then(() => {
                     try {
-                        const list = parseNewsInbox(response.body);
+                        const list = parseNewsInbox(response.body, path, limit);
                         return resolve(list);
                     } catch(err) {
+                        console.log(err);
                         return reject({err: 'Failed to parse the list of news', message: err, status: 500});
                     }
                 })
@@ -69,51 +70,105 @@ const getNewsById = (Wilma2SID, NewsID) => {
     });
 }
 
-// Parser - v0.0.1 (13/06/2022)
-const parseNewsInbox = (raw) => {
+// rework
+const parseNewsInbox = (raw, path, limit) => {
+    console.log(path);
     const document = parse(raw);
     const sections = ['Pysyvät tiedotteet', 'Vanhat tiedotteet']
+    const translations = {
+        'Pysyvät tiedotteet': 'static',
+        'Vanhat tiedotteet': 'old',
+        'Nykyiset tiedotteet': 'current'
+    };
     const titles = [];
-    const result = { 'Nykyiset tiedotteet': [] };
+    const result = { 'Nykyiset tiedotteet': {} };
 
     document.getElementsByTagName('div').filter(div => div.rawAttrs = 'class="panel-body"' && div.childNodes.filter(el => el.rawTagName == 'h2').length > 0).forEach(div => {
 
-        div.childNodes.forEach(c => {
+        div.childNodes.filter(c => c.rawTagName).forEach(c => {
             const data = c.rawText;
+            // console.log([c.rawTagName, c.rawText.trim()]);
+            switch(c.rawTagName) {
+                case 'h2':
+                    if(sections.includes(c.textContent.trim())) {
+                        titles.push(c.textContent.trim());
+                        if(path == c.textContent.trim()) {
+                            result[c.textContent.trim()] = [];
+                        }
+                    }
+                    else if(path == 'Nykyiset tiedotteet'){
+                        result['Nykyiset tiedotteet'][c.textContent.trim()] = []
+                        titles.push(c.textContent.trim());
+                    }
+                    break;
+                case 'div':
+                    if(c.childNodes.length > 1 && path == 'Nykyiset tiedotteet') {
+                        console.log(path);
+                        const newsData = {
+                            title: null,
+                            description: null,
+                            href: null,
+                            sender: {
+                                name: null,
+                                href: null
+                            }
+                        };
 
-            if (c.rawTagName == 'h2') {
-                titles.push(data);
-                if (sections.includes(data)) {
-                    result[data] = { news: [] }
-                }
-            }
-            else if (c.rawTagName == 'div') {
-                if (sections.includes(titles[titles.length - 1])) {
-                    const subject = c.childNodes[0].text;
-                    const href = c.childNodes[0].rawAttrs.split('href=')[1].replace('"', '');
+                        c.childNodes.filter(cc => ![0, 3].includes(cc.childNodes.length)).forEach(cc => {
+                            switch(cc.childNodes.length) {
+                                case 1:
+                                    switch(cc.rawTagName) {
+                                        case 'h3':
+                                            newsData.title = cc.textContent.trim();
+                                            break;
+                                        case 'p':
+                                            newsData.description = cc.textContent.trim();
+                                            break;
+                                    }
+                                    // console.log({t: [cc.rawTagName, cc.textContent.trim()]});
+                                    break;
+                                case 5:
+                                    cc.childNodes.filter(ccc => ccc.rawTagName == 'a').forEach(ccc => {
+                                        console.log([ccc.toString()])
+                                        switch(ccc.attrs.class) {
+                                            case 'profile-link':
+                                                newsData.sender.name = ccc.attrs.title;
+                                                newsData.sender.href = ccc.attrs.href;
+                                                break;
+                                            default:
+                                                newsData.href = ccc.attrs.href;
+                                                break;
+                                        }
+                                    });
+                                    break;
+                            }
+                        })
 
-                    result[titles[titles.length - 1]].news.push({ subject: subject, href: href });
-                }
-                else {
-                    const subject = c.getElementsByTagName('h3')[0].text.trim();
-                    const description = c.getElementsByTagName('p')[0] ? c.getElementsByTagName('p')[0].text : null;
-                    const links = c.getElementsByTagName('span')[0].childNodes.filter(c => c.nodeType == 1);
-                    const href = links[0].rawAttrs.split('href=')[1].replace('"', '');
-                    const sender = links[1].rawAttrs;
-                    const name = sender.split('title=')[1]
-                    const link = sender.split(' ')[0].split('href=')[1] ? sender.split(' ')[0].split('href=')[1].replace('"', '') : null;
+                        result['Nykyiset tiedotteet'][titles[titles.length - 1]].push(newsData);
+                    }
+                    else if(path == titles[titles.length - 1]) {
+                        const element = c.childNodes[0];
+                        if(element.textContent.trim()) {
+                            const href = element.attrs ? element.attrs.href : null;
+                            const title = element.textContent;
+    
+                            result[titles[titles.length - 1]].push(
+                                {
+                                    title: title,
+                                    href: href
+                                }
+                            )
+                        }
 
-                    result['Nykyiset tiedotteet'].push({ date: titles[titles.length - 1], subject: subject, description: description, href: href, sender: { name: name, href: link } });
-                }
-
+                    }
+                    break;
             }
         });
     });
-
-    return result;
+    
+    return Array.isArray(result[path]) ? result[path].slice(0, limit) : Object.fromEntries(Object.entries(result[path]).slice(0, limit))
 }
 
-// Parser - v0.0.1 (13/06/2022)
 const parseNewsById = (raw) => {
     const document = parse(raw);
     const sections = ['Pysyvät tiedotteet', 'Vanhat tiedotteet', 'Viimeaikaiset tiedotteet'];
