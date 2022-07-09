@@ -1,0 +1,383 @@
+{
+  "808": {
+    "name": "Jaana Björklund-Vuojala",
+    "task": "Lehtori"
+  },
+  "2852": {
+    "name": "Olga Kukkonen",
+    "task": "Oman äidinkielen opettaja, venäjä"
+  },
+  "3587": {
+    "name": "Mikael Inkeroinen",
+    "task": "matematiikka, virka-apulaisrehtori"
+  },
+  "3639": {
+    "name": "Juha-Pekka Lehtonen",
+    "task": "historia ja yhteiskuntaoppi"
+  },
+  "3647": {
+    "name": "Maija Flinkman",
+    "task": "biologia ja maantiede"
+  },
+  "3649": {
+    "name": "Mikko Kainulainen",
+    "task": "liikunta"
+  },
+  "3656": {
+    "name": "Matti Vilppola",
+    "task": "musiikki"
+  },
+  "3673": {
+    "name": "Perttu Ståhlberg",
+    "task": "saksa"
+  },
+  "3678": {
+    "name": "Ale Toijonen",
+    "task": "äidinkieli"
+  },
+  "3693": {
+    "name": "Sari Halavaara",
+    "task": "historia ja yhteiskuntaoppi"
+  },
+  "3697": {
+    "name": "Anu Penttilä",
+    "task": "kemia"
+  },
+  "3699": {
+    "name": "Katariina Riijärvi",
+    "task": "ruotsi"
+  },
+  "3707": {
+    "name": "Jari-Pekka Makkonen",
+    "task": "matematiikka ja fysiikka, TT-vastuuopettaja"
+  },
+  "3717": {
+    "name": "Leena Hernigle",
+    "task": "englanti ja ruotsi"
+  },
+  "3727": {
+    "name": "Aki Saariaho",
+    "task": "filosofi ja englanti"
+  },
+  "3730": {
+    "name": "Seppo Hietaranta",
+    "task": "biologia ja maantiede"
+  },
+  "3744": {
+    "name": "Anna Ravila",
+    "task": "ruotsi, ranska"
+  },
+  "3751": {
+    "name": "Kati Howard",
+    "task": "englanti ja saksa"
+  },
+  "3753": {
+    "name": "Kirsi Vakkilainen",
+    "task": "kemia, apulaisrehtori"
+  },
+  "3936": {
+    "name": "Mia Kohi",
+    "task": "äidinkieli"
+  },
+  "3938": {
+    "name": "Janne Ahonen",
+    "task": "liikunta, terveystieto"
+  },
+  "3951": {
+    "name": "Kirsi Haapamäki",
+    "task": "biologia, maantiede"
+  },
+  "3954": {
+    "name": "Päivi Kosonen",
+    "task": "ruotsi, saksa"
+  },
+  "3957": {
+    "name": "Tuula Jouttijärvi",
+    "task": "äidinkieli"
+  },
+  "3960": {
+    "name": "Sari Viitanen",
+    "task": "englanti, ruotsi"
+  },
+  "3986": {
+    "name": "Inka Saajoranta-Kurvinen",
+    "task": "Erityisopetus"
+  },
+  "4706": {
+    "name": "Katariina Mehtälä",
+    "task": "ENA"
+  },
+  "4718": {
+    "name": "Katri Råglund",
+    "task": "Lehtori"
+  },
+  "4719": {
+    "name": "Laura Murto",
+    "task": "kuvataide"
+  },
+  "5182": {
+    "name": "Matti Iivanainen",
+    "task": "opinto-ohjaus (22ABC, 21AB, 20AB, 19H)"
+  },
+  "5188": {
+    "name": "Milla Unkuri",
+    "task": "fysiikka ja matematiikka"
+  },
+  "5484": {
+    "name": "Matti Heikkinen",
+    "task": "fysiikka, matematiikka, TT-vastuuhenkilö",
+    "feedback": {
+      "reviews": [
+        null,
+        "moilanentuukka5@gmail.com"
+      ],
+      "course-pace": [
+        null,
+        1
+      ],
+      "course-applicability": [
+        null,
+        1
+      ],
+      "course-style": [
+        null,
+        2
+      ],
+      "course-difficulty": [
+        null,
+        1
+      ],
+      "teacher-adjectives": {
+        "Motivoitunut": 1
+      },
+      "ability-to-self-study": [
+        null,
+        1
+      ],
+      "comments": [
+        null,
+        "ihana opettaja 3>"
+      ]
+    }
+  },
+  "5588": {
+    "name": "Tanja Partala",
+    "task": "uskonto, filosofia"
+  },
+  "5627": {
+    "name": "Elina Hanninen",
+    "task": "äidinkieli ja suomi toisena kielenä"
+  },
+  "5731": {
+    "name": "Sanna Ropponen",
+    "task": "kuvataide"
+  },
+  "5844": {
+    "name": "Jorma Tahvanainen",
+    "task": "matematiikka, fysiikka"
+  },
+  "5966": {
+    "name": "Erika Ripatti",
+    "task": "historia, yhteiskuntaoppi"
+  },
+  "6011": {
+    "name": "Jutta Taskinen",
+    "task": "opinto-ohjaus (22GI, 21GHI, 20GH, 19H)"
+  },
+  "6118": {
+    "name": "Kati Laakso",
+    "task": "musiikki"
+  },
+  "6185": {
+    "name": "Sari Pirkkalainen",
+    "task": " matematiikka, fysiikka"
+  },
+  "6781": {
+    "name": "Henri Ruusuvuori",
+    "task": "HI, YH"
+  },
+  "6912": {
+    "name": "Tytti Tenhunen",
+    "task": "ranska ja englanti"
+  },
+  "7101": {
+    "name": "Antti Humalamäki",
+    "task": "Opinto-ohjaus (22NOP, 21C&G, 20C&J)"
+  },
+  "7526": {
+    "name": "Päivi Forsström",
+    "task": "kemia"
+  },
+  "7682": {
+    "name": "Pauliina Ilkko-Ervasti",
+    "task": "uskonto, filosofia ja elämänkatsomustieto"
+  },
+  "7771": {
+    "name": "Alexander Degerman",
+    "task": "psykologia"
+  },
+  "7858": {
+    "name": "Ulla Maria Kansanen",
+    "task": "ruotsi, englanti, ranska"
+  },
+  "7875": {
+    "name": "Alexandra Odarenko",
+    "task": "Oman äidinkielen opettaja, venäjä"
+  },
+  "8251": {
+    "name": "Olga Kaliuta",
+    "task": "matematiikka, TT-vastuuhenkilö"
+  },
+  "8661": {
+    "name": "Anna Karhumaa",
+    "task": "psykologia, uskonto"
+  },
+  "8808": {
+    "name": "Alina Chuprova",
+    "task": "Oman äidinkielen opettaja, venäjä"
+  },
+  "9010": {
+    "name": "Riitta Paasio",
+    "task": "liikunta ja terveystieto"
+  },
+  "9041": {
+    "name": "Maija Honkela",
+    "task": "kemia, TT-vastuuhenkilö"
+  },
+  "9152": {
+    "name": "Ulla Helenius-Aro",
+    "task": "äidinkieli"
+  },
+  "9244": {
+    "name": "Jussi Kaataja",
+    "task": "matematiikka"
+  },
+  "9381": {
+    "name": "Outi Taskilahti",
+    "task": "uskonto, filosofia"
+  },
+  "9397": {
+    "name": "Jussi Uitto",
+    "task": "historia, yhteiskuntaoppi"
+  },
+  "9405": {
+    "name": "Katri Kostiainen",
+    "task": "teatteri ja ilmaisutaito, TeMe-linjan koordinaattori"
+  },
+  "9436": {
+    "name": "Elisa Orre",
+    "task": "äidinkieli"
+  },
+  "9443": {
+    "name": "Timo Vuorinen",
+    "task": "englanti, espanja"
+  },
+  "9508": {
+    "name": "Lotta Tapio",
+    "task": "äidinkieli"
+  },
+  "9591": {
+    "name": "Janette Ollikainen",
+    "task": "matematiikka, fysiikka"
+  },
+  "9886": {
+    "name": "Pekka Rantakari",
+    "task": "Katolisen uskonnon opettaja"
+  },
+  "9896": {
+    "name": "Sinikka Luoma-Mattila",
+    "task": "Lukion rehtori"
+  },
+  "10134": {
+    "name": "Minna Korin",
+    "task": "opinto-ohjaus (22DEF, 21DEF, 20DEF, 19J)"
+  },
+  "10206": {
+    "name": "Isra Lehtinen",
+    "task": "Islamin uskonnon opettaja"
+  },
+  "10286": {
+    "name": "Eeva Gustafsson",
+    "task": "Matemaattisten aineiden opetus"
+  },
+  "10310": {
+    "name": "Ville-Pekka Kilpi",
+    "task": "matematiikka, fysiikka"
+  },
+  "10356": {
+    "name": "Hanna Kaisa Hukio",
+    "task": "englanti, ruotsi"
+  },
+  "10621": {
+    "name": "Emilia Teinonen",
+    "task": "opinto-ohjaus (22KLM, 21KLM, 20KLM, 19J)"
+  },
+  "10655": {
+    "name": "Ville Saarikivi",
+    "task": "matematiikka ja fysiikka"
+  },
+  "10688": {
+    "name": "Virva Pitsinki",
+    "task": "englanti"
+  },
+  "10828": {
+    "name": "Jari Ketola",
+    "task": "Ortodoksisen uskonnon opettaja"
+  },
+  "11298": {
+    "name": "Laura Paavilainen",
+    "task": "biologia, maantiede"
+  },
+  "12103": {
+    "name": "Katja Uksila",
+    "task": "kuvataide/media"
+  },
+  "12207": {
+    "name": "Yun Ge",
+    "task": "kiina"
+  },
+  "12267": {
+    "name": "Jenna-Julia Rissanen",
+    "task": "matematiikka"
+  },
+  "12298": {
+    "name": "Aku Sarjanen",
+    "task": " kemia, matematiikka"
+  },
+  "12456": {
+    "name": "Anni Kukko",
+    "task": "kemia"
+  },
+  "12457": {
+    "name": "Jaakko Honkala",
+    "task": "matematiikka"
+  },
+  "13098": {
+    "name": "Elina Timonen",
+    "task": "Kentässä ei tietoa"
+  },
+  "13154": {
+    "name": "Kaisa Aalto",
+    "task": "biologia"
+  },
+  "13426": {
+    "name": "Tatjana Kajala",
+    "task": "englanti, ruotsi"
+  },
+  "13434": {
+    "name": "Essi Avela",
+    "task": "uskonto ja psykologia"
+  },
+  "13439": {
+    "name": "Ilona Kauppinen",
+    "task": "Kentässä ei tietoa"
+  },
+  "13480": {
+    "name": "Hannu Kovalainen",
+    "task": "filosofia, uskonto"
+  },
+  "13566": {
+    "name": "Anri Wahlberg",
+    "task": "Kentässä ei tietoa"
+  }
+}

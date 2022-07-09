@@ -37,7 +37,22 @@ const GetCourseByID = Joi.object({
     id: Joi.string().required()
 });
 
+const postTeacherReview = Joi.object({
+    secret: Joi.string().required().length(64),
+    sender: Joi.string().required(),
+    teacher: Joi.string().required(),
+    'course-pace': Joi.number().required(),
+    'course-applicability': Joi.number().required(),
+    'course-style': Joi.number().required(),
+    'course-difficulty': Joi.number().required(),
+    'teacher-adjectives': Joi.array().required(),
+    'ability-to-self-study': Joi.number().required(),
+    'comment': Joi.string(),
+});
 
+const getTeacherByID = Joi.object({
+    id: Joi.string().required()
+});
 
 const validateRequestParameters = (req, res, schema = {}) => {
     const result = schema.validate(req.params);
@@ -101,6 +116,10 @@ module.exports = {
         courseTray: {
             GetTrayByPeriod,
             GetCourseByID
+        },
+        teachers: {
+            postTeacherReview,
+            getTeacherByID
         }
     },
     validators: {

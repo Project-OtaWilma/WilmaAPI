@@ -36,34 +36,6 @@ const parseTitle = (raw) => {
     });
 } 
 
-const getStudentID = (Wilma2SID) => {
-    return new Promise((resolve, reject) => {
-        var options = {
-            'method': 'GET',
-            'url': `https://espoo.inschool.fi/schedule`,
-            'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            'followRedirect': false,
-        };
-
-        request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve token required for schedule', message: response, status: 501 });
-
-            // Validate response
-            if(!response.body) { return reject({err: "Invalid credentials", status: 401}) }
-
-            parseStudent(response.body)
-                .then(studentID => {
-                    return resolve(studentID);
-                })
-                .catch(err => {
-                    return reject(err);
-                })
-        });
-    });
-}
 
 
 module.exports = {
@@ -73,8 +45,5 @@ module.exports = {
     parsers: {
         parseStudent,
         parseTitle,
-    },
-    requests: {
-        getStudentID
     }
 }

@@ -12,7 +12,7 @@ const validateAccountGetStudentID = (res) => {
                 return resolve(studentID);
             })
             .catch(err => {
-                return reject({ err: 'Failed to retrieve StudentID', status: 501 });
+                return reject({ err: 'Failed to parse StudentID', status: 500 });
             });
     });
 }

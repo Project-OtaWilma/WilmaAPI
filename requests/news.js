@@ -42,7 +42,7 @@ const getNewsById = (Wilma2SID, NewsID) => {
     return new Promise((resolve, reject) => {
         var options = {
             'method': 'GET',
-            'url': `https://espoo.inschool.fi/news/${NewsID}`,
+            'url': `https://espoo.inschool.fi/news/printable/${NewsID}`,
             'headers': {
                 'Cookie': `Wilma2SID=${Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -103,7 +103,6 @@ const parseNewsInbox = (raw, path, limit) => {
                     break;
                 case 'div':
                     if(c.childNodes.length > 1 && path == 'Nykyiset tiedotteet') {
-                        console.log(path);
                         const newsData = {
                             title: null,
                             description: null,
@@ -125,11 +124,9 @@ const parseNewsInbox = (raw, path, limit) => {
                                             newsData.description = cc.textContent.trim();
                                             break;
                                     }
-                                    // console.log({t: [cc.rawTagName, cc.textContent.trim()]});
                                     break;
                                 case 5:
                                     cc.childNodes.filter(ccc => ccc.rawTagName == 'a').forEach(ccc => {
-                                        console.log([ccc.toString()])
                                         switch(ccc.attrs.class) {
                                             case 'profile-link':
                                                 newsData.sender.name = ccc.attrs.title;
@@ -171,26 +168,13 @@ const parseNewsInbox = (raw, path, limit) => {
 
 const parseNewsById = (raw) => {
     const document = parse(raw);
-    const sections = ['Pysyvät tiedotteet', 'Vanhat tiedotteet', 'Viimeaikaiset tiedotteet'];
 
-    const result = {
-        title: null,
-        data: []
-    }
+    const title = document.getElementsByTagName('title')[0].textContent.trim().split(' - Wilma')[0];
 
-    result.title = document.getElementsByTagName('h2').filter(h2 => !sections.includes(h2.text))[0].text.trim();
-
-    result.data = document.getElementById('news-content').childNodes.filter(c => c.toString().trim()).map(c => {
-        switch (c.rawTagName) {
-            case 'h2':
-                return { title: c.text.trim().replace('\r\n', '') }
-            case 'p':
-                const data = c.childNodes.map(c => { return c.text.replace('\r\n', '') }).filter(d => d.trim());
-                return { p: data.filter(d => d).join('') }
-        }
-    }).filter(c => c && (c.p || c.title));
-
-    return result;
+    return {
+        title: title,
+        html: document.getElementsByTagName('body')[0].toString()
+    };
 }
 
 module.exports = {
