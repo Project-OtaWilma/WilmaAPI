@@ -115,10 +115,7 @@ const rateTeacher = (r) => {
             if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
             const db = database.db('Wilma');
-
             const query = { name: r['teacher'] }
-
-            console.log(query);
 
             const values = {
                 $push: {
@@ -138,9 +135,6 @@ const rateTeacher = (r) => {
                 
                 values['$inc'] = {...values['$inc'], ...path};
             });
-
-            console.log(values);
-
             
             db.collection('teachers').updateOne(query, values, (err, res) => {
                 if (err) { return reject({ err: 'Failed to connect to database', status: 500 });}
@@ -149,9 +143,9 @@ const rateTeacher = (r) => {
 
                 database.close();
 
-                if (res.length < 1) return reject({ err: "Couldn't locate a teacher with specified id", status: 400 });
+                if (res.modifiedCount < 1) return reject({ err: "Couldn't locate teacher with specified name wasn't found from database", status: 400 });
 
-                return resolve(res[0]);
+                return resolve({ status: 200 });
             });
             
         })
