@@ -6,3 +6,9 @@ package-lock.json
 
 # config
 static/config
+
+# tools used to setup static data for database
+tools.js
+
+# MongoDB authentication
+MongoDB/secret.json

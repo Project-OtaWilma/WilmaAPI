@@ -3,19 +3,15 @@ const request = require('request');
 const router = express.Router();
 const { schemas, validators } = require('./validator');
 
-const { hash } = require('../static/config/secret.json');
-
-const { rateTeacher, getTeacher } = require('../requests/teachers');
+const { teachers } = require('../MongoDB/database');
 
 router.post('/teachers/rate', async (req, res) => {
     // validation
     const result = validators.validateRequestBody(req, res, schemas.teachers.postTeacherReview);
 
     if (!result) return
-
-    if( result.secret != hash ) return res.status(401).json({err: 'Invalid credentials', status: 401});
-
-    rateTeacher(result)
+    
+    teachers.rateTeacher(result)
     .then(status => {
         return res.json(status);
     })
@@ -23,15 +19,33 @@ router.post('/teachers/rate', async (req, res) => {
         console.log(err);
         return res.status(err.status).json(err);
     })
+    
 });
 
-router.get('/teachers/:id', async (req, res) => {
+router.get('/teachers/name/:name', async (req, res) => {
     // validation
-    const result = validators.validateRequestParameters(req, res, schemas.teachers.getTeacherByID);
+    const result = validators.validateRequestParameters(req, res, schemas.teachers.getTeacherByName);
 
     if (!result) return
 
-    getTeacher(result.id)
+    teachers.getTeacherByName(result.name)
+    .then(teacher => {;
+        return res.json(teacher)
+    })
+    .catch(err => {
+        console.log(err);
+        return res.status(err.status).json(err);
+    })
+});
+
+
+router.get('/teachers/id/:id', async (req, res) => {
+    // validation
+    const result = validators.validateRequestParameters(req, res, schemas.teachers.getTeacherById);
+
+    if (!result) return
+
+    teachers.getTeacherById(result.id)
     .then(teacher => {;
         return res.json(teacher)
     })

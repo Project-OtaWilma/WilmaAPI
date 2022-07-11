@@ -50,7 +50,11 @@ const postTeacherReview = Joi.object({
     'comment': Joi.string(),
 });
 
-const getTeacherByID = Joi.object({
+const getTeacherByName = Joi.object({
+    name: Joi.string().required()
+});
+
+const getTeacherById = Joi.object({
     id: Joi.string().required()
 });
 
@@ -119,7 +123,8 @@ module.exports = {
         },
         teachers: {
             postTeacherReview,
-            getTeacherByID
+            getTeacherByName,
+            getTeacherById
         }
     },
     validators: {

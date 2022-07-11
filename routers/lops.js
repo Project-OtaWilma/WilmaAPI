@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { schemas, validators } = require('./validator');
 
-const { getCourseByID, getCourseList } = require('../requests/lops');
+const { lops } = require('../MongoDB/database');
 
 
 router.get('/lops/courses/get/:id', async (req, res) => {
@@ -11,7 +11,7 @@ router.get('/lops/courses/get/:id', async (req, res) => {
 
     if (!request) return;
 
-    getCourseByID(request.id)
+    lops.getCourseById(request.id)
         .then(course => {
             res.json(course);
         })
@@ -23,7 +23,7 @@ router.get('/lops/courses/get/:id', async (req, res) => {
 router.get('/lops/courses/list/', async (req, res) => {
     // Validation
 
-    getCourseList()
+    lops.getCourseList()
         .then(list => {
             res.json(list);
         })
