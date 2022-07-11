@@ -12,3 +12,6 @@ tools.js
 
 # MongoDB authentication
 MongoDB/secret.json
+
+#config
+config.json

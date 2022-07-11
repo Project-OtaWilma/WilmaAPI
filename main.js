@@ -9,14 +9,14 @@ const courseTray = require('./routers/course-tray');
 const lops = require('./routers/lops');
 const teachers = require('./routers/teachers')
 
-const app = express(); // setup server
-const PORT = process.env.PORT || 3001; // Bind port
+const { port } = require('./config.json')
 
-// Enabled JSON-parsing
+const app = express();
+const PORT = process.env.PORT || port;
+
 app.use(express.json());
 
 app.use(cors());
-// Routers
 app.use('/api/', login);
 app.use('/api/', gradebook);
 app.use('/api/', news);
@@ -26,8 +26,6 @@ app.use('/api/', courseTray);
 app.use('/api/', lops);
 app.use('/api/', teachers);
 
-
-// PORT
 app.listen(PORT, () => {
     console.log(`Listening on ${PORT}...`);
 });
