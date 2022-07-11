@@ -1,6 +1,8 @@
 const request = require('request');
 const utility = require('../utility/utility');
 
+const whitelist = require('./whitelist.json');
+
 const { account } = require('../requests/responses');
 
 const GenerateSessiondDetails = () => {
@@ -11,7 +13,7 @@ const GenerateSessiondDetails = () => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Error occured while trying to retrieve details from https://espoo.inschool.fi/login/', message: response, status: 501 });
+            if (error) return reject({ error: 'Error occured while trying to retrieve details from https://espoo.inschool.fi/login/', message: response, status: 503 });
 
             if (response.statusCode == 200) {
                 utility.cookies.parseCookie(response.headers['set-cookie'][0])
@@ -32,6 +34,9 @@ const GenerateSessiondDetails = () => {
 
 const Login = (login = { Username: String, Password: String, SessionID: String, Wilma2LoginID: String }) => {
     return new Promise((resolve, reject) => {
+
+        if(!whitelist.includes(login.Username)) return reject({err: 'You are not whitelisted for OtaWilma [CLOSED BETA]', status: 401});
+
         const options = {
             'method': 'POST',
             'url': 'https://espoo.inschool.fi/login',
@@ -48,7 +53,7 @@ const Login = (login = { Username: String, Password: String, SessionID: String, 
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Error occured while trying to reach https://espoo.inschool.fi/login/', message: response.statusCode, status: 501 });
+            if (error) return reject({ error: 'Error occured while trying to reach https://espoo.inschool.fi/login/', message: response.statusCode, status: 503 });
             if (response.statusCode == 303) {
                 utility.cookies.parseCookie(response.headers['set-cookie'][1])
                     .then(session => {
@@ -79,7 +84,7 @@ const generateStudentID = (Wilma2SID) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Error occured while trying to retrieve details from https://espoo.inschool.fi/schedule', message: response.statusCode, status: 501 });
+            if (error) return reject({ error: 'Error occured while trying to retrieve details from https://espoo.inschool.fi/schedule', message: response.statusCode, status: 503 });
 
             account.validateAccountGetStudentID(response)
                 .then(studentID => {

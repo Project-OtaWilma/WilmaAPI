@@ -111,44 +111,54 @@ const rateTeacher = (r) => {
 
         if(r.secret != apiKey) return reject({ err: 'Invalid credentials', status: 401 });
         
-        MongoClient.connect(url, (err, database) => {
-            if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+        getTeacherByName(r['teacher'])
+        .then(teacher => {
+            if(teacher.feedback['reviewers'].includes(r['sender'])) return reject({ err: 'Cannot give multiple ratings to same teacher', status: 400 });
 
-            const db = database.db('Wilma');
-            const query = { name: r['teacher'] }
-
-            const values = {
-                $push: {
-                    "feedback.course-pace": r["course-pace"],
-                    "feedback.course-applicability": r["course-applicability"],
-                    "feedback.course-style": r["course-style"],
-                    "feedback.course-difficulty": r["course-difficulty"],
-                    "feedback.ability-to-self-study": r["ability-to-self-study"],
-                    "feedback.comments": r["comment"]
-                },
-                $inc: {}
-            }
-
-            r["teacher-adjectives"].forEach(adjective => {
-                const path = {};
-                path[`feedback.teacher-adjectives.${adjective}`] = 1;
+            MongoClient.connect(url, (err, database) => {
+                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+    
+                const db = database.db('Wilma');
+                const query = { name: r['teacher'] }
+    
+                const values = {
+                    $push: {
+                        "feedback.reviewers": r["sender"],
+                        "feedback.course-pace": r["course-pace"],
+                        "feedback.course-applicability": r["course-applicability"],
+                        "feedback.course-style": r["course-style"],
+                        "feedback.course-difficulty": r["course-difficulty"],
+                        "feedback.ability-to-self-study": r["ability-to-self-study"],
+                        "feedback.comments": r["comment"]
+                    },
+                    $inc: {}
+                }
+    
+                r["teacher-adjectives"].forEach(adjective => {
+                    const path = {};
+                    path[`feedback.teacher-adjectives.${adjective}`] = 1;
+                    
+                    values['$inc'] = {...values['$inc'], ...path};
+                });
                 
-                values['$inc'] = {...values['$inc'], ...path};
-            });
-            
-            db.collection('teachers').updateOne(query, values, (err, res) => {
-                if (err) { return reject({ err: 'Failed to connect to database', status: 500 });}
-
-                console.log(res);
-
-                database.close();
-
-                if (res.modifiedCount < 1) return reject({ err: "Couldn't locate teacher with specified name wasn't found from database", status: 400 });
-
-                return resolve({ status: 200 });
-            });
-            
+                db.collection('teachers').updateOne(query, values, (err, res) => {
+                    if (err) { return reject({ err: 'Failed to connect to database', status: 500 });}
+    
+                    console.log(res);
+    
+                    database.close();
+    
+                    if (res.modifiedCount < 1) return reject({ err: "Teacher with specified name wasn't found from database", status: 400 });
+    
+                    return resolve({ status: 200 });
+                });
+                
+            })
         })
+        .catch(err => {
+            return reject(err);
+        })
+
     });
 }
 
