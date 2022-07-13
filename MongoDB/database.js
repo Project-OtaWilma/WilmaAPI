@@ -29,7 +29,7 @@ const getCourseById = (id) => {
 
 const getCourseList = () => {
     return new Promise((resolve, reject) => {
-
+        const result = {};
         MongoClient.connect(url, (err, database) => {
             if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
@@ -37,7 +37,6 @@ const getCourseList = () => {
 
             const projection = {
                 "_id": 0,
-                "name": 0,
                 "Tyyppi": 0,
                 "Opintoviikkoja": 0,
                 "Opintopisteitä": 0,
@@ -54,7 +53,13 @@ const getCourseList = () => {
 
                 if (res.length < 1) return reject({ err: "Couldn't locate a course with specified id", status: 400 });
 
-                return resolve(res);
+                res.forEach(course => {
+                    if(!result[course.subject]) result[course.subject] = [];
+
+                    result[course.subject].push(course);
+                })
+
+                return resolve(result);
             });
         })
     });
