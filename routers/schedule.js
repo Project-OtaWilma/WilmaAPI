@@ -41,6 +41,7 @@ router.get('/schedule/week/:date', async (req, res) => {
 
     if (!result) return
 
+
     getScheduleByWeek(Wilma2SID, StudentID, result.date)
         .then(data => {
             res.json(data);

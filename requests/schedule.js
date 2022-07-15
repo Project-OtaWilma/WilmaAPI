@@ -103,7 +103,14 @@ const parseSchedule = (raw, dateTimes, exams) => {
     const result = {}
     
     dateTimes.forEach(dateTime => {
-        const d = dateTime.toLocaleDateString().split('/').reverse().join('-');
+        const options = {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        };
+
+        const d = dateTime.toLocaleDateString('fi-FI', options).split('.').reverse().join('-');
+
         const weekday = weekdays[dateTime.getDay()];
 
         if(!Object.keys(result).includes(d)) {
