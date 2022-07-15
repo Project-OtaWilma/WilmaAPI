@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const responseTime = require('response-time');
+
 const login = require('./routers/login');
 const gradebook = require('./routers/gradebook');
 const news = require('./routers/news');
@@ -9,12 +11,14 @@ const courseTray = require('./routers/course-tray');
 const lops = require('./routers/lops');
 const teachers = require('./routers/teachers')
 
+
 const { port } = require('./config.json')
 
 const app = express();
 const PORT = process.env.PORT || port;
 
 app.use(express.json());
+app.use(responseTime());
 
 app.use(cors());
 app.use('/api/', login);

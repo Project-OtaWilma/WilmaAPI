@@ -49,7 +49,24 @@ router.get('/course-tray/courses/:id', async (req, res) => {
     if(!Wilma2SID) return;
     if(!request) return;
 
-    getCourseByID(Wilma2SID, request.id)
+    getCourseByID(Wilma2SID, request.id, true)
+    .then(status => {
+        res.json(status);
+    })
+    .catch(err => {
+        return res.status(err.status).json(err)
+    });
+});
+
+router.get('/course-tray/courses/info/:id', async (req, res) => {
+    // validation
+    const Wilma2SID = validators.validateWilma2SID(req, res);
+    const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
+
+    if(!Wilma2SID) return;
+    if(!request) return;
+
+    getCourseByID(Wilma2SID, request.id, false)
     .then(status => {
         res.json(status);
     })

@@ -1,6 +1,5 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
-
 const { courseTray } = require('../requests/responses');
 
 const getTrayList = (Wilma2SID) => {
@@ -82,7 +81,7 @@ const getTrayByPeriod = (Wilma2SID, StudentID, target) => {
     });
 }
 
-const getCourseByID = (Wilma2SID, target) => {
+const getCourseByID = (Wilma2SID, target, static) => {
     return new Promise((resolve, reject) => {
 
         var options = {
@@ -104,7 +103,7 @@ const getCourseByID = (Wilma2SID, target) => {
             courseTray.validateCourseTrayGetCourse(response)
                 .then(() => {
                     try {
-                        const list = parseCourse(response.body);
+                        const list = static ? parseCourseData(response.body) : parseCourseStudents(response.body);
                         return resolve(list);
                     } catch (err) {
                         console.log(err);
@@ -245,17 +244,15 @@ const parseTrayList = (raw) => {
     return trays;
 }
 
-// Parser - v0.0.1 (13/06/2022)
-// Expensice (~700ms)
 const parseTray = (raw) => {
     const document = parse(raw);
     const data = document.childNodes[1];
-    const titles = [];
-    const result = {};
+    const result = [];
 
     data.childNodes.filter(el => el.rawTagName).forEach((el, i) => {
         let title;
         let courses;
+
         if (i == 0) {
             title = el.childNodes[1].textContent;
             courses = el.childNodes[2];
@@ -264,8 +261,8 @@ const parseTray = (raw) => {
             title = el.childNodes[0].textContent;
             courses = el.childNodes[1];
         }
-        titles.push(title);
-        result[title] = [];
+
+        result.push({ title: title, courses: [] })
 
         courses.childNodes[1].childNodes.filter(c => c.rawTagName == 'a').forEach(c => {
             const course = {
@@ -274,7 +271,6 @@ const parseTray = (raw) => {
                 code: null,
                 subject: null,
                 name: null,
-                students: 0,
                 info: {
                     teacher: null,
                     graded: false,
@@ -283,7 +279,6 @@ const parseTray = (raw) => {
                     full: false,
                 }
             };
-
 
             course.code = c.textContent;
             course.subject = course.code.replace(/[0-9]/g, '').replace('.', '');
@@ -307,10 +302,6 @@ const parseTray = (raw) => {
                     course.info.teacher = d.split(': ')[1];
                 }
 
-                if (d.includes('opiskelijaa')) {
-                    course.students = Number.parseInt(d.split(' ')[0]);
-                }
-
                 if (d.includes('Tämä kurssi on jo suoritettu.')) {
                     course.info.graded = true;
                     course.info.grade = d.split('Arvosana: ')[1];
@@ -318,61 +309,53 @@ const parseTray = (raw) => {
             });
 
             course.name = info[0];
-            result[titles[titles.length - 1]].push(course);
+            result[result.length - 1].courses.push(course);
         })
     });
-
     return result;
 }
 
-const parseCourse = (raw) => {
-    const regex = ['</td></tr>', '<tr><th>', '</th><td>', '</table>', '<table>'];
-    const ignore = [0, 37];
+const parseCourseData = (raw) => {
+    const document = parse(raw);
+    const keys = [];
+    const result = {};
 
-    const course = [];
-    const data = {};
+    document.childNodes.filter(c => c.childNodes.length > 0).forEach(c => {
+        
+        c.childNodes.forEach((cc, i) => {
+            delete c.childNodes[1];
 
-    raw
-        .replace('<tr><td colspan=\\"2\\" class=\\"coursename\\">', 'nimi')
-        .split('\\n')
-        .filter(l => !regex.includes(l)).map((l, i) => {
+            cc.childNodes.forEach((field, e) => {
+                const text = field.textContent.replaceAll('\\n', '')
+                switch(e) {
+                    case 0:
+                        if(text != '') {
+                            keys.push(text);
+                            result[text] = null;
+                        }
+                        break;
+                    case 1:
+                        result[keys[keys.length - 1]] = text;
 
-            l = l.split('<br>').filter(p => p != '').map(p => { return p.trim() })
-
-            if (!ignore.includes(i)) {
-                if (i % 2 == 0) {
-                    return { value: l };
+                        break;
                 }
-                else if (l != '') {
-                    return { key: l };
-                }
-            }
-
-            return null
+            });
         })
-        .filter(l => !!l)
-        .forEach((l) => {
-            if (l['key']) {
-                course.push({ key: l.key, value: [] });
-            }
-            if (l['value']) {
-                course[course.length - 1].value.push(l.value);
-            }
-        })
-
-
-
-    course.forEach(d => {
-        data[d.key] = Parse(d.value.flat());
-    });
-
-    delete data["');"]
-    return data
+    })
+    delete result['Ilmoittautuneita'];
+    return result
 }
 
-const Parse = (value) => {
-    if (!value) return null;
-    return value.length > 1 ? value : value[0];
+const parseCourseStudents = (raw) => {
+    const regex = ['</td></tr>', '<tr><th>', '</th><td>', '</table>', '<table>'];
+
+    const field = raw.split('<th>').filter(c => c.includes('Ilmoittautuneita'));
+
+    if(field.length < 1) return {students: 'Ilmottautuneiden määrää ei ole ilmoitettu'};
+
+    const value = parse(field[0]).getElementsByTagName('td')[0].textContent.replaceAll('\\n', '');
+
+    return {students: value}
 }
 
 const parsePostResponse = (raw) => {
