@@ -44,7 +44,8 @@ router.get('/teachers/name/:name', async (req, res) => {
     teachers.getTeacherByName(result.name)
     .then(teacher => {
         const info = teachers.parseFeedback(teacher.feedback);
-        return res.json(info)
+        teacher['feedback'] = info;
+        return res.json(teacher)
     })
     .catch(err => {
         console.log(err);
@@ -62,7 +63,8 @@ router.get('/teachers/id/:id', async (req, res) => {
     teachers.getTeacherById(result.id)
     .then(teacher => {;
         const info = teachers.parseFeedback(teacher.feedback);
-        return res.json(info)
+        teacher['feedback'] = info;
+        return res.json(teacher)
     })
     .catch(err => {
         console.log(err);
