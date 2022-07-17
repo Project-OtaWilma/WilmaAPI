@@ -51,12 +51,46 @@ const getCourseList = () => {
 
                 database.close();
 
-                if (res.length < 1) return reject({ err: "Couldn't locate a course with specified id", status: 400 });
-
                 res.forEach(course => {
                     if(!result[course.subject]) result[course.subject] = [];
 
                     result[course.subject].push(course);
+                })
+
+                return resolve(result);
+            });
+        })
+    });
+}
+
+const getTeacherList = () => {
+    return new Promise((resolve, reject) => {
+        const result = {};
+        MongoClient.connect(url, (err, database) => {
+            if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+
+            const db = database.db('Wilma');
+
+            const projection = {
+                "_id": 0,
+                "hash": 0,
+                "Opintoviikkoja": 0,
+                "feedback": 0
+            }
+
+            db.collection('teachers').find({}).sort({name: 1}).project(projection).toArray((err, res) => {
+                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+
+                database.close();
+
+                res.forEach(teacher => {
+                    const letter = teacher.name.substring(0, 1);
+
+                    if(!Object.keys(result).includes(letter)) {
+                        result[letter] = [];
+                    }
+
+                    result[letter].push(teacher);
                 })
 
                 return resolve(result);
@@ -118,6 +152,7 @@ const rateTeacher = (r) => {
         
         getTeacherByName(r['teacher'])
         .then(teacher => {
+            console.log(teacher.feedback);
             if(teacher.feedback['reviewers'].includes(r['sender'])) return reject({ err: 'Cannot give multiple ratings to same teacher', status: 400 });
 
             MongoClient.connect(url, (err, database) => {
@@ -133,6 +168,7 @@ const rateTeacher = (r) => {
                         "feedback.course-applicability": r["course-applicability"],
                         "feedback.course-style": r["course-style"],
                         "feedback.course-difficulty": r["course-difficulty"],
+                        "feedback.return-speed": r["return-speed"],
                         "feedback.ability-to-self-study": r["ability-to-self-study"],
                         "feedback.comments": r["comment"]
                     },
@@ -167,15 +203,50 @@ const rateTeacher = (r) => {
     });
 }
 
+const parseFeedback = (raw) => {
+    const result = {};
+    const length = raw['course-pace'].length;
+
+    result['reviews'] = raw['reviewers'].length;
+
+    result['course-pace'] = average(raw['course-pace']);
+    result['course-applicability'] = average(raw['course-applicability']);
+    result['course-style'] = average(raw['course-style']);
+    result['course-difficulty'] = average(raw['course-difficulty']);
+    result['teacher-adjectives'] = [];
+
+    Object.keys(raw['teacher-adjectives']).forEach(adjective => {
+        result['teacher-adjectives'].push({
+            adjective: adjective,
+            percentage: percentage(length, raw['teacher-adjectives'][adjective])
+        })
+    })
+    
+    result['comments'] = raw['comments'].filter(c => c.trim());
+
+    return result;
+}
+
+const average = (list) => {
+    if(list.length < 2) return 'Ei riittävästi dataa';
+    return (list.reduce((a, b) => a + b, 0) / list.length);
+}
+
+const percentage = (max, num) => {
+    return ((num / max) * 100)
+}
+
 module.exports = {
     lops: {
         getCourseById,
         getCourseList
     },
     teachers: {
+        getTeacherList,
         getTeacherById,
         getTeacherByName,
-        rateTeacher
+        rateTeacher,
+        parseFeedback
     }
 }
 

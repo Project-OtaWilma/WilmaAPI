@@ -46,6 +46,7 @@ const postTeacherReview = Joi.object({
     'course-style': Joi.number().required(),
     'course-difficulty': Joi.number().required(),
     'teacher-adjectives': Joi.array().required(),
+    'return-speed': Joi.number().required(),
     'ability-to-self-study': Joi.number().required(),
     'comment': Joi.string().allow(null, '')
 });

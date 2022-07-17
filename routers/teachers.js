@@ -5,6 +5,19 @@ const { schemas, validators } = require('./validator');
 
 const { teachers } = require('../MongoDB/database');
 
+router.get('/teachers/list', async (req, res) => {    
+    
+    teachers.getTeacherList()
+    .then(status => {
+        return res.json(status);
+    })
+    .catch(err => {
+        console.log(err);
+        return res.status(err.status).json(err);
+    })
+    
+});
+
 router.post('/teachers/rate', async (req, res) => {
     // validation
     const result = validators.validateRequestBody(req, res, schemas.teachers.postTeacherReview);
@@ -29,8 +42,9 @@ router.get('/teachers/name/:name', async (req, res) => {
     if (!result) return
 
     teachers.getTeacherByName(result.name)
-    .then(teacher => {;
-        return res.json(teacher)
+    .then(teacher => {
+        const info = teachers.parseFeedback(teacher.feedback);
+        return res.json(info)
     })
     .catch(err => {
         console.log(err);
@@ -47,7 +61,8 @@ router.get('/teachers/id/:id', async (req, res) => {
 
     teachers.getTeacherById(result.id)
     .then(teacher => {;
-        return res.json(teacher)
+        const info = teachers.parseFeedback(teacher.feedback);
+        return res.json(info)
     })
     .catch(err => {
         console.log(err);
