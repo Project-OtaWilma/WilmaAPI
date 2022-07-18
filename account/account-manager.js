@@ -124,10 +124,38 @@ const StartSession = async (login = { Username: String, Password: String, Curren
     });
 }
 
+const Logout = (Wilma2SID, StudentID) => {
+    return new Promise((resolve, reject) => {
+        const options = {
+            'method': 'POST',
+            'url': 'https://espoo.inschool.fi/logout',
+            'headers': {
+                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            form: {
+                'formkey': StudentID,
+            }
+        };
+
+        request(options, async function (error, response) {
+            if (error) return reject({ error: 'Error occured while trying to reach https://espoo.inschool.fi/login/', message: response.statusCode, status: 503 });
+            if (response.statusCode == 303) {
+                return resolve({ status: 200 });
+            }
+            else {
+                return reject({ error: 'Wilma responded with an unknown status.', message: response, status: 501 });
+            }
+
+        });
+    });
+}
+
 
 
 module.exports = {
     GenerateSessiondDetails,
     Login,
+    Logout,
     StartSession,
 }
