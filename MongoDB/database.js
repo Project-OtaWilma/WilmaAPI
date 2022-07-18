@@ -224,6 +224,8 @@ const parseFeedback = (raw) => {
     
     result['comments'] = raw['comments'].filter(c => c.trim());
 
+    result['teacher-adjectives'].sort((a, b) => {return b.percentage - a.percentage});
+
     return result;
 }
 
