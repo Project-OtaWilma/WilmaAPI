@@ -11,6 +11,8 @@ const courseTray = require('./routers/course-tray');
 const lops = require('./routers/lops');
 const teachers = require('./routers/teachers')
 
+const limiter = require('./routers/rate-limit');
+
 
 const { port } = require('./config.json')
 
@@ -21,14 +23,14 @@ app.use(express.json());
 app.use(responseTime());
 
 app.use(cors());
-app.use('/api/', login);
-app.use('/api/', gradebook);
-app.use('/api/', news);
-app.use('/api/', schedule);
-app.use('/api/', message);
-app.use('/api/', courseTray);
-app.use('/api/', lops);
-app.use('/api/', teachers);
+app.use('/api/', login, limiter.standard);
+app.use('/api/', gradebook, limiter.standard);
+app.use('/api/', news, limiter.standard);
+app.use('/api/', schedule, limiter.standard);
+app.use('/api/', message, limiter.standard);
+app.use('/api/', courseTray, limiter.standard);
+app.use('/api/', lops, limiter.standard);
+app.use('/api/', teachers, limiter.standard);
 
 app.listen(PORT, () => {
     console.log(`Listening on ${PORT}...`);

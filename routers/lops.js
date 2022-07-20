@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 
 const { lops } = require('../MongoDB/database');
 
 
-router.get('/lops/courses/get/:id', async (req, res) => {
+router.get('/lops/courses/get/:id', limiter.cacheable, async (req, res) => {
     // Validation
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
 
@@ -20,7 +21,7 @@ router.get('/lops/courses/get/:id', async (req, res) => {
         });
 });
 
-router.get('/lops/courses/list/', async (req, res) => {
+router.get('/lops/courses/list/', limiter.cacheable, async (req, res) => {
     // Validation
 
     lops.getCourseList()

@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 
-const { StartSession, Logout} = require('../account/account-manager');
+const { StartSession, Logout } = require('../account/account-manager');
 const { json } = require('express/lib/response');
 
-router.post('/login', async (req, res) => {
+router.post('/login', limiter.strict, async (req, res) => {
     // validation
     const request = validators.validateRequestBody(req, res, schemas.login.postLogin);
 
@@ -18,16 +19,16 @@ router.post('/login', async (req, res) => {
 router.post('/logout', async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
-    if(!Wilma2SID) return;
+    if (!Wilma2SID) return;
 
     const StudentID = validators.validateStudentID(req, res);
-    if(!StudentID) return;
+    if (!StudentID) return;
 
     Logout(Wilma2SID, StudentID)
-    .then(status => {
-        res.json(status);
-    })
-    .catch(err => { res.status(err.status).json(err); });
+        .then(status => {
+            res.json(status);
+        })
+        .catch(err => { res.status(err.status).json(err); });
 });
 
 

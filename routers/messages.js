@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 
 const { getReceiverList, sendMessage, getMessageInbox, getMessageOutbox, getAppointments, getMessageByID } = require('../requests/messages');
 
 
-router.post('/messages/send', async (req, res) => {
+router.post('/messages/send', limiter.actions, async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
     if (!Wilma2SID) return;
 
     const StudentID = validators.validateStudentID(req, res);
-    if(!StudentID) return;
+    if (!StudentID) return;
 
     const request = validators.validateRequestBody(req, res, schemas.messages.sendMessage);
     if (!request) return;
@@ -42,7 +43,7 @@ router.post('/messages/reply', async (req, res) => {
         });
 });
 
-router.post('/messages/remove', async (req, res) => {
+router.post('/messages/remove', limiter.actions, async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
     const request = validators.validateRequestBody(req, res, schemas.messages.sendMessage);
@@ -59,7 +60,7 @@ router.post('/messages/remove', async (req, res) => {
         });
 });
 
-router.get('/messages/recipients', async (req, res) => {
+router.get('/messages/recipients', limiter.cacheable, async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
 
