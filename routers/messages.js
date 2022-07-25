@@ -3,7 +3,7 @@ const router = express.Router();
 const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 
-const { getReceiverList, sendMessage, getMessageInbox, getMessageOutbox, getAppointments, getMessageByID } = require('../requests/messages');
+const { getReceiverList, sendMessage, getMessageInbox, getMessageOutbox, getAppointments, getAnnouncements, getMessageByID } = require('../requests/messages');
 
 
 router.post('/messages/send', limiter.actions, async (req, res) => {
@@ -114,6 +114,22 @@ router.get('/messages/appointments', async (req, res) => {
     if (!Wilma2SID) return;
 
     getAppointments(Wilma2SID, limit)
+        .then(session => {
+            res.json(session);
+        })
+        .catch(err => {
+            res.status(err.status).json(err);
+        });
+});
+
+router.get('/messages/announcements', async (req, res) => {
+    // validation
+    const Wilma2SID = validators.validateWilma2SID(req, res);
+    const limit = req.query.limit ? req.query.limit : 1000;
+
+    if (!Wilma2SID) return;
+
+    getAnnouncements(Wilma2SID, limit)
         .then(session => {
             res.json(session);
         })

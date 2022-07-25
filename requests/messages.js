@@ -2,7 +2,8 @@ const { parse } = require('node-html-parser');
 const request = require('request');
 
 const { messages } = require('./responses');
-const utility = require('../utility/utility');
+
+const announcements = require('../static/announcements/OtaniemenLukio.json');
 
 const sendMessage = (Wilma2SID, studentID, receiverType, receiver, subject, content) => {
     const receiverTypes = {
@@ -119,7 +120,7 @@ const getReceiverList = (Wilma2SID) => {
                         const json = JSON.parse(response.body);
                         const parsed = parseReceiverList(json);
                         return resolve(parsed);
-                    } catch(err) {
+                    } catch (err) {
                         console.log(err);
                         return reject({ err: 'Failed to parse list of recipients', status: 500 })
                     }
@@ -154,8 +155,8 @@ const getMessageInbox = (Wilma2SID, limit) => {
                         const json = JSON.parse(response.body);
                         const parsed = parseMessageList(json.Messages, limit);
                         return resolve(parsed);
-                    } catch(err) {
-                        return reject({err: 'Failed to parse messages', status: 500})
+                    } catch (err) {
+                        return reject({ err: 'Failed to parse messages', status: 500 })
                     }
                 })
                 .catch(err => {
@@ -188,8 +189,8 @@ const getMessageOutbox = (Wilma2SID, limit) => {
                         const json = JSON.parse(response.body);
                         const parsed = parseMessageList(json.Messages, limit);
                         return resolve(parsed);
-                    } catch(err) {
-                        return reject({err: 'Failed to parse messages', status: 500})
+                    } catch (err) {
+                        return reject({ err: 'Failed to parse messages', status: 500 })
                     }
                 })
                 .catch(err => {
@@ -221,8 +222,8 @@ const getAppointments = (Wilma2SID, limit) => {
                         const json = JSON.parse(response.body);
                         const parsed = parseAppointmentList(json.Messages, limit);
                         return resolve(parsed);
-                    } catch(err) {
-                        return reject({err: 'Failed to parse messages', status: 500})
+                    } catch (err) {
+                        return reject({ err: 'Failed to parse messages', status: 500 })
                     }
                 })
                 .catch(err => {
@@ -232,8 +233,17 @@ const getAppointments = (Wilma2SID, limit) => {
     });
 }
 
+const getAnnouncements = (limit) => {
+    return new Promise((resolve, reject) => {
+        return resolve(announcements.list.slice(limit));
+    });
+}
+
 const getMessageByID = (Wilma2SID, id) => {
     return new Promise((resolve, reject) => {
+
+        if (Object.keys(announcements.messages).includes(id)) return resolve([announcements.messages[id]]);
+
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/${id}?format=json`,
@@ -247,7 +257,7 @@ const getMessageByID = (Wilma2SID, id) => {
         request(options, function (error, response) {
             if (error) return reject({ error: 'Failed to retrieve inbox', message: response, status: 501 });
 
-            
+
             messages.validateMessageGetByID(response)
                 .then(() => {
                     try {
@@ -332,6 +342,7 @@ const parseAppointmentList = (raw, limit) => {
 const parseMessageContent = (raw) => {
     return raw.map(message => {
         return {
+            fromWilma: true,
             id: message.Id,
             subject: message.Subject,
             timeStamp: message.TimeStamp,
@@ -356,5 +367,6 @@ module.exports = {
     getMessageInbox,
     getMessageOutbox,
     getAppointments,
+    getAnnouncements,
     getMessageByID
 }

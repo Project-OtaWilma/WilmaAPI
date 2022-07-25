@@ -1,0 +1,28 @@
+{
+    "list": [
+        {
+            "id": "o.1",
+            "isEvent": false,
+            "replies": 0,
+            "senders": [
+                {
+                    "name": "OtaWilma",
+                    "href": ""
+                }
+            ],
+            "subject": "hello world",
+            "timeStamp": "2022-07-24 03:22"
+        }
+    ],
+    "messages": {
+        "o.1": {
+            "fromWilma": false,
+            "content": "<p><strong>Hello World!</strong></p>",
+            "id": "o.1",
+            "replies": [],
+            "sender": "Otawilma",
+            "subject": "hello World",
+            "timeStamp": "2022-07-24 03:22"
+        }
+    }
+}

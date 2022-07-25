@@ -42,24 +42,24 @@ const fetchSchedule = (Wilma2SID, studentID, date) => {
         });
     })
 }
- 
+
 const getScheduleByDate = (Wilma2SID, studentID, date) => {
     return new Promise((resolve, reject) => {
         fetchSchedule(Wilma2SID, studentID, date)
-        .then(schedule => {
-            try {
+            .then(schedule => {
+                try {
 
-                const parsed = parseSchedule(schedule.Schedule, [date], schedule.Exams);
-                return resolve(parsed);
+                    const parsed = parseSchedule(schedule.Schedule, [date], schedule.Exams);
+                    return resolve(parsed);
 
-            } catch(err) {  
-                console.log(err);
-                return reject({ err: 'Failed to parse schedule', message: err, status: 500 });
-            }
-        })
-        .catch(err => {
-            return reject(err);
-        })
+                } catch (err) {
+                    console.log(err);
+                    return reject({ err: 'Failed to parse schedule', message: err, status: 500 });
+                }
+            })
+            .catch(err => {
+                return reject(err);
+            })
     });
 }
 
@@ -75,13 +75,13 @@ const getScheduleByWeek = (Wilma2SID, studentID, date) => {
             const dateTime = new Date(date.getFullYear(), (month - 1), 2);
 
             await fetchSchedule(Wilma2SID, studentID, dateTime)
-            .then(schedule => {
-                dateTimes = [...dateTimes, ...schedule.Schedule];
-                exams = [...exams, ...schedule.Exams];
-            })
-            .catch(err => {
-                return reject(err);
-            })
+                .then(schedule => {
+                    dateTimes = [...dateTimes, ...schedule.Schedule];
+                    exams = [...exams, ...schedule.Exams];
+                })
+                .catch(err => {
+                    return reject(err);
+                })
 
             const parsed = parseSchedule(dateTimes, weekRange.dateRange, exams)
             return resolve(parsed);
@@ -99,9 +99,9 @@ const parseSchedule = (raw, dateTimes, exams) => {
         'Perjantai',
         'Launtai'
     ]
-    
+
     const result = {}
-    
+
     dateTimes.forEach(dateTime => {
         const options = {
             year: "numeric",
@@ -113,7 +113,7 @@ const parseSchedule = (raw, dateTimes, exams) => {
 
         const weekday = weekdays[dateTime.getDay()];
 
-        if(!Object.keys(result).includes(d)) {
+        if (!Object.keys(result).includes(d)) {
             result[d] = {
                 day: {
                     id: dateTime.getDay(),
@@ -129,17 +129,17 @@ const parseSchedule = (raw, dateTimes, exams) => {
             if (hour.DateArray.includes(d)) {
 
                 const exam = exams.find(e => e.Date == `${dateTime.getDate()}.${dateTime.getMonth() + 1}.${dateTime.getFullYear()}`);
-                
+
                 const hourData = {
                     start: hour.Start,
                     end: hour.End,
-                    slot:`${hour.Day}.${hour.Start}-${hour.End}`,
+                    slot: `${hour.Day}.${hour.Start}-${hour.End}`,
                     groups: hour.Groups.map(group => {
                         return {
                             code: group.ShortCaption,
                             name: group.FullCaption,
                             class: group.Class,
-                            teachers: group.Teachers ?  group.Teachers.map(teacher => {
+                            teachers: group.Teachers ? group.Teachers.map(teacher => {
                                 return {
                                     id: teacher.Id,
                                     caption: teacher.Caption,
@@ -156,7 +156,7 @@ const parseSchedule = (raw, dateTimes, exams) => {
                         }
                     })
                 }
-                if(exam) {
+                if (exam) {
                     const examData = {
                         start: exam.TimeStart ? exam.TimeStart : null,
                         end: exam.TimeEnd ? exam.TimeEnd : null,
@@ -187,12 +187,12 @@ const calculateWeekRange = (date) => {
     const delta = [date.getDate() - (6 - (6 - day)), date.getDate() + (6 - day)];
     const week = Array(delta[1] - delta[0] + 1).fill(delta[0]).map((x, y) => x + y)
 
-    
+
     week.forEach(day => {
         const dateTime = new Date(date.getFullYear(), date.getMonth(), day);
         const month = dateTime.getMonth() + 1;
 
-        if(!result.monthRange.includes(month)) { result.monthRange.push(month); }
+        if (!result.monthRange.includes(month)) { result.monthRange.push(month); }
 
         result.dateRange.push(dateTime);
     });
