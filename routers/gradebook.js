@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router(); z
+const router = express.Router();
 const { schemas, validators } = require('./validator');
 
 const { getGradeBook } = require('../requests/gradebook');
