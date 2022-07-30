@@ -7,13 +7,21 @@ const validateAccountGetStudentID = (res) => {
             return reject({ err: 'Something went wrong with the login process', status: 500 })
         }
 
-        utility.parsers.parseStudent(res.body)
-            .then(studentID => {
-                return resolve(studentID);
-            })
-            .catch(err => {
-                return reject({ err: 'Failed to parse StudentID', status: 500 });
-            });
+        switch (res.statusCode) {
+            case 200:
+                utility.parsers.parseStudent(res.body)
+                    .then(studentID => {
+                        return resolve(studentID);
+                    })
+                    .catch(err => {
+                        return reject({ err: 'Failed to parse StudentID', status: 500 });
+                    });
+            case 403:
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
+            default:
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+        }
+
     });
 }
 
@@ -23,20 +31,28 @@ const validateMessagePost = (res) => {
             return reject({ err: "Invalid credentials", status: 401 })
         }
 
-        utility.parsers.parseTitle(res.body)
-            .then(title => {
+        switch (res.statusCode) {
+            case 200:
+                utility.parsers.parseTitle(res.body)
+                    .then(title => {
+                        if (title.includes('Päällekkäinen kirjautuminen')) return reject({ err: 'Invalid credentials', error: 'more than one login-instaces', status: 401 })
 
-                switch (title) {
-                    case 'Viestit - Wilma':
-                        return resolve(true);
-                    default:
-                        return reject({ err: "Couldn't send message - Invalid request", status: 400 });
-                }
+                        switch (title) {
+                            case 'Viestit - Wilma':
+                                return resolve(true);
+                            default:
+                                return reject({ err: "Couldn't send message - Invalid request", status: 400 });
+                        }
 
-            })
-            .catch(err => {
-                return reject(err);
-            })
+                    })
+                    .catch(err => {
+                        return reject(err);
+                    })
+            case 403:
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
+            default:
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+        }
     });
 }
 
@@ -46,7 +62,15 @@ const validateMessageGet = (res) => {
             return reject({ err: "Invalid credentials", status: 401 })
         }
 
-        return resolve(true);
+        switch (res.statusCode) {
+            case 200:
+                return resolve(true);
+            case 403:
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
+            default:
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+        }
+
     });
 }
 
@@ -58,7 +82,15 @@ const validateMessageGetByID = (res) => {
             return reject({ err: "Invalid credentials", status: 401 })
         }
 
-        return resolve(true);
+        switch (res.statusCode) {
+            case 200:
+                return resolve(true);
+            case 403:
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
+            default:
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+        }
+
     });
 }
 
@@ -85,7 +117,14 @@ const validateNewsGet = (res) => {
             return reject({ err: "Invalid credentials (Wilma2SID)", status: 401 })
         }
 
-        return resolve(true);
+        switch (res.statusCode) {
+            case 200:
+                return resolve(true);
+            case 403:
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
+            default:
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+        }
     });
 }
 
@@ -112,7 +151,14 @@ const validateGradebookGet = (res) => {
             return reject({ err: "Invalid credentials", status: 401 })
         }
 
-        return resolve(true);
+        switch (res.statusCode) {
+            case 200:
+                return resolve(true);
+            case 403:
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
+            default:
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+        }
     });
 }
 
@@ -122,7 +168,14 @@ const validateCourseTrayGetList = (res) => {
             return reject({ err: "Invalid credentials", status: 401 })
         }
 
-        return resolve(true);
+        switch (res.statusCode) {
+            case 200:
+                return resolve(true);
+            case 403:
+                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
+            default:
+                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
+        }
     });
 }
 

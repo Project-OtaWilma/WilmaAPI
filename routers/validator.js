@@ -34,7 +34,16 @@ const GetTrayByPeriod = Joi.object({
 });
 
 const GetCourseByID = Joi.object({
-    id: Joi.string().required()
+    id: Joi.string().required(),
+});
+
+const GetLopsCourseByID = Joi.object({
+    id: Joi.string().required(),
+    lops: Joi.string().required().valid('LOPS2021', 'LOPS2016')
+});
+
+const GetCourseList = Joi.object({
+    lops: Joi.string().required().valid('LOPS2021', 'LOPS2016')
 });
 
 const postTeacherReview = Joi.object({
@@ -121,6 +130,10 @@ module.exports = {
         courseTray: {
             GetTrayByPeriod,
             GetCourseByID
+        },
+        lops: {
+            GetLopsCourseByID,
+            GetCourseList
         },
         teachers: {
             postTeacherReview,

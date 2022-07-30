@@ -3,7 +3,7 @@ const { user, password, host, port, apiKey } = require('./secret.json');
 
 const url = `mongodb://${user}:${password}@${host}:${port}/?authMechanism=DEFAULT`;
 
-const getCourseById = (id) => {
+const getCourseById = (lops, id) => {
     return new Promise((resolve, reject) => {
 
         MongoClient.connect(url, (err, database) => {
@@ -13,7 +13,7 @@ const getCourseById = (id) => {
 
             const query = { code: id }
 
-            db.collection('LOPS2021').find(query).project({'_id': 0}).toArray((err, res) => {
+            db.collection(lops).find(query).project({ '_id': 0 }).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
@@ -27,7 +27,7 @@ const getCourseById = (id) => {
     });
 }
 
-const getCourseList = () => {
+const getCourseList = (lops) => {
     return new Promise((resolve, reject) => {
         const result = {};
         MongoClient.connect(url, (err, database) => {
@@ -46,13 +46,13 @@ const getCourseList = () => {
                 "OPS": 0
             }
 
-            db.collection('LOPS2021').find({}).project(projection).toArray((err, res) => {
+            db.collection(lops).find({}).project(projection).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
 
                 res.forEach(course => {
-                    if(!result[course.subject]) result[course.subject] = [];
+                    if (!result[course.subject]) result[course.subject] = [];
 
                     result[course.subject].push(course);
                 })
@@ -78,7 +78,7 @@ const getTeacherList = () => {
                 "feedback": 0
             }
 
-            db.collection('teachers').find({}).sort({name: 1}).project(projection).toArray((err, res) => {
+            db.collection('teachers').find({}).sort({ name: 1 }).project(projection).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
@@ -86,7 +86,7 @@ const getTeacherList = () => {
                 res.forEach(teacher => {
                     const letter = teacher.name.substring(0, 1);
 
-                    if(!Object.keys(result).includes(letter)) {
+                    if (!Object.keys(result).includes(letter)) {
                         result[letter] = [];
                     }
 
@@ -109,7 +109,7 @@ const getTeacherByName = (name) => {
 
             const query = { name: name }
 
-            db.collection('teachers').find(query).project({'_id': 0}).toArray((err, res) => {
+            db.collection('teachers').find(query).project({ '_id': 0 }).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
@@ -132,7 +132,7 @@ const getTeacherById = (id) => {
 
             const query = { hash: id }
 
-            db.collection('teachers').find(query).project({'_id': 0}).toArray((err, res) => {
+            db.collection('teachers').find(query).project({ '_id': 0 }).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
@@ -148,57 +148,57 @@ const getTeacherById = (id) => {
 const rateTeacher = (r) => {
     return new Promise((resolve, reject) => {
 
-        if(r.secret != apiKey) return reject({ err: 'Invalid credentials', status: 401 });
-        
-        getTeacherByName(r['teacher'])
-        .then(teacher => {
-            console.log(teacher.feedback);
-            if(teacher.feedback['reviewers'].includes(r['sender'])) return reject({ err: 'Cannot give multiple ratings to same teacher', status: 400 });
+        if (r.secret != apiKey) return reject({ err: 'Invalid credentials', status: 401 });
 
-            MongoClient.connect(url, (err, database) => {
-                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-    
-                const db = database.db('Wilma');
-                const query = { name: r['teacher'] }
-    
-                const values = {
-                    $push: {
-                        "feedback.reviewers": r["sender"],
-                        "feedback.course-pace": r["course-pace"],
-                        "feedback.course-applicability": r["course-applicability"],
-                        "feedback.course-style": r["course-style"],
-                        "feedback.course-difficulty": r["course-difficulty"],
-                        "feedback.return-speed": r["return-speed"],
-                        "feedback.ability-to-self-study": r["ability-to-self-study"],
-                        "feedback.comments": r["comment"]
-                    },
-                    $inc: {}
-                }
-    
-                r["teacher-adjectives"].forEach(adjective => {
-                    const path = {};
-                    path[`feedback.teacher-adjectives.${adjective}`] = 1;
-                    
-                    values['$inc'] = {...values['$inc'], ...path};
-                });
-                
-                db.collection('teachers').updateOne(query, values, (err, res) => {
-                    if (err) { return reject({ err: 'Failed to connect to database', status: 500 });}
-    
-                    console.log(res);
-    
-                    database.close();
-    
-                    if (res.modifiedCount < 1) return reject({ err: "Teacher with specified name wasn't found from database", status: 400 });
-    
-                    return resolve({ status: 200 });
-                });
-                
+        getTeacherByName(r['teacher'])
+            .then(teacher => {
+                console.log(teacher.feedback);
+                if (teacher.feedback['reviewers'].includes(r['sender'])) return reject({ err: 'Cannot give multiple ratings to same teacher', status: 400 });
+
+                MongoClient.connect(url, (err, database) => {
+                    if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+
+                    const db = database.db('Wilma');
+                    const query = { name: r['teacher'] }
+
+                    const values = {
+                        $push: {
+                            "feedback.reviewers": r["sender"],
+                            "feedback.course-pace": r["course-pace"],
+                            "feedback.course-applicability": r["course-applicability"],
+                            "feedback.course-style": r["course-style"],
+                            "feedback.course-difficulty": r["course-difficulty"],
+                            "feedback.return-speed": r["return-speed"],
+                            "feedback.ability-to-self-study": r["ability-to-self-study"],
+                            "feedback.comments": r["comment"]
+                        },
+                        $inc: {}
+                    }
+
+                    r["teacher-adjectives"].forEach(adjective => {
+                        const path = {};
+                        path[`feedback.teacher-adjectives.${adjective}`] = 1;
+
+                        values['$inc'] = { ...values['$inc'], ...path };
+                    });
+
+                    db.collection('teachers').updateOne(query, values, (err, res) => {
+                        if (err) { return reject({ err: 'Failed to connect to database', status: 500 }); }
+
+                        console.log(res);
+
+                        database.close();
+
+                        if (res.modifiedCount < 1) return reject({ err: "Teacher with specified name wasn't found from database", status: 400 });
+
+                        return resolve({ status: 200 });
+                    });
+
+                })
             })
-        })
-        .catch(err => {
-            return reject(err);
-        })
+            .catch(err => {
+                return reject(err);
+            })
 
     });
 }
@@ -221,16 +221,16 @@ const parseFeedback = (raw) => {
             percentage: percentage(length, raw['teacher-adjectives'][adjective])
         })
     })
-    
+
     result['comments'] = raw['comments'].filter(c => c.trim());
 
-    result['teacher-adjectives'].sort((a, b) => {return b.percentage - a.percentage});
+    result['teacher-adjectives'].sort((a, b) => { return b.percentage - a.percentage });
 
     return result;
 }
 
 const average = (list) => {
-    if(list.length < 2) return 'Ei riittävästi dataa';
+    if (list.length < 2) return 'Ei riittävästi dataa';
     return (list.reduce((a, b) => a + b, 0) / list.length);
 }
 

@@ -6,13 +6,13 @@ const { schemas, validators } = require('./validator');
 const { lops } = require('../MongoDB/database');
 
 
-router.get('/lops/courses/get/:id', limiter.cacheable, async (req, res) => {
+router.get('/lops/:lops/courses/get/:id', limiter.cacheable, async (req, res) => {
     // Validation
-    const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
+    const request = validators.validateRequestParameters(req, res, schemas.lops.GetLopsCourseByID);
 
     if (!request) return;
 
-    lops.getCourseById(request.id)
+    lops.getCourseById(request.lops, request.id)
         .then(course => {
             res.json(course);
         })
@@ -21,10 +21,13 @@ router.get('/lops/courses/get/:id', limiter.cacheable, async (req, res) => {
         });
 });
 
-router.get('/lops/courses/list/', limiter.cacheable, async (req, res) => {
+router.get('/lops/:lops/courses/list/', limiter.cacheable, async (req, res) => {
     // Validation
+    const request = validators.validateRequestParameters(req, res, schemas.lops.GetCourseList);
 
-    lops.getCourseList()
+    if (!request) return;
+
+    lops.getCourseList(request.lops)
         .then(list => {
             res.json(list);
         })

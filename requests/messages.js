@@ -156,7 +156,8 @@ const getMessageInbox = (Wilma2SID, limit) => {
                         const parsed = parseMessageList(json.Messages, limit);
                         return resolve(parsed);
                     } catch (err) {
-                        return reject({ err: 'Failed to parse messages', status: 500 })
+                        console.log(err);
+                        return reject({ err: 'Failed to parse message-inbox', status: 500 })
                     }
                 })
                 .catch(err => {
@@ -190,7 +191,8 @@ const getMessageOutbox = (Wilma2SID, limit) => {
                         const parsed = parseMessageList(json.Messages, limit);
                         return resolve(parsed);
                     } catch (err) {
-                        return reject({ err: 'Failed to parse messages', status: 500 })
+                        console.log(err);
+                        return reject({ err: 'Failed to parse message-outbox', status: 500 })
                     }
                 })
                 .catch(err => {
@@ -223,7 +225,7 @@ const getAppointments = (Wilma2SID, limit) => {
                         const parsed = parseAppointmentList(json.Messages, limit);
                         return resolve(parsed);
                     } catch (err) {
-                        return reject({ err: 'Failed to parse messages', status: 500 })
+                        return reject({ err: 'Failed to parse appointments-list', status: 500 })
                     }
                 })
                 .catch(err => {
@@ -300,7 +302,6 @@ const parseReceiverList = (raw) => {
 }
 
 const parseMessageList = (raw, limit) => {
-
     return raw.map(message => {
         return {
             isEvent: false,
@@ -319,7 +320,6 @@ const parseMessageList = (raw, limit) => {
 }
 
 const parseAppointmentList = (raw, limit) => {
-
     return raw.map(appointment => {
         return {
             isEvent: true,
