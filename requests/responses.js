@@ -7,20 +7,14 @@ const validateAccountGetStudentID = (res) => {
             return reject({ err: 'Something went wrong with the login process', status: 500 })
         }
 
-        switch (res.statusCode) {
-            case 200:
-                utility.parsers.parseStudent(res.body)
-                    .then(studentID => {
-                        return resolve(studentID);
-                    })
-                    .catch(err => {
-                        return reject({ err: 'Failed to parse StudentID', status: 500 });
-                    });
-            case 403:
-                return reject({ err: "Invalid credentials (StudentID)", message: res.statusCode, status: 401 });
-            default:
-                return reject({ err: "Wilma responded with an unknown statuscode", message: res.statusCode, status: 501 });
-        }
+        utility.parsers.parseStudent(res.body)
+            .then(studentID => {
+                return resolve(studentID);
+            })
+            .catch(err => {
+                return reject({ err: 'Failed to parse StudentID', status: 500 });
+            });
+
 
     });
 }
