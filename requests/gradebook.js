@@ -40,6 +40,10 @@ const getGradeBook = (Wilma2SID, limit, filter) => {
     });
 }
 
+/*
+    Have fun...
+*/
+
 const parseGrades = (raw, limit, filter) => {
     const document = parse(raw);
     const grades = ['P', 'S', 'K'];
@@ -90,14 +94,33 @@ const parseGrades = (raw, limit, filter) => {
         'Musiikki',
         'Kuvataide',
         'Opinto-ohjaus',
+        'Teemaopinnot',
+        'Monitieteinen ajattelu',
+        'Tutkiva työskentely teknologialla',
+        'Osaaminen arjessa',
+        'Lukiodiplomikurssit',
+        'Taiteiden väliset kurssit',
+        'Espoo-opinnot',
+        'Teatteri ja ilmaisu',
+        'Media',
         'Teatteri',
         'Media',
         'Lukiodiplomit',
         'Temaattiset opinnot',
         'Teknologia',
+        'Kotitalous',
+        'Käsityö',
         'OTA-opinnot',
         'Korkeakouluopinnot',
         'Lukiokoulutusta täydentävä oma äidinkieli (unkari)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (albania)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (englanti)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (espanja)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (portugali)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (puola)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (ranska)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (saksa)',
+        'Lukiokoulutusta täydentävä oma äidinkieli (venäjä)',
         'Lukiokoulutusta täydentävä oma äidinkieli (arabia)',
         'Lukiokoulutusta täydentävä oma äidinkieli (farsi/dari)',
         'Lukiokoulutusta täydentävä oma äidinkieli (kurdi)',
@@ -106,6 +129,7 @@ const parseGrades = (raw, limit, filter) => {
         'Lukiokoulutusta täydentävä oma äidinkieli (venäjä)',
         'Talous ja nuoret',
         'Muut opinnot',
+        'Muualla suoritetut kurssit'
     ]
 
     const optionalSubjectList = [
