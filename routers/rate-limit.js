@@ -11,7 +11,7 @@ const standard = rateLimit({
     windowMs: 10 * 60 * 1000,
     max: 250,
     standardHeaders: true,
-    message: message
+    message: {...message, ...{info: 'standard'}}
 });
 
 /*
@@ -22,7 +22,7 @@ const cacheable = rateLimit({
     windowMs: 10 * 60 * 1000,
     max: 10,
     standardHeaders: true,
-    message: message
+    message: {...message, ...{info: 'cacheable'}}
 })
 
 /*
@@ -33,7 +33,7 @@ const actions = rateLimit({
     windowMs: 30 * 60 * 1000,
     max: 100,
     standardHeaders: true,
-    message: message
+    message: {...message, ...{info: 'actions'}}
 })
 
 /*
@@ -44,7 +44,7 @@ const strict = rateLimit({
     windowMs: 60 * 60 * 1000,
     max: 15,
     standardHeaders: true,
-    message: message
+    message: {...message, ...{info: 'strict'}}
 })
 
 /*  
