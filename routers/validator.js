@@ -37,6 +37,10 @@ const GetCourseByID = Joi.object({
     id: Joi.string().required(),
 });
 
+const applyFullCourse = Joi.object({
+    code: Joi.string().required().max(24)
+})
+
 const GetLopsCourseByID = Joi.object({
     id: Joi.string().required(),
     lops: Joi.string().required().valid('LOPS2021', 'LOPS2016')
@@ -59,6 +63,12 @@ const postTeacherReview = Joi.object({
     'ability-to-self-study': Joi.number().required(),
     'comment': Joi.string().allow(null, '')
 });
+
+const postCommentRemove = Joi.object({
+    secret: Joi.string().required().length(64),
+    hash: Joi.string().required(),
+    id: Joi.string().required()
+})
 
 const getTeacherByName = Joi.object({
     name: Joi.string().required()
@@ -129,7 +139,8 @@ module.exports = {
         },
         courseTray: {
             GetTrayByPeriod,
-            GetCourseByID
+            GetCourseByID,
+            applyFullCourse
         },
         lops: {
             GetLopsCourseByID,
@@ -137,6 +148,7 @@ module.exports = {
         },
         teachers: {
             postTeacherReview,
+            postCommentRemove,
             getTeacherByName,
             getTeacherById
         }

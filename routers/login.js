@@ -3,7 +3,7 @@ const router = express.Router();
 const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 
-const { StartSession, Logout } = require('../account/account-manager');
+const { StartSession, Logout, Authenticate } = require('../account/account-manager');
 const { json } = require('express/lib/response');
 
 router.post('/login', limiter.strict, async (req, res) => {
@@ -25,6 +25,18 @@ router.post('/logout', async (req, res) => {
     if (!StudentID) return;
 
     Logout(Wilma2SID, StudentID)
+        .then(status => {
+            res.json(status);
+        })
+        .catch(err => { res.status(err.status).json(err); });
+});
+
+router.post('/authenticate', async (req, res) => {
+    // validation
+    const Wilma2SID = validators.validateWilma2SID(req, res);
+    if (!Wilma2SID) return;
+
+    Authenticate(Wilma2SID)
         .then(status => {
             res.json(status);
         })

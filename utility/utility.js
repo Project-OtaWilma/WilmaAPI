@@ -36,6 +36,19 @@ const parseTitle = (raw) => {
     });
 } 
 
+const parseName = (raw) => {
+    return new Promise((resolve, reject) => {
+        try {
+            const document = parse(raw);
+            const nameElement = document.getElementsByTagName('span').filter(s => s.attrs.class == 'teacher')[0];
+
+            return resolve({username: nameElement.textContent});
+        } catch(err) {
+            return reject({err: 'Failed to parse title', message: err, status: 501});
+        }
+    });
+} 
+
 
 
 module.exports = {
@@ -45,5 +58,6 @@ module.exports = {
     parsers: {
         parseStudent,
         parseTitle,
+        parseName
     }
 }

@@ -17,6 +17,7 @@
         "mysql": "^2.18.1",
         "node-html-parser": "^5.3.3",
         "request": "^2.88.2",
-        "response-time": "^2.3.2"
+        "response-time": "^2.3.2",
+        "shortid": "^2.2.16"
     }
 }

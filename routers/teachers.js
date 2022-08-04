@@ -35,6 +35,23 @@ router.post('/teachers/rate', limiter.ignore, async (req, res) => {
 
 });
 
+router.post('/teachers/comments/delete', limiter.ignore, async (req, res) => {
+    // validation
+    const result = validators.validateRequestBody(req, res, schemas.teachers.postCommentRemove);
+
+    if (!result) return
+
+    teachers.deleteComment(result.hash, result.id, result.secret)
+        .then(status => {
+            return res.json(status);
+        })
+        .catch(err => {
+            console.log(err);
+            return res.status(err.status).json(err);
+        })
+
+});
+
 router.get('/teachers/name/:name', async (req, res) => {
     // validation
     const result = validators.validateRequestParameters(req, res, schemas.teachers.getTeacherByName);

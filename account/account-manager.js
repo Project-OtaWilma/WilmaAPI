@@ -13,7 +13,7 @@ const GenerateSessiondDetails = () => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Error occured while trying to retrieve details from https://espoo.inschool.fi/login/', message: response, status: 503 });
+            if (error) return reject({ error: 'Error occured while trying to retrieve details from https://espoo.inschool.fi/login/', info: response, status: 503 });
 
             if (response.statusCode == 200) {
                 utility.cookies.parseCookie(response.headers['set-cookie'][0])
@@ -21,11 +21,11 @@ const GenerateSessiondDetails = () => {
                         return resolve(session);
                     })
                     .catch(err => {
-                        return reject({ error: 'Wilma sent an invalid cookie', message: err, status: 501 });
+                        return reject({ error: 'Wilma sent an invalid cookie', status: 501 });
                     });
             }
             else {
-                return reject({ error: "Couldn't generate session details", message: response, status: 404 });
+                return reject({ error: "Couldn't generate session details", info: response.statusCode, status: 404 });
             }
         });
     });
@@ -53,7 +53,7 @@ const Login = (login = { Username: String, Password: String, SessionID: String, 
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Error occured while trying to reach https://espoo.inschool.fi/login/', message: response.statusCode, status: 503 });
+            if (error) return reject({ err: 'Error occured while trying to reach "https://espoo.inschool.fi/login/"', info: response.statusCode, status: 503 });
             if (response.statusCode == 303) {
                 utility.cookies.parseCookie(response.headers['set-cookie'][1])
                     .then(session => {
@@ -64,7 +64,7 @@ const Login = (login = { Username: String, Password: String, SessionID: String, 
                     });
             }
             else {
-                return reject({ error: 'Wilma responded with an unknown status.', message: response, status: 501 });
+                return reject({ error: 'Wilma responded with an unknown status.', info: response.statusCode, status: 501 });
             }
 
         });
@@ -84,7 +84,7 @@ const generateStudentID = (Wilma2SID) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Error occured while trying to retrieve details from https://espoo.inschool.fi/schedule', message: response.statusCode, status: 503 });
+            if (error) return reject({ err: 'Error occured while trying to retrieve details from "https://espoo.inschool.fi/schedule"', info: response.statusCode, status: 503 });
 
             account.validateAccountGetStudentID(response)
                 .then(studentID => {
@@ -139,12 +139,52 @@ const Logout = (Wilma2SID, StudentID) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Error occured while trying to reach https://espoo.inschool.fi/login/', message: response.statusCode, status: 503 });
+            if (error) return reject({ error: 'Error occured while trying to reach "https://espoo.inschool.fi/login/"', info: response.statusCode, status: 503 });
             if (response.statusCode == 303) {
                 return resolve({ status: 200 });
             }
             else {
-                return reject({ error: 'Wilma responded with an unknown status.', message: response, status: 501 });
+                return reject({ err: 'Wilma responded with an unknown status.', info: response.statusCode, status: 501 });
+            }
+
+        });
+    });
+}
+
+const Authenticate = (Wilma2SID) => {
+    return new Promise((resolve, reject) => {
+        const options = {
+            'method': 'GET',
+            'url': 'https://espoo.inschool.fi/schedule',
+            'headers': {
+                'Cookie': `Wilma2SID=${Wilma2SID}`
+            },
+            followRedirect: false
+        };
+
+        request(options, async function (error, response) {
+            if (error) return reject({ error: 'Error occured while trying to reach "https://espoo.inschool.fi/schedule"', info: response.statusCode, status: 503 });
+
+            switch (response.statusCode) {
+                case 200:
+                    if(!response.body) return reject({err: 'Invalid credentials', status: 401});
+
+                    utility.parsers.parseName(response.body)
+                    .then(name => { 
+                        return resolve(name);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        return resolve({err: 'Failed to auhenticate user', status: 500});
+                    })
+
+                    break;
+                case 302:
+                    return reject({err: 'Invalid credentials', status: 401});
+                case 403:
+                    return reject({err: 'Invalid credentials', info: 'Two existing login-instances', status: 401});
+                default:
+                    return reject({ err: 'Wilma responded with an unknown status.', info: response.statusCode, status: 501 });
             }
 
         });
@@ -158,4 +198,5 @@ module.exports = {
     Login,
     Logout,
     StartSession,
+    Authenticate
 }

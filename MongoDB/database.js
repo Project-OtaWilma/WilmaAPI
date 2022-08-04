@@ -1,5 +1,7 @@
 const { MongoClient } = require('mongodb');
 const { user, password, host, port, apiKey } = require('./secret.json');
+const shortid = require('shortid');
+const account = require('../account/account-manager');
 
 const url = `mongodb://${user}:${password}@${host}:${port}/?authMechanism=DEFAULT`;
 
@@ -161,6 +163,13 @@ const rateTeacher = (r) => {
                     const db = database.db('Wilma');
                     const query = { name: r['teacher'] }
 
+                    const id = shortid.generate();
+
+                    const comment = {
+                        content: r["comment"],
+                        id: id
+                    };
+
                     const values = {
                         $push: {
                             "feedback.reviewers": r["sender"],
@@ -170,7 +179,7 @@ const rateTeacher = (r) => {
                             "feedback.course-difficulty": r["course-difficulty"],
                             "feedback.return-speed": r["return-speed"],
                             "feedback.ability-to-self-study": r["ability-to-self-study"],
-                            "feedback.comments": r["comment"]
+                            "feedback.comments": comment
                         },
                         $inc: {}
                     }
@@ -191,7 +200,7 @@ const rateTeacher = (r) => {
 
                         if (res.modifiedCount < 1) return reject({ err: "Teacher with specified name wasn't found from database", status: 400 });
 
-                        return resolve({ status: 200 });
+                        return resolve({ id: id });
                     });
 
                 })
@@ -222,11 +231,49 @@ const parseFeedback = (raw) => {
         })
     })
 
-    result['comments'] = raw['comments'].filter(c => c.trim());
+    const comments = raw['comments'].filter(c => c);
 
+    result['comments'] = comments.map(c => c['id'] ? c['content'] : c);
     result['teacher-adjectives'].sort((a, b) => { return b.percentage - a.percentage });
 
     return result;
+}
+
+const deleteComment = (hash, id, secret) => {
+    return new Promise((resolve, reject) => {
+
+        if (secret != apiKey) return reject({ err: 'Invalid credentials', status: 401 });
+
+        getTeacherById(hash)
+        .then(teacher => {
+            MongoClient.connect(url, (err, database) => {
+                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+    
+                const db = database.db('Wilma');
+    
+                const query = { hash: hash }
+
+                const update = {
+                    $pull: {
+                        'feedback.comments': {
+                            id: id
+                        }
+                    }
+                }
+    
+                db.collection('teachers').updateOne(query, update, (err, res) => {
+                    if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+    
+                    database.close();
+    
+                    return resolve(res);
+                });
+            })
+        })
+        .catch(err => {
+            return reject(err);
+        })
+    });
 }
 
 const average = (list) => {
@@ -238,6 +285,90 @@ const percentage = (max, num) => {
     return ((num / max) * 100)
 }
 
+const getCourseApplicantList = (code) => {
+    return new Promise((resolve, reject) => {
+        MongoClient.connect(url, (err, database) => {
+            if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+
+            const db = database.db('Wilma');
+
+            const query = { code: code }
+
+            db.collection('course-tray').find(query).toArray((err, res) => {
+                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+
+                database.close();
+
+                if(res.length < 1) return resolve([]);
+
+                const interested = res[0]['interested'];
+                return resolve(interested);
+            });
+        })
+    })
+}
+
+const applyForFullCourse = (Wilma2SID, code) => {
+    return new Promise((resolve, reject) => {
+        account.Authenticate(Wilma2SID)
+            .then(user => {
+
+                getCourseApplicantList(code)
+                    .then(list => {
+                        if(list.includes(user.username)) return reject({err: 'You are already applied to this course', status: 400});
+
+                        MongoClient.connect(url, (err, database) => {
+                            if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+                
+                            const db = database.db('Wilma');
+                
+                            const query = { code: code }
+                            const update = {
+                                $push: {
+                                    interested: user.username
+                                }
+                            }
+                
+                            db.collection('course-tray').findOneAndUpdate(query, update, {upsert: true}, (err, res) => {
+                                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+                
+                                database.close();
+                
+                                return resolve(res);
+                            });
+                        })
+                    })
+                    .catch(err => {
+                        return reject(err);
+                    })
+                .catch(err => {
+                    return reject(err);
+                })
+        })
+    });
+}
+
+const checkApplicationStatus = (Wilma2SID, code) => {
+    return new Promise((resolve, reject) => {
+        account.Authenticate(Wilma2SID)
+            .then(user => {
+                getCourseApplicantList(code)
+                    .then(list => {
+                        console.log(list);
+                        return resolve({applied: list.includes(user.username), length: list.length});
+                    })
+                    .catch(err => {
+                        return reject(err);
+                    })
+
+                })
+                .catch(err => {
+                    return reject(err);
+                })
+})
+}
+
+
 module.exports = {
     lops: {
         getCourseById,
@@ -248,7 +379,12 @@ module.exports = {
         getTeacherById,
         getTeacherByName,
         rateTeacher,
-        parseFeedback
+        parseFeedback,
+        deleteComment
+    },
+    courseTray: {
+        applyForFullCourse,
+        checkApplicationStatus
     }
 }
 
