@@ -154,7 +154,6 @@ const rateTeacher = (r) => {
 
         getTeacherByName(r['teacher'])
             .then(teacher => {
-                console.log(teacher.feedback);
                 if (teacher.feedback['reviewers'].includes(r['sender'])) return reject({ err: 'Cannot give multiple ratings to same teacher', status: 400 });
 
                 MongoClient.connect(url, (err, database) => {
@@ -200,7 +199,7 @@ const rateTeacher = (r) => {
 
                         if (res.modifiedCount < 1) return reject({ err: "Teacher with specified name wasn't found from database", status: 400 });
 
-                        return resolve({ id: id });
+                        return resolve({ id: id, hash: teacher['hash'] });
                     });
 
                 })

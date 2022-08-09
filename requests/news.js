@@ -72,7 +72,6 @@ const getNewsById = (Wilma2SID, NewsID) => {
 
 // rework
 const parseNewsInbox = (raw, path, limit) => {
-    console.log(path);
     const document = parse(raw);
     const sections = ['Pysyvät tiedotteet', 'Vanhat tiedotteet']
     const translations = {
@@ -87,7 +86,6 @@ const parseNewsInbox = (raw, path, limit) => {
 
         div.childNodes.filter(c => c.rawTagName).forEach(c => {
             const data = c.rawText;
-            // console.log([c.rawTagName, c.rawText.trim()]);
             switch(c.rawTagName) {
                 case 'h2':
                     if(sections.includes(c.textContent.trim())) {

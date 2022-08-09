@@ -1,6 +1,6 @@
 {
     "name": "project-wima-api",
-    "version": "0.7.3",
+    "version": "0.7.4",
     "description": "",
     "main": "main.js",
     "scripts": {
