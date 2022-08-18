@@ -302,6 +302,7 @@ const parseReceiverList = (raw) => {
 }
 
 const parseMessageList = (raw, limit) => {
+    console.log(raw[0]);
     return raw.map(message => {
         return {
             isEvent: false,
@@ -309,6 +310,7 @@ const parseMessageList = (raw, limit) => {
             subject: message.Subject,
             timeStamp: message.TimeStamp,
             replies: message.Replies,
+            new: message.Status == 1,
             senders: message.Senders.map(sender => {
                 return {
                     name: sender.Name,
