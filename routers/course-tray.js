@@ -94,7 +94,7 @@ router.get('/course-tray/courses/applicants/:id', async (req, res) => {
         });
 });
 
-router.post('/course-tray/select/:id', limiter.actions, async (req, res) => {
+router.post('/course-tray/select/:id', async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
     if (!Wilma2SID) return;
@@ -115,7 +115,7 @@ router.post('/course-tray/select/:id', limiter.actions, async (req, res) => {
         });
 });
 
-router.post('/course-tray/deselect/:id', limiter.actions, async (req, res) => {
+router.post('/course-tray/deselect/:id', async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
     if (!Wilma2SID) return;
@@ -135,7 +135,7 @@ router.post('/course-tray/deselect/:id', limiter.actions, async (req, res) => {
         });
 });
 
-router.post('/course-tray/apply/:code', limiter.actions, async (req, res) => {
+router.post('/course-tray/apply/:code', async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
     if (!Wilma2SID) return;

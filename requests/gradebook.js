@@ -46,6 +46,7 @@ const getGradeBook = (Wilma2SID, limit, filter) => {
 
 const parseGrades = (raw, limit, filter) => {
     const document = parse(raw);
+
     const grades = ['P', 'S', 'K'];
     const sections = [
         'Suoritukset kurssityypeittäin',

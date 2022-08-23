@@ -6,7 +6,7 @@ const { schemas, validators } = require('./validator');
 const { getReceiverList, sendMessage, getMessageInbox, getMessageOutbox, getAppointments, getAnnouncements, getMessageByID } = require('../requests/messages');
 
 
-router.post('/messages/send', limiter.actions, async (req, res) => {
+router.post('/messages/send', async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
     if (!Wilma2SID) return;
@@ -43,7 +43,7 @@ router.post('/messages/reply', async (req, res) => {
         });
 });
 
-router.post('/messages/remove', limiter.actions, async (req, res) => {
+router.post('/messages/remove', async (req, res) => {
     // validation
     const Wilma2SID = validators.validateWilma2SID(req, res);
     const request = validators.validateRequestBody(req, res, schemas.messages.sendMessage);

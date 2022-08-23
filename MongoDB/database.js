@@ -230,9 +230,7 @@ const parseFeedback = (raw) => {
         })
     })
 
-    const comments = raw['comments'].filter(c => c);
-
-    result['comments'] = comments.map(c => c['id'] ? c['content'] : c);
+    result['comments'] = raw['comments'].map(c => c['id'] ? c['content'].trim() ? c['content'].trim() : null : c.trim() ? c : null).filter(c => c)
     result['teacher-adjectives'].sort((a, b) => { return b.percentage - a.percentage });
 
     return result;

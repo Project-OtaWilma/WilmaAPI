@@ -6,7 +6,7 @@ const { schemas, validators } = require('./validator');
 const { lops } = require('../MongoDB/database');
 
 
-router.get('/lops/:lops/courses/get/:id', limiter.cacheable, async (req, res) => {
+router.get('/lops/:lops/courses/get/:id', async (req, res) => {
     // Validation
     const request = validators.validateRequestParameters(req, res, schemas.lops.GetLopsCourseByID);
 

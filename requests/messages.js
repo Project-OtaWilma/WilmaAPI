@@ -302,7 +302,6 @@ const parseReceiverList = (raw) => {
 }
 
 const parseMessageList = (raw, limit) => {
-    console.log(raw[0]);
     return raw.map(message => {
         return {
             isEvent: false,

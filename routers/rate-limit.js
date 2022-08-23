@@ -5,44 +5,33 @@ const message = { err: 'rate-limit violation', status: 429 }
 
 /*
     Standard rate-limit that is enforced for every endpoint
-    (250 request / 10 min)
+    (50 request / 10s)
 */
 const standard = rateLimit({
-    windowMs: 10 * 60 * 1000,
-    max: 250,
+    windowMs: 10 * 1000,
+    max: 50,
     standardHeaders: true,
     message: {...message, ...{info: 'standard'}}
 });
 
 /*
     Rate-limit for cacheable resources such as lists
-    (25 request / 10 min)
+    (5 request / 10s)
 */
 const cacheable = rateLimit({
-    windowMs: 10 * 60 * 1000,
-    max: 10,
+    windowMs: 10 * 1000,
+    max: 5,
     standardHeaders: true,
     message: {...message, ...{info: 'cacheable'}}
 })
 
 /*
-    Rate-limit for actions such as selecting and deselcting courses
-    (100 request / 0.5 hour)
-*/
-const actions = rateLimit({
-    windowMs: 30 * 60 * 1000,
-    max: 100,
-    standardHeaders: true,
-    message: {...message, ...{info: 'actions'}}
-})
-
-/*
     Rate-limit for rarely used actions such as login
-    (15 request / 1 hour)
+    (25 request / 1 hour)
 */
 const strict = rateLimit({
     windowMs: 60 * 60 * 1000,
-    max: 15,
+    max: 25,
     standardHeaders: true,
     message: {...message, ...{info: 'strict'}}
 })
@@ -59,7 +48,6 @@ const ignore = rateLimit({
 module.exports = {
     standard,
     cacheable,
-    actions,
     strict,
     ignore
 }
