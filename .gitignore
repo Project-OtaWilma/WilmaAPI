@@ -11,7 +11,7 @@ static/config
 tools.js
 
 # MongoDB authentication
-MongoDB/secret.json
+database/secret.json
 
 #config
 config.json

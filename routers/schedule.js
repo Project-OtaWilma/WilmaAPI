@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { schemas, validators } = require('./validator');
+const authentication = require('../database/authentication');
 
-const { getSchedule, getScheduleByDate, getScheduleByWeek } = require('../requests/schedule');
+const { getScheduleByDate, getScheduleByWeek } = require('../requests/schedule');
 
 router.get('/schedule/date/:date', async (req, res) => {
     // validation
@@ -12,7 +13,6 @@ router.get('/schedule/date/:date', async (req, res) => {
 
     const Wilma2SID = validators.validateWilma2SID(req, res);
     if (!Wilma2SID) return
-
 
     const result = validators.validateRequestParameters(req, res, schemas.schedule.getScheduleByDate);
 

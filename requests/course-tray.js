@@ -2,13 +2,13 @@ const { parse } = require('node-html-parser');
 const request = require('request');
 const { courseTray } = require('../requests/responses');
 
-const getTrayList = (Wilma2SID) => {
+const getTrayList = (auth) => {
     return new Promise((resolve, reject) => {
-        var options = {
+        const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/selection/view`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
@@ -18,7 +18,6 @@ const getTrayList = (Wilma2SID) => {
         request(options, function (error, response) {
             if (error) return reject({ error: 'Failed to retrieve list of available trays', message: response, status: 501 });
 
-            // Wilma2SID was incorrect
             courseTray.validateCourseTrayGetList(response)
                 .then(() => {
                     try {
@@ -35,13 +34,13 @@ const getTrayList = (Wilma2SID) => {
     });
 }
 
-const getTrayByPeriod = (Wilma2SID, StudentID, target) => {
+const getTrayByPeriod = (auth, target) => {
     return new Promise((resolve, reject) => {
         const form = {
             'message': 'open-tray',
             'target': target,
-            'formkey': StudentID,
-            'interest': target,
+            'formkey': auth.StudentID,
+            'interest': auth.target,
             'refresh': '41765',
             'extras': ''
         }
@@ -50,13 +49,12 @@ const getTrayByPeriod = (Wilma2SID, StudentID, target) => {
             'method': 'POST',
             'url': `https://espoo.inschool.fi/selection/postback`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
             form: form
         };
-
 
         request(options, function (error, response) {
             if (error) return reject({ error: 'Failed to retrieve the tray', message: response, status: 501 });
@@ -81,14 +79,14 @@ const getTrayByPeriod = (Wilma2SID, StudentID, target) => {
     });
 }
 
-const getCourseByID = (Wilma2SID, target, static) => {
+const getCourseByID = (auth, target, static) => {
     return new Promise((resolve, reject) => {
 
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/selection/getback?message=group-info&target=${target}`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false
@@ -119,12 +117,12 @@ const getCourseByID = (Wilma2SID, target, static) => {
 }
 
 
-const selectCourse = (Wilma2SID, StudentID, target) => {
+const selectCourse = (auth, target) => {
     return new Promise((resolve, reject) => {
         const form = {
             'message': 'pick-group',
             'target': target,
-            'formkey': StudentID,
+            'formkey': auth.StudentID,
             'refresh': '41765',
             'extras': ''
         }
@@ -133,7 +131,7 @@ const selectCourse = (Wilma2SID, StudentID, target) => {
             'method': 'POST',
             'url': `https://espoo.inschool.fi/selection/postback`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
@@ -143,7 +141,6 @@ const selectCourse = (Wilma2SID, StudentID, target) => {
 
         request(options, function (error, response) {
             if (error) return reject({ error: 'Failed to retrieve the tray', message: response, status: 501 });
-
 
             courseTray.validateCourseTrayGetByPeriod(response)
                 .then(() => {

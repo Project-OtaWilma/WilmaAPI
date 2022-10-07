@@ -4,13 +4,13 @@ const request = require('request');
 
 const { grades } = require('../requests/responses');
 
-const getGradeBook = (Wilma2SID, limit, filter) => {
+const getGradeBook = (auth, limit, filter) => {
     return new Promise((resolve, reject) => {
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/choices?view=gradebook`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,

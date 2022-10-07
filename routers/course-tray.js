@@ -2,17 +2,18 @@ const express = require('express');
 const router = express.Router();
 const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
+const authentication = require('../database/authentication');
 
 const { getTrayList, getTrayByPeriod, getCourseByID, selectCourse, deSelectCourse } = require('../requests/course-tray');
-const { courseTray } = require('../MongoDB/database');
+const { courseTray } = require('../database/database');
 
 router.get('/course-tray/list', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
 
 
-    getTrayList(Wilma2SID)
+    getTrayList(auth)
         .then(list => {
             res.json(list);
         })
@@ -23,17 +24,13 @@ router.get('/course-tray/list', async (req, res) => {
 });
 
 router.get('/course-tray/:id', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
-
-    const StudentID = validators.validateStudentID(req, res);
-    if (!StudentID) return;
-
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetTrayByPeriod);
     if (!request) return;
 
-    getTrayByPeriod(Wilma2SID, StudentID, request.id)
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+    getTrayByPeriod(auth, request.id)
         .then(tray => {
             res.json(tray);
         })
@@ -43,14 +40,14 @@ router.get('/course-tray/:id', async (req, res) => {
 });
 
 router.get('/course-tray/courses/:id', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
-
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
     if (!request) return;
 
-    getCourseByID(Wilma2SID, request.id, true)
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+
+    getCourseByID(auth, request.id, true)
         .then(status => {
             res.json(status);
         })
@@ -60,14 +57,13 @@ router.get('/course-tray/courses/:id', async (req, res) => {
 });
 
 router.get('/course-tray/courses/info/:id', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
-
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
     if (!request) return;
 
-    getCourseByID(Wilma2SID, request.id, false)
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+    getCourseByID(auth, request.id, false)
         .then(status => {
             res.json(status);
         })
@@ -77,14 +73,13 @@ router.get('/course-tray/courses/info/:id', async (req, res) => {
 });
 
 router.get('/course-tray/courses/applicants/:id', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
-
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
     if (!request) return;
 
-    courseTray.checkApplicationStatus(Wilma2SID, request.id)
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+    courseTray.checkApplicationStatus(auth, request.id)
         .then(status => {
             res.json(status);
         })
@@ -95,18 +90,13 @@ router.get('/course-tray/courses/applicants/:id', async (req, res) => {
 });
 
 router.post('/course-tray/select/:id', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
-
-    const StudentID = validators.validateStudentID(req, res);
-    if (!StudentID) return;
-
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
     if (!request) return;
 
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
 
-    selectCourse(Wilma2SID, StudentID, request.id)
+    selectCourse(auth, request.id)
         .then(status => {
             res.json(status);
         })

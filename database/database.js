@@ -3,7 +3,8 @@ const { user, password, host, port, apiKey } = require('./secret.json');
 const shortid = require('shortid');
 const account = require('../account/account-manager');
 
-const url = `mongodb://${user}:${password}@${host}:${port}/?authMechanism=DEFAULT`;
+//const url = `mongodb://${user}:${password}@${host}:${port}/?authMechanism=DEFAULT`;
+const url = `mongodb://localhost:27020/mydb`;
 
 const getCourseById = (lops, id) => {
     return new Promise((resolve, reject) => {
@@ -345,9 +346,9 @@ const applyForFullCourse = (Wilma2SID, code) => {
     });
 }
 
-const checkApplicationStatus = (Wilma2SID, code) => {
+const checkApplicationStatus = (auth, code) => {
     return new Promise((resolve, reject) => {
-        account.Authenticate(Wilma2SID)
+        account.Authenticate(auth.Wilma2SID)
             .then(user => {
                 getCourseApplicantList(code)
                     .then(list => {

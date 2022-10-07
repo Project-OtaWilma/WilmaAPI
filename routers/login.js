@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
+const authentication = require('../database/authentication');
 
 const { StartSession, Logout, Authenticate } = require('../account/account-manager');
-const { json } = require('express/lib/response');
 
 router.post('/login', limiter.strict, async (req, res) => {
     // validation

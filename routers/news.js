@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { schemas, validators } = require('./validator');
+const authentication = require('../database/authentication');
 
 const { getNewsInbox, getNewsById } = require('../requests/news');
 

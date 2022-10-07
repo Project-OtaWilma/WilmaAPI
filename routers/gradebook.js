@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const { schemas, validators } = require('./validator');
+const authentication = require('../database/authentication');
 
 const { getGradeBook } = require('../requests/gradebook');
 
 
 router.get('/gradebook', async (req, res) => {
-    // Validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
     const limit = req.query.limit ? Number.parseInt(req.query.limit) : 100;
     const filter = req.query.filter ? req.query.filter : null;
 
-    if (!Wilma2SID) return;
-
-    getGradeBook(Wilma2SID, limit, filter)
+    getGradeBook(auth, limit, filter)
         .then(grades => {
             res.json(grades);
         })

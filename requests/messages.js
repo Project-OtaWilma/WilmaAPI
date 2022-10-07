@@ -133,13 +133,13 @@ const getReceiverList = (Wilma2SID) => {
     })
 }
 
-const getMessageInbox = (Wilma2SID, limit) => {
+const getMessageInbox = (auth, limit) => {
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/list`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
@@ -168,13 +168,13 @@ const getMessageInbox = (Wilma2SID, limit) => {
     });
 }
 
-const getMessageOutbox = (Wilma2SID, limit) => {
+const getMessageOutbox = (auth, limit) => {
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/list/outbox`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
@@ -202,13 +202,13 @@ const getMessageOutbox = (Wilma2SID, limit) => {
     });
 }
 
-const getAppointments = (Wilma2SID, limit) => {
+const getAppointments = (auth, limit) => {
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/list/appointments`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
@@ -241,7 +241,7 @@ const getAnnouncements = (limit) => {
     });
 }
 
-const getMessageByID = (Wilma2SID, id) => {
+const getMessageByID = (auth, id) => {
     return new Promise((resolve, reject) => {
 
         if (Object.keys(announcements.messages).includes(id)) return resolve([announcements.messages[id]]);
@@ -250,7 +250,7 @@ const getMessageByID = (Wilma2SID, id) => {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/${id}?format=json`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,

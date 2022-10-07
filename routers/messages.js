@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
+const authentication = require('../database/authentication');
 
 const { getReceiverList, sendMessage, getMessageInbox, getMessageOutbox, getAppointments, getAnnouncements, getMessageByID } = require('../requests/messages');
 
+/*
 
 router.post('/messages/send', async (req, res) => {
     // validation
@@ -75,13 +77,15 @@ router.get('/messages/recipients', limiter.cacheable, async (req, res) => {
         });
 });
 
-router.get('/messages/inbox', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    const limit = req.query.limit ? req.query.limit : 1000;
-    if (!Wilma2SID) return;
+*/
 
-    getMessageInbox(Wilma2SID, limit)
+router.get('/messages/inbox', async (req, res) => {
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+    const limit = req.query.limit ? req.query.limit : 1000;
+
+    getMessageInbox(auth, limit)
         .then(session => {
             res.json(session);
         })
@@ -91,13 +95,12 @@ router.get('/messages/inbox', async (req, res) => {
 });
 
 router.get('/messages/outbox', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
     const limit = req.query.limit ? req.query.limit : 1000;
 
-    if (!Wilma2SID) return;
-
-    getMessageOutbox(Wilma2SID, limit)
+    getMessageOutbox(auth, limit)
         .then(session => {
             res.json(session);
         })
@@ -107,13 +110,12 @@ router.get('/messages/outbox', async (req, res) => {
 });
 
 router.get('/messages/appointments', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
     const limit = req.query.limit ? req.query.limit : 1000;
 
-    if (!Wilma2SID) return;
-
-    getAppointments(Wilma2SID, limit)
+    getAppointments(auth, limit)
         .then(session => {
             res.json(session);
         })
@@ -123,13 +125,12 @@ router.get('/messages/appointments', async (req, res) => {
 });
 
 router.get('/messages/announcements', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
     const limit = req.query.limit ? req.query.limit : 1000;
 
-    if (!Wilma2SID) return;
-
-    getAnnouncements(Wilma2SID, limit)
+    getAnnouncements(auth, limit)
         .then(session => {
             res.json(session);
         })
@@ -139,14 +140,13 @@ router.get('/messages/announcements', async (req, res) => {
 });
 
 router.get('/messages/:id', async (req, res) => {
-    // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
     const request = validators.validateRequestParameters(req, res, schemas.messages.getMessageByID);
-
-    if (!Wilma2SID) return;
     if (!request) return;
 
-    getMessageByID(Wilma2SID, request.id)
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+    getMessageByID(auth, request.id)
         .then(session => {
             res.json(session);
         })

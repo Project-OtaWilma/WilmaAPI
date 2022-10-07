@@ -3,7 +3,7 @@ const router = express.Router();
 const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 
-const { lops } = require('../MongoDB/database');
+const { lops } = require('../database/database');
 
 
 router.get('/lops/:lops/courses/get/:id', async (req, res) => {

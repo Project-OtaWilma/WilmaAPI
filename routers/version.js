@@ -4,8 +4,6 @@ const limiter = require('./rate-limit');
 
 const { version } = require('../package.json');
 
-
-
 router.get('/version/get', async (req, res) => {
     res.json({ version: version })
 });

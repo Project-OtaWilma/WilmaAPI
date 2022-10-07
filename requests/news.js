@@ -3,8 +3,6 @@ const request = require('request');
 
 const { news } = require('../requests/responses');
 
-// https://espoo.inschool.fi/news/22854
-
 const getNewsInbox = (Wilma2SID, path, limit) => {
     return new Promise((resolve, reject) => {
         var options = {
