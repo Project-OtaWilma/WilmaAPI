@@ -1,5 +1,6 @@
 const request = require('request');
 const utility = require('../utility/utility');
+const authentication = require('../database/authentication');
 
 const whitelist = require('./whitelist.json');
 
@@ -35,7 +36,7 @@ const GenerateSessiondDetails = () => {
 const Login = (login = { Username: String, Password: String, SessionID: String, Wilma2LoginID: String }) => {
     return new Promise((resolve, reject) => {
 
-        if(!whitelist.includes(login.Username)) return reject({err: 'You are not whitelisted for OtaWilma [CLOSED BETA]', status: 401});
+        if (!whitelist.includes(login.Username)) return reject({ err: 'You are not whitelisted for OtaWilma [CLOSED BETA]', status: 401 });
 
         const options = {
             'method': 'POST',
@@ -108,7 +109,8 @@ const StartSession = async (login = { Username: String, Password: String, Curren
             }).then(session => {
                 generateStudentID(session.value[0])
                     .then(studentID => {
-                        return resolve({ Wilma2SID: session.value[0], studentID: studentID, reset: true });
+                        const token = authentication.signToken({ Wilma2SID: session.value[0], StudentID: studentID, username: login.Username })
+                        return resolve({ token: token, reset: true });
                     })
                     .catch(err => {
                         return reject(err);
@@ -124,17 +126,17 @@ const StartSession = async (login = { Username: String, Password: String, Curren
     });
 }
 
-const Logout = (Wilma2SID, StudentID) => {
+const Logout = (auth) => {
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'POST',
             'url': 'https://espoo.inschool.fi/logout',
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             form: {
-                'formkey': StudentID,
+                'formkey': auth.StudentID,
             }
         };
 
@@ -151,13 +153,13 @@ const Logout = (Wilma2SID, StudentID) => {
     });
 }
 
-const Authenticate = (Wilma2SID) => {
+const Authenticate = (auth) => {
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'GET',
             'url': 'https://espoo.inschool.fi/schedule',
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`
             },
             followRedirect: false
         };
@@ -167,22 +169,22 @@ const Authenticate = (Wilma2SID) => {
 
             switch (response.statusCode) {
                 case 200:
-                    if(!response.body) return reject({err: 'Invalid credentials', status: 401});
+                    if (!response.body) return reject({ err: 'Invalid credentials', status: 401 });
 
                     utility.parsers.parseName(response.body)
-                    .then(name => { 
-                        return resolve(name);
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        return resolve({err: 'Failed to auhenticate user', status: 500});
-                    })
+                        .then(name => {
+                            return resolve(name);
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            return resolve({ err: 'Failed to auhenticate user', status: 500 });
+                        })
 
                     break;
                 case 302:
-                    return reject({err: 'Invalid credentials', status: 401});
+                    return reject({ err: 'Invalid credentials', status: 401 });
                 case 403:
-                    return reject({err: 'Invalid credentials', info: 'Two existing login-instances', status: 401});
+                    return reject({ err: 'Invalid credentials', info: 'Two existing login-instances', status: 401 });
                 default:
                     return reject({ err: 'Wilma responded with an unknown status.', info: response.statusCode, status: 501 });
             }

@@ -107,16 +107,13 @@ router.post('/course-tray/select/:id', async (req, res) => {
 
 router.post('/course-tray/deselect/:id', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
-
-    const StudentID = validators.validateStudentID(req, res);
-    if (!StudentID) return;
-
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
     if (!request) return;
 
-    deSelectCourse(Wilma2SID, StudentID, request.id)
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+    deSelectCourse(auth, request.id)
         .then(status => {
             res.json(status);
         })
@@ -127,13 +124,13 @@ router.post('/course-tray/deselect/:id', async (req, res) => {
 
 router.post('/course-tray/apply/:code', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
-
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.applyFullCourse);
     if (!request) return;
 
-    courseTray.applyForFullCourse(Wilma2SID, request.code)
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+    courseTray.applyForFullCourse(auth, request.code)
         .then(status => {
             res.json(status);
         })

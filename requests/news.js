@@ -3,13 +3,13 @@ const request = require('request');
 
 const { news } = require('../requests/responses');
 
-const getNewsInbox = (Wilma2SID, path, limit) => {
+const getNewsInbox = (auth, path, limit) => {
     return new Promise((resolve, reject) => {
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/news`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
@@ -24,9 +24,9 @@ const getNewsInbox = (Wilma2SID, path, limit) => {
                     try {
                         const list = parseNewsInbox(response.body, path, limit);
                         return resolve(list);
-                    } catch(err) {
+                    } catch (err) {
                         console.log(err);
-                        return reject({err: 'Failed to parse the list of news', message: err, status: 500});
+                        return reject({ err: 'Failed to parse the list of news', message: err, status: 500 });
                     }
                 })
                 .catch(err => {
@@ -36,13 +36,13 @@ const getNewsInbox = (Wilma2SID, path, limit) => {
     });
 }
 
-const getNewsById = (Wilma2SID, NewsID) => {
+const getNewsById = (auth, NewsID) => {
     return new Promise((resolve, reject) => {
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/news/printable/${NewsID}`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
@@ -57,8 +57,8 @@ const getNewsById = (Wilma2SID, NewsID) => {
                     try {
                         const list = parseNewsById(response.body);
                         return resolve(list);
-                    } catch(err) {
-                        return reject({err: 'Failed to parse the contant of the news', message: err, status: 500});
+                    } catch (err) {
+                        return reject({ err: 'Failed to parse the contant of the news', message: err, status: 500 });
                     }
                 })
                 .catch(err => {
@@ -84,21 +84,21 @@ const parseNewsInbox = (raw, path, limit) => {
 
         div.childNodes.filter(c => c.rawTagName).forEach(c => {
             const data = c.rawText;
-            switch(c.rawTagName) {
+            switch (c.rawTagName) {
                 case 'h2':
-                    if(sections.includes(c.textContent.trim())) {
+                    if (sections.includes(c.textContent.trim())) {
                         titles.push(c.textContent.trim());
-                        if(path == c.textContent.trim()) {
+                        if (path == c.textContent.trim()) {
                             result[c.textContent.trim()] = [];
                         }
                     }
-                    else if(path == 'Nykyiset tiedotteet'){
+                    else if (path == 'Nykyiset tiedotteet') {
                         result['Nykyiset tiedotteet'][c.textContent.trim()] = []
                         titles.push(c.textContent.trim());
                     }
                     break;
                 case 'div':
-                    if(c.childNodes.length > 1 && path == 'Nykyiset tiedotteet') {
+                    if (c.childNodes.length > 1 && path == 'Nykyiset tiedotteet') {
                         const newsData = {
                             title: null,
                             description: null,
@@ -110,9 +110,9 @@ const parseNewsInbox = (raw, path, limit) => {
                         };
 
                         c.childNodes.filter(cc => ![0, 3].includes(cc.childNodes.length)).forEach(cc => {
-                            switch(cc.childNodes.length) {
+                            switch (cc.childNodes.length) {
                                 case 1:
-                                    switch(cc.rawTagName) {
+                                    switch (cc.rawTagName) {
                                         case 'h3':
                                             newsData.title = cc.textContent.trim();
                                             break;
@@ -123,7 +123,7 @@ const parseNewsInbox = (raw, path, limit) => {
                                     break;
                                 case 5:
                                     cc.childNodes.filter(ccc => ccc.rawTagName == 'a').forEach(ccc => {
-                                        switch(ccc.attrs.class) {
+                                        switch (ccc.attrs.class) {
                                             case 'profile-link':
                                                 newsData.sender.name = ccc.attrs.title;
                                                 newsData.sender.href = ccc.attrs.href;
@@ -139,12 +139,12 @@ const parseNewsInbox = (raw, path, limit) => {
 
                         result['Nykyiset tiedotteet'][titles[titles.length - 1]].push(newsData);
                     }
-                    else if(path == titles[titles.length - 1]) {
+                    else if (path == titles[titles.length - 1]) {
                         const element = c.childNodes[0];
-                        if(element.textContent.trim()) {
+                        if (element.textContent.trim()) {
                             const href = element.attrs ? element.attrs.href : null;
                             const title = element.textContent;
-    
+
                             result[titles[titles.length - 1]].push(
                                 {
                                     title: title,
@@ -158,7 +158,7 @@ const parseNewsInbox = (raw, path, limit) => {
             }
         });
     });
-    
+
     return Array.isArray(result[path]) ? result[path].slice(0, limit) : Object.fromEntries(Object.entries(result[path]).slice(0, limit))
 }
 

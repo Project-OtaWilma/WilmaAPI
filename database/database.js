@@ -243,34 +243,34 @@ const deleteComment = (hash, id, secret) => {
         if (secret != apiKey) return reject({ err: 'Invalid credentials', status: 401 });
 
         getTeacherById(hash)
-        .then(teacher => {
-            MongoClient.connect(url, (err, database) => {
-                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-    
-                const db = database.db('Wilma');
-    
-                const query = { hash: hash }
+            .then(teacher => {
+                MongoClient.connect(url, (err, database) => {
+                    if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
-                const update = {
-                    $pull: {
-                        'feedback.comments': {
-                            id: id
+                    const db = database.db('Wilma');
+
+                    const query = { hash: hash }
+
+                    const update = {
+                        $pull: {
+                            'feedback.comments': {
+                                id: id
+                            }
                         }
                     }
-                }
-    
-                db.collection('teachers').updateOne(query, update, (err, res) => {
-                    if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-    
-                    database.close();
-    
-                    return resolve(res);
-                });
+
+                    db.collection('teachers').updateOne(query, update, (err, res) => {
+                        if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+
+                        database.close();
+
+                        return resolve(res);
+                    });
+                })
             })
-        })
-        .catch(err => {
-            return reject(err);
-        })
+            .catch(err => {
+                return reject(err);
+            })
     });
 }
 
@@ -297,7 +297,7 @@ const getCourseApplicantList = (code) => {
 
                 database.close();
 
-                if(res.length < 1) return resolve([]);
+                if (res.length < 1) return resolve([]);
 
                 const interested = res[0]['interested'];
                 return resolve(interested);
@@ -306,32 +306,32 @@ const getCourseApplicantList = (code) => {
     })
 }
 
-const applyForFullCourse = (Wilma2SID, code) => {
+const applyForFullCourse = (auth, code) => {
     return new Promise((resolve, reject) => {
-        account.Authenticate(Wilma2SID)
+        account.Authenticate(auth.Wilma2SID)
             .then(user => {
 
                 getCourseApplicantList(code)
                     .then(list => {
-                        if(list.includes(user.username)) return reject({err: 'You are already applied to this course', status: 400});
+                        if (list.includes(user.username)) return reject({ err: 'You are already applied to this course', status: 400 });
 
                         MongoClient.connect(url, (err, database) => {
                             if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-                
+
                             const db = database.db('Wilma');
-                
+
                             const query = { code: code }
                             const update = {
                                 $push: {
                                     interested: user.username
                                 }
                             }
-                
-                            db.collection('course-tray').findOneAndUpdate(query, update, {upsert: true}, (err, res) => {
+
+                            db.collection('course-tray').findOneAndUpdate(query, update, { upsert: true }, (err, res) => {
                                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-                
+
                                 database.close();
-                
+
                                 return resolve(res);
                             });
                         })
@@ -339,10 +339,10 @@ const applyForFullCourse = (Wilma2SID, code) => {
                     .catch(err => {
                         return reject(err);
                     })
-                .catch(err => {
-                    return reject(err);
-                })
-        })
+                    .catch(err => {
+                        return reject(err);
+                    })
+            })
     });
 }
 
@@ -353,17 +353,17 @@ const checkApplicationStatus = (auth, code) => {
                 getCourseApplicantList(code)
                     .then(list => {
                         console.log(list);
-                        return resolve({applied: list.includes(user.username), length: list.length});
+                        return resolve({ applied: list.includes(user.username), length: list.length });
                     })
                     .catch(err => {
                         return reject(err);
                     })
 
-                })
-                .catch(err => {
-                    return reject(err);
-                })
-})
+            })
+            .catch(err => {
+                return reject(err);
+            })
+    })
 }
 
 

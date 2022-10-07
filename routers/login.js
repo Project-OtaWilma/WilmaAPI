@@ -18,13 +18,10 @@ router.post('/login', limiter.strict, async (req, res) => {
 
 router.post('/logout', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
 
-    const StudentID = validators.validateStudentID(req, res);
-    if (!StudentID) return;
-
-    Logout(Wilma2SID, StudentID)
+    Logout(auth)
         .then(status => {
             res.json(status);
         })
@@ -33,10 +30,10 @@ router.post('/logout', async (req, res) => {
 
 router.post('/authenticate', async (req, res) => {
     // validation
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return;
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
 
-    Authenticate(Wilma2SID)
+    Authenticate(auth)
         .then(status => {
             res.json(status);
         })

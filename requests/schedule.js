@@ -43,9 +43,9 @@ const fetchSchedule = (Wilma2SID, studentID, date) => {
     })
 }
 
-const getScheduleByDate = (Wilma2SID, studentID, date) => {
+const getScheduleByDate = (auth, date) => {
     return new Promise((resolve, reject) => {
-        fetchSchedule(Wilma2SID, studentID, date)
+        fetchSchedule(auth.Wilma2SID, auth.studentID, date)
             .then(schedule => {
                 try {
 
@@ -63,7 +63,7 @@ const getScheduleByDate = (Wilma2SID, studentID, date) => {
     });
 }
 
-const getScheduleByWeek = (Wilma2SID, studentID, date) => {
+const getScheduleByWeek = (auth, date) => {
     return new Promise(async (resolve, reject) => {
         let dateTimes = [];
         let exams = [];
@@ -74,7 +74,7 @@ const getScheduleByWeek = (Wilma2SID, studentID, date) => {
             const month = weekRange.monthRange[i];
             const dateTime = new Date(date.getFullYear(), (month - 1), 2);
 
-            await fetchSchedule(Wilma2SID, studentID, dateTime)
+            await fetchSchedule(auth.Wilma2SID, auth.StudentID, dateTime)
                 .then(schedule => {
                     dateTimes = [...dateTimes, ...schedule.Schedule];
                     exams = [...exams, ...schedule.Exams];

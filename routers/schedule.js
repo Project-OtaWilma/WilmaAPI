@@ -7,18 +7,13 @@ const { getScheduleByDate, getScheduleByWeek } = require('../requests/schedule')
 
 router.get('/schedule/date/:date', async (req, res) => {
     // validation
-
-    const StudentID = validators.validateStudentID(req, res);
-    if (!StudentID) return
-
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return
-
     const result = validators.validateRequestParameters(req, res, schemas.schedule.getScheduleByDate);
-
     if (!result) return
 
-    getScheduleByDate(Wilma2SID, StudentID, result.date)
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
+
+    getScheduleByDate(auth, result.date)
         .then(data => {
             res.json(data);
         })
@@ -29,20 +24,14 @@ router.get('/schedule/date/:date', async (req, res) => {
 
 router.get('/schedule/week/:date', async (req, res) => {
     // validation
-
-    const StudentID = validators.validateStudentID(req, res);
-    if (!StudentID) return
-
-    const Wilma2SID = validators.validateWilma2SID(req, res);
-    if (!Wilma2SID) return
-
+    const auth = await authentication.validateToken(req, res);
+    if (!auth) return;
 
     const result = validators.validateRequestParameters(req, res, schemas.schedule.getScheduleByDate);
-
     if (!result) return
 
 
-    getScheduleByWeek(Wilma2SID, StudentID, result.date)
+    getScheduleByWeek(auth, result.date)
         .then(data => {
             res.json(data);
         })

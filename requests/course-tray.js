@@ -160,12 +160,12 @@ const selectCourse = (auth, target) => {
     });
 }
 
-const deSelectCourse = (Wilma2SID, StudentID, target) => {
+const deSelectCourse = (auth, target) => {
     return new Promise((resolve, reject) => {
         const form = {
             'message': 'unpick-group',
             'target': target,
-            'formkey': StudentID,
+            'formkey': auth.StudentID,
             'refresh': '41765',
             'extras': ''
         }
@@ -174,7 +174,7 @@ const deSelectCourse = (Wilma2SID, StudentID, target) => {
             'method': 'POST',
             'url': `https://espoo.inschool.fi/selection/postback`,
             'headers': {
-                'Cookie': `Wilma2SID=${Wilma2SID}`,
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             'followRedirect': false,
@@ -318,15 +318,15 @@ const parseCourseData = (raw) => {
     const result = {};
 
     document.childNodes.filter(c => c.childNodes.length > 0).forEach(c => {
-        
+
         c.childNodes.forEach((cc, i) => {
             delete c.childNodes[1];
 
             cc.childNodes.forEach((field, e) => {
                 const text = field.textContent.replaceAll('\\n', '')
-                switch(e) {
+                switch (e) {
                     case 0:
-                        if(text != '') {
+                        if (text != '') {
                             keys.push(text);
                             result[text] = null;
                         }
@@ -348,11 +348,11 @@ const parseCourseStudents = (raw) => {
 
     const field = raw.split('<th>').filter(c => c.includes('Ilmoittautuneita'));
 
-    if(field.length < 1) return {students: 'Ilmottautuneiden määrää ei ole ilmoitettu'};
+    if (field.length < 1) return { students: 'Ilmottautuneiden määrää ei ole ilmoitettu' };
 
     const value = parse(field[0]).getElementsByTagName('td')[0].textContent.replaceAll('\\n', '');
 
-    return {students: value}
+    return { students: value }
 }
 
 const parsePostResponse = (raw) => {
