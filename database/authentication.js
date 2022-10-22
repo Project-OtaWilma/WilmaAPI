@@ -3,12 +3,12 @@ const jwt = require('jsonwebtoken');
 const { signature } = require('./secret.json');
 
 const signToken = (payload = {}) => {
-    return jwt.sign(payload, signature, { expiresIn: 40 * 60 });
+    return jwt.sign(payload, signature, { });
 }
 
 const validateToken = (req, res) => {
     return new Promise((resolve, reject) => {
-        const a = ['Wilma2SID', 'StudentID', 'username', 'iat', 'exp'];
+        const a = ['Wilma2SID', 'StudentID', 'username', 'iat'];
         const token = req.headers.token;
 
         if (!token) {
@@ -18,7 +18,7 @@ const validateToken = (req, res) => {
 
         jwt.verify(token, signature, (err, decoded) => {
             if (err) {
-                res.status(400).json({ err: 'Received invalid jwt token', status: 400 })
+                res.status(401).json({ err: 'Received invalid jwt token', status: 401 })
                 return resolve(null);
             }
 

@@ -132,7 +132,9 @@ const parseSchedule = (raw, dateTimes, exams) => {
 
                 const hourData = {
                     start: hour.Start,
+                    startRaw: toMinutes(hour.Start),
                     end: hour.End,
+                    endRaw: toMinutes(hour.End),
                     slot: `${hour.Day}.${hour.Start}-${hour.End}`,
                     groups: hour.Groups.map(group => {
                         return {
@@ -199,6 +201,8 @@ const calculateWeekRange = (date) => {
 
     return result;
 }
+
+const toMinutes = (timeStamp) => timeStamp.split(':').map(i => Number.parseInt(i)).reduce((i, j) => i * 60 + j);
 
 module.exports = {
     getScheduleByDate,

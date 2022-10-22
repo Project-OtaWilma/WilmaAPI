@@ -54,6 +54,7 @@ const parseGrades = (raw, limit, filter) => {
         'Lu21 pakollinen moduuli',
         'Lu21 valtakunnallinen valinnainen moduuli',
         'Lu21 paikallinen opintojakso',
+        'Lu21 temaattiset opinnot -opintojakso',
         'Yhteensä'
     ];
 
@@ -149,8 +150,10 @@ const parseGrades = (raw, limit, filter) => {
         'Muut opinnot'
     ]
 
+    // Good fucking luck debugging this
+
     const c = []; // Courses
-    const t = []; // Titles
+    const titles = []; // Titles
     const s = []; // Subjects
     const am = []; // Average (mandatory)
     const om = []; // Average (optional)
@@ -163,8 +166,9 @@ const parseGrades = (raw, limit, filter) => {
                 const d = td.rawText.trim();
 
                 if (sections.includes(d)) {
-                    t.push(d);
-                    r[d] = null;
+                    titles.push(d);
+                    r['overview'] = r['overview'] ? r['overview'] : {};
+                    r['overview'][d] = null;
                 }
                 else if (td.nodeType == 1 && Object.keys(r).length < (limit + 1)) {
                     if (subjectList.includes(d)) {
@@ -178,8 +182,8 @@ const parseGrades = (raw, limit, filter) => {
                     }
                 }
                 else if (td.nodeType == 3) {
-                    if (t.length > 0) {
-                        r[t[t.length - 1]] = d;
+                    if (titles.length > 0) {
+                        r['overview'][titles[titles.length - 1]] = d;
                     }
                     else if (Object.keys(r).length < (limit + 1)) {
 
@@ -247,8 +251,8 @@ const parseGrades = (raw, limit, filter) => {
         }
     });
 
-    r['Keskiarvo'] = (om.reduce((a, b) => a + b, 0) / om.length).toFixed(2);
-    r['Lukuaineiden keskiarvo'] = (am.reduce((a, b) => a + b, 0) / am.length).toFixed(2);
+    r['overview']['Keskiarvo'] = (om.reduce((a, b) => a + b, 0) / om.length).toFixed(2);
+    r['overview']['Lukuaineiden keskiarvo'] = (am.reduce((a, b) => a + b, 0) / am.length).toFixed(2);
 
     return r;
 }
