@@ -83,13 +83,19 @@ const getScheduleByWeek = (auth, date) => {
                     return reject(err);
                 })
 
-            const parsed = parseSchedule(dateTimes, weekRange.dateRange, exams)
+            const parsed = parseSchedule(dateTimes, weekRange.dateRange, weekRange.number, exams)
             return resolve(parsed);
         }
     });
 }
 
-const parseSchedule = (raw, dateTimes, exams) => {
+const parseSchedule = (raw, dateTimes, weekNumber, exams) => {
+    const options = {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    };
+
     const weekdays = [
         'Sunnuntai',
         'Maanantai',
@@ -100,23 +106,21 @@ const parseSchedule = (raw, dateTimes, exams) => {
         'Launtai'
     ]
 
-    const result = {}
+    const result = {
+        week: weekNumber,
+        weekRange: dateTimes.map(d => d.toLocaleDateString('fi-FI', options)),
+        days: {}
+    }
 
     dateTimes.forEach(dateTime => {
-        const options = {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit"
-        };
-
         const d = dateTime.toLocaleDateString('fi-FI', options).split('.').reverse().join('-');
 
         const weekday = weekdays[dateTime.getDay()];
 
-        if (!Object.keys(result).includes(d)) {
-            result[d] = {
+        if (!Object.keys(result.days).includes(d)) {
+            result.days[d] = {
                 day: {
-                    id: dateTime.getDay(),
+                    date: dateTime.getDay(),
                     caption: `${weekday.substring(0, 2)} ${dateTime.getDate()}.${dateTime.getMonth() + 1}`,
                     full: `${weekday} ${d}`
                 },
@@ -135,7 +139,6 @@ const parseSchedule = (raw, dateTimes, exams) => {
                     startRaw: toMinutes(hour.Start),
                     end: hour.End,
                     endRaw: toMinutes(hour.End),
-                    slot: `${hour.Day}.${hour.Start}-${hour.End}`,
                     groups: hour.Groups.map(group => {
                         return {
                             code: group.ShortCaption,
@@ -167,10 +170,10 @@ const parseSchedule = (raw, dateTimes, exams) => {
                         info: exam.Info ? exam.Info : null
                     }
 
-                    result[d].exams.push(examData)
+                    result.days[d].exams.push(examData)
                 }
 
-                result[d].lessons.push(hourData);
+                result.days[d].lessons.push(hourData);
             }
         });
     })
@@ -182,22 +185,25 @@ const parseSchedule = (raw, dateTimes, exams) => {
 const calculateWeekRange = (date) => {
     const result = {
         dateRange: [],
-        monthRange: []
+        monthRange: [],
     }
 
     const day = ((date.getDay() - 1) < 0 || (date.getDay() - 1) > 5) ? 0 : (date.getDay() - 1)
     const delta = [date.getDate() - (6 - (6 - day)), date.getDate() + (6 - day)];
     const week = Array(delta[1] - delta[0] + 1).fill(delta[0]).map((x, y) => x + y)
-
-
+    
     week.forEach(day => {
         const dateTime = new Date(date.getFullYear(), date.getMonth(), day);
         const month = dateTime.getMonth() + 1;
 
         if (!result.monthRange.includes(month)) { result.monthRange.push(month); }
-
+        
         result.dateRange.push(dateTime);
     });
+
+    let d = result.dateRange[0];
+    let s = (new Date(d.getFullYear(), 0, 0));
+    result['number'] = Math.ceil((((d - s)) / (1000 * 60 * 60 * 24)) / 7);
 
     return result;
 }
