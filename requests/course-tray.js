@@ -82,7 +82,7 @@ const getTrayByPeriod = (auth, target) => {
 const getCourseByID = (auth, target, static) => {
     return new Promise((resolve, reject) => {
 
-        var options = {
+        const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/selection/getback?message=group-info&target=${target}`,
             'headers': {
@@ -116,6 +116,38 @@ const getCourseByID = (auth, target, static) => {
     });
 }
 
+const getSelectedCourses = (auth) => {
+    //https://espoo.inschool.fi/trays
+    return new Promise((resolve, reject) => {
+        const options = {
+            'method': 'GET',
+            'url': `https://espoo.inschool.fi/trays`,
+            'headers': {
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            'followRedirect': false,
+        };
+
+
+        request(options, function (error, response) {
+            if (error) return reject({ error: 'Failed to retrieve list of available trays', message: response, status: 501 });
+
+            courseTray.validateCourseTrayGetSelectedCourses(response)
+                .then(() => {
+                    try {
+                        const list = parseSelectedList(response.body);
+                        return resolve(list);
+                    } catch (err) {
+                        return reject({ err: 'Failed to parse course-tray', message: err, status: 500 });
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                });
+        });
+    });
+}
 
 const selectCourse = (auth, target) => {
     return new Promise((resolve, reject) => {
@@ -204,7 +236,6 @@ const deSelectCourse = (auth, target) => {
     });
 }
 
-// Parser - v0.0.1 (13/06/2022)
 const parseTrayList = (raw) => {
     const document = parse(raw);
 
@@ -343,9 +374,25 @@ const parseCourseData = (raw) => {
     return result
 }
 
-const parseCourseStudents = (raw) => {
-    const regex = ['</td></tr>', '<tr><th>', '</th><td>', '</table>', '<table>'];
+const parseSelectedList = (raw) => {
+    const document = parse(raw);
+    const result = [];
+    document.getElementsByTagName('tr').filter(tr => tr.childNodes.length >= 6 && tr.childNodes.length <= 7 ).forEach(tr => {
+        const code = tr.childNodes.length == 6 ? tr.childNodes[2].textContent : tr.childNodes[3].textContent;
+        const period = tr.childNodes.length == 6 ? tr.childNodes[1].textContent : tr.childNodes[2].textContent;
+        const bar = tr.childNodes.length == 6 ? tr.childNodes[0].textContent : tr.childNodes[1].textContent;
 
+        if(!result.includes(code)) result.push({
+            code: code,
+            period: period,
+            bar: bar
+        }); 
+    })
+
+    return result
+}
+
+const parseCourseStudents = (raw) => {
     const field = raw.split('<th>').filter(c => c.includes('Ilmoittautuneita'));
 
     if (field.length < 1) return { students: 'Ilmottautuneiden määrää ei ole ilmoitettu' };
@@ -372,5 +419,6 @@ module.exports = {
     getTrayByPeriod,
     getCourseByID,
     selectCourse,
-    deSelectCourse
+    deSelectCourse,
+    getSelectedCourses
 }

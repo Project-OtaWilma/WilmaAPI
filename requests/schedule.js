@@ -38,7 +38,6 @@ const fetchSchedule = (Wilma2SID, studentID, date) => {
                 .catch(err => {
                     return reject(err);
                 })
-
         });
     })
 }
@@ -139,6 +138,7 @@ const parseSchedule = (raw, dateTimes, weekNumber, exams) => {
                     startRaw: toMinutes(hour.Start),
                     end: hour.End,
                     endRaw: toMinutes(hour.End),
+                    durationRaw: (toMinutes(hour.End) - toMinutes(hour.Start)),
                     groups: hour.Groups.map(group => {
                         return {
                             code: group.ShortCaption,

@@ -3,8 +3,8 @@ const { user, password, host, port, apiKey } = require('./secret.json');
 const shortid = require('shortid');
 const account = require('../account/account-manager');
 
-//const url = `mongodb://${user}:${password}@${host}:${port}/?authMechanism=DEFAULT`;
-const url = `mongodb://localhost:27020/mydb`;
+const url = `mongodb://${user}:${password}@${host}:${port}/?authMechanism=DEFAULT`;
+//const url = `mongodb://localhost:27020/mydb`;
 
 const getCourseById = (lops, id) => {
     return new Promise((resolve, reject) => {
@@ -17,6 +17,41 @@ const getCourseById = (lops, id) => {
             const query = { code: id }
 
             db.collection(lops).find(query).project({ '_id': 0 }).toArray((err, res) => {
+                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+
+                database.close();
+
+                if (res.length < 1) return reject({ err: "Couldn't locate a course with specified id", status: 400 });
+
+                return resolve(res[0]);
+            });
+        })
+
+    });
+}
+
+const getCourseType = (lops, id) => {
+    return new Promise((resolve, reject) => {
+
+        MongoClient.connect(url, (err, database) => {
+            if (err) return reject({ err: 'Failed to connect to database', status: 500 });
+
+            const db = database.db('Wilma');
+
+            const query = { code: id }
+
+            const projection = {
+                '_id': 0,
+                'subject': 0,
+                'code': 0,
+                'name': 0,
+                'Opintopisteitä': 0,
+                'Sisältö': 0,
+                'Tavoitteet': 0,
+                'OPS': 0,
+            }
+
+            db.collection(lops).find(query).project(projection).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
@@ -55,9 +90,9 @@ const getCourseList = (lops) => {
                 database.close();
 
                 res.forEach(course => {
-                    if (!result[course.subject]) result[course.subject] = [];
-
-                    result[course.subject].push(course);
+                    if (!result[course.subject]) result[course.subject] = {};
+                    const code = course.code;
+                    result[course.subject][code] = course;
                 })
 
                 return resolve(result);
@@ -283,93 +318,11 @@ const percentage = (max, num) => {
     return ((num / max) * 100)
 }
 
-const getCourseApplicantList = (code) => {
-    return new Promise((resolve, reject) => {
-        MongoClient.connect(url, (err, database) => {
-            if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-
-            const db = database.db('Wilma');
-
-            const query = { code: code }
-
-            db.collection('course-tray').find(query).toArray((err, res) => {
-                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-
-                database.close();
-
-                if (res.length < 1) return resolve([]);
-
-                const interested = res[0]['interested'];
-                return resolve(interested);
-            });
-        })
-    })
-}
-
-const applyForFullCourse = (auth, code) => {
-    return new Promise((resolve, reject) => {
-        account.Authenticate(auth.Wilma2SID)
-            .then(user => {
-
-                getCourseApplicantList(code)
-                    .then(list => {
-                        if (list.includes(user.username)) return reject({ err: 'You are already applied to this course', status: 400 });
-
-                        MongoClient.connect(url, (err, database) => {
-                            if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-
-                            const db = database.db('Wilma');
-
-                            const query = { code: code }
-                            const update = {
-                                $push: {
-                                    interested: user.username
-                                }
-                            }
-
-                            db.collection('course-tray').findOneAndUpdate(query, update, { upsert: true }, (err, res) => {
-                                if (err) return reject({ err: 'Failed to connect to database', status: 500 });
-
-                                database.close();
-
-                                return resolve(res);
-                            });
-                        })
-                    })
-                    .catch(err => {
-                        return reject(err);
-                    })
-                    .catch(err => {
-                        return reject(err);
-                    })
-            })
-    });
-}
-
-const checkApplicationStatus = (auth, code) => {
-    return new Promise((resolve, reject) => {
-        account.Authenticate(auth.Wilma2SID)
-            .then(user => {
-                getCourseApplicantList(code)
-                    .then(list => {
-                        console.log(list);
-                        return resolve({ applied: list.includes(user.username), length: list.length });
-                    })
-                    .catch(err => {
-                        return reject(err);
-                    })
-
-            })
-            .catch(err => {
-                return reject(err);
-            })
-    })
-}
-
 
 module.exports = {
     lops: {
         getCourseById,
+        getCourseType,
         getCourseList
     },
     teachers: {
@@ -379,10 +332,6 @@ module.exports = {
         rateTeacher,
         parseFeedback,
         deleteComment
-    },
-    courseTray: {
-        applyForFullCourse,
-        checkApplicationStatus
     }
 }
 

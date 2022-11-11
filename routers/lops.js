@@ -21,6 +21,22 @@ router.get('/lops/:lops/courses/get/:id', async (req, res) => {
         });
 });
 
+router.get('/lops/:lops/courses/subject/:id', async (req, res) => {
+    // Validation
+    const request = validators.validateRequestParameters(req, res, schemas.lops.GetLopsCourseByID);
+
+    if (!request) return;
+
+    lops.getCourseType(request.lops, request.id)
+        .then(course => {
+            res.json(course);
+        })
+        .catch(err => {
+            return res.status(err.status).json(err)
+        });
+});
+
+
 router.get('/lops/:lops/courses/list/', limiter.cacheable, async (req, res) => {
     // Validation
     const request = validators.validateRequestParameters(req, res, schemas.lops.GetCourseList);
