@@ -111,7 +111,6 @@ const getTeacherList = () => {
 
             const projection = {
                 "_id": 0,
-                "hash": 0,
                 "Opintoviikkoja": 0,
                 "feedback": 0
             }
