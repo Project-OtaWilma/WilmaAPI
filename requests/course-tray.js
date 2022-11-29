@@ -370,7 +370,7 @@ const parseCourseData = (raw) => {
             });
         })
     })
-    delete result['Ilmoittautuneita'];
+
     return result
 }
 

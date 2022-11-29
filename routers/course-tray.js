@@ -72,23 +72,6 @@ router.get('/course-tray/courses/info/:id', async (req, res) => {
         });
 });
 
-router.get('/course-tray/courses/applicants/:id', async (req, res) => {
-    const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
-    if (!request) return;
-
-    const auth = await authentication.validateToken(req, res);
-    if (!auth) return;
-
-    courseTray.checkApplicationStatus(auth, request.id)
-        .then(status => {
-            res.json(status);
-        })
-        .catch(err => {
-            console.log(err);
-            return res.status(err.status).json(err);
-        });
-});
-
 router.post('/course-tray/select/:id', async (req, res) => {
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
     if (!request) return;
