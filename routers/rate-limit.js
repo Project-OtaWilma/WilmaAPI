@@ -9,7 +9,7 @@ const message = { err: 'rate-limit violation', status: 429 }
 */
 const standard = rateLimit({
     windowMs: 10 * 1000,
-    max: 50,
+    max: 100,
     standardHeaders: true,
     message: {...message, ...{info: 'standard'}}
 });

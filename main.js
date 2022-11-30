@@ -11,6 +11,7 @@ const courseTray = require('./routers/course-tray');
 const lops = require('./routers/lops');
 const teachers = require('./routers/teachers')
 const version = require('./routers/version');
+const homework = require('./routers/homework');
 
 const limiter = require('./routers/rate-limit');
 
@@ -33,6 +34,7 @@ app.use('/api/', courseTray, limiter.standard);
 app.use('/api/', lops, limiter.standard);
 app.use('/api/', teachers, limiter.standard);
 app.use('/api/', version, limiter.standard);
+app.use('/api/', homework, limiter.standard);
 
 app.listen(PORT, () => {
     console.log(`Listening on ${PORT}...`);

@@ -4,7 +4,7 @@ const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 const authentication = require('../database/authentication');
 
-const { getTrayList, getTrayByPeriod, getCourseByID, selectCourse, deSelectCourse } = require('../requests/course-tray');
+const { getTrayList, getTrayByPeriod, getCourseByID, selectCourse, deSelectCourse, getSelectedCourses } = require('../requests/course-tray');
 const { courseTray } = require('../database/database');
 
 router.get('/course-tray/list', async (req, res) => {
@@ -72,23 +72,6 @@ router.get('/course-tray/courses/info/:id', async (req, res) => {
         });
 });
 
-router.get('/course-tray/courses/applicants/:id', async (req, res) => {
-    const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
-    if (!request) return;
-
-    const auth = await authentication.validateToken(req, res);
-    if (!auth) return;
-
-    courseTray.checkApplicationStatus(auth, request.id)
-        .then(status => {
-            res.json(status);
-        })
-        .catch(err => {
-            console.log(err);
-            return res.status(err.status).json(err);
-        });
-});
-
 router.post('/course-tray/select/:id', async (req, res) => {
     const request = validators.validateRequestParameters(req, res, schemas.courseTray.GetCourseByID);
     if (!request) return;
@@ -122,22 +105,18 @@ router.post('/course-tray/deselect/:id', async (req, res) => {
         });
 });
 
-router.post('/course-tray/apply/:code', async (req, res) => {
-    // validation
-    const request = validators.validateRequestParameters(req, res, schemas.courseTray.applyFullCourse);
-    if (!request) return;
-
+router.get('/course-tray/selected/list', async (req, res) => {
     const auth = await authentication.validateToken(req, res);
     if (!auth) return;
 
-    courseTray.applyForFullCourse(auth, request.code)
+    getSelectedCourses(auth)
         .then(status => {
             res.json(status);
         })
         .catch(err => {
-            console.log(err);
             return res.status(err.status).json(err)
         });
 });
+
 
 module.exports = router;
