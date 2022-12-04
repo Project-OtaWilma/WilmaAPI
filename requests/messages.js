@@ -308,16 +308,17 @@ const parseMessageList = (raw, limit) => {
         return {
             isEvent: false,
             id: message.Id,
+            recipients: message.Recipient ? message.Recipient : 'Piilotettu',
             subject: message.Subject,
             timeStamp: message.TimeStamp,
             replies: message.Replies,
             new: message.Status == 1,
-            senders: message.Senders.map(sender => {
+            senders: message.Senders ? message.Senders.map(sender => {
                 return {
                     name: sender.Name,
                     href: sender.Href
                 }
-            })
+            }) : []
         }
     }).slice(0, limit)
 }
@@ -349,17 +350,17 @@ const parseMessageContent = (raw) => {
             id: message.Id,
             subject: message.Subject,
             timeStamp: message.TimeStamp,
-            recipients: message.Recipient,
+            recipients: message.Recipient ? message.Recipient : 'Piilotettu',
             sender: message.Sender,
             content: message.ContentHtml,
-            replies: message.ReplyList.map(reply => {
+            replies: message.ReplyList ? message.ReplyList.map(reply => {
                 return {
                     id: reply.Id,
                     content: reply.ContentHtml,
                     timeStamp: reply.TimeStamp,
                     sender: reply.Sender
                 }
-            })
+            }) : []
         }
     })
 }

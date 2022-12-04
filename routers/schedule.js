@@ -3,24 +3,7 @@ const router = express.Router();
 const { schemas, validators } = require('./validator');
 const authentication = require('../database/authentication');
 
-const { getScheduleByDate, getScheduleByWeek } = require('../requests/schedule');
-
-router.get('/schedule/date/:date', async (req, res) => {
-    // validation
-    const result = validators.validateRequestParameters(req, res, schemas.schedule.getScheduleByDate);
-    if (!result) return
-
-    const auth = await authentication.validateToken(req, res);
-    if (!auth) return;
-
-    getScheduleByDate(auth, result.date)
-        .then(data => {
-            res.json(data);
-        })
-        .catch(err => {
-            return res.status(err.status).json(err)
-        });
-});
+const { getScheduleByWeek } = require('../requests/schedule');
 
 router.get('/schedule/week/:date', async (req, res) => {
     // validation

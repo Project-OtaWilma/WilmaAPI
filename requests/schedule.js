@@ -42,26 +42,6 @@ const fetchSchedule = (Wilma2SID, studentID, date) => {
     })
 }
 
-const getScheduleByDate = (auth, date) => {
-    return new Promise((resolve, reject) => {
-        fetchSchedule(auth.Wilma2SID, auth.studentID, date)
-            .then(schedule => {
-                try {
-
-                    const parsed = parseSchedule(schedule.Schedule, [date], schedule.Exams);
-                    return resolve(parsed);
-
-                } catch (err) {
-                    console.log(err);
-                    return reject({ err: 'Failed to parse schedule', message: err, status: 500 });
-                }
-            })
-            .catch(err => {
-                return reject(err);
-            })
-    });
-}
-
 const getScheduleByWeek = (auth, date) => {
     return new Promise(async (resolve, reject) => {
         let dateTimes = [];
@@ -211,6 +191,5 @@ const calculateWeekRange = (date) => {
 const toMinutes = (timeStamp) => timeStamp.split(':').map(i => Number.parseInt(i)).reduce((i, j) => i * 60 + j);
 
 module.exports = {
-    getScheduleByDate,
     getScheduleByWeek
 }
