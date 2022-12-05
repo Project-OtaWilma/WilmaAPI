@@ -231,7 +231,7 @@ etc.
 
 <br>
 
-## `/messages/:id`
+## `/messages/:<id>`
 #### Returns the content of the message
 
 ## Required headers
@@ -319,14 +319,14 @@ etc.
                             "code": "MAA06.3", // Code of the group [course.<group>]
                             "name": "Derivaatta", // Name of the course
                             "class": "21A/21C/21D/21E/21F/21G/21H/21I/21K", // list of the classes that have students enrolled for this group
-                            "teachers?": [ // list of the teachers on this course. Might be null
+                            "teachers": [ // list of the teachers on this course.
                                 {
                                     "id": 9244, // Id of the teacher
                                     "caption": "KAA", // Caption of the teacher
                                     "name": "Kaataja Jussi" // Name of the teacher
                                 }
                             ],
-                            "rooms?": [ // List of the rooms used for this course. Might be null
+                            "rooms": [ // List of the rooms used for this course.
                                 {
                                     "id": 5366, // Id of the room
                                     "caption": "1315", // Caption of the room
@@ -342,5 +342,151 @@ etc.
         },
         //...
     }
+}
+````
+
+<br>
+
+## Gradebook endpoints
+
+<br>
+
+## `/gradebook`
+#### Returns a map of user's grades.
+
+## Required headers
+`token`
+## Example request
+`GET /gradebook`
+
+## Example response
+````json5
+{
+    "Äidinkieli ja kirjallisuus, suomen kieli ja kirjallisuus": { // Subject string from Wilma
+        "grade": "9", // Overall grade of the subject
+        "points": "8", // Overall points (OP) from the subject
+        "courses": {
+            "ÄI01 Tekstien tulkinta ja kirjoittaminen": { // Name of the course
+                "code": "ÄI01", // Code of the course
+                "grade": "8", // Grade of the course
+                "points": "2", // Points from the course
+                "date": "01.10.2021", // Date of grading
+                "teacher?": "Ulla Helenius-Aro", // Name of the teacher. Might be null
+                "info?": null // Optional information about the grading
+            },
+            //...
+        }
+    },
+    //...
+    "overview": { // Last object is the overview
+        "Suoritukset kurssityypeittäin": null, // [LOPS2016]
+        "ECTS": null, // [LOPS2016]
+        "Lu21 pakollinen moduuli": "65", // [LOPS2021]
+        "Lu21 valtakunnallinen valinnainen moduuli": "10", // [LOPS2021]
+        "Lu21 paikallinen opintojakso": "16", // [LOPS2021]
+        "Lu21 temaattiset opinnot -opintojakso": "2", // [LOPS2021]
+        "Yhteensä": "93", // [LOPS2021 & LOPS2021] Overall points
+        "Keskiarvo": "8.81", // Average from all subjects
+        "Lukuaineiden keskiarvo": "9.00" // Average from the mandatory subjects (doesn't include B-ruotsi)
+    }
+}
+````
+
+<br>
+
+## Lops endpoints
+#### `Note how these endpoints don't require the 'token' authentication`
+
+<br>
+
+## `/lops/:<lops>/courses/list`
+#### Lists all the courses found in that LOPS. The lops can be either `LOPS2021` or `LOPS2016`.
+
+## Required headers
+`none`
+## Example request
+`GET /lops/LOPS2021/courses/list`
+
+## Example response
+````json5
+{
+    "Äidinkieli ja kirjallisuus, suomen kieli ja kirjallisuus": { // Subject string from Wilma
+        "ÄI01": { // Code of the subject as key
+            "subject": "Äidinkieli ja kirjallisuus, suomen kieli ja kirjallisuus", // Subject string from Wilma (again for caching purposes)
+            "code": "ÄI01", // Code of the subject (again for caching purposes)
+            "type": "c-type136", // Type of the course (more info below)
+            "name": "Tekstien tulkinta ja kirjoittaminen" // Name of the course
+        },
+        //...
+    },
+    //...
+}
+````
+
+## Color-code map
+#### I did it so you don't have to... Hexadecimal colors are from Wilma's web-client
+````css
+.c-type25,
+.c-type136 {
+    background-color: #bfffbf;
+    /*LOPS2021 - global mandatory course */
+}
+
+.c-type137 {
+    background-color: #80ffff;
+    /*LOPS2021 - global optional course */
+}
+
+.c-type119,
+.c-type29,
+.c-type138 {
+    background-color: #bfbfff;
+    /*LOPS2021 - diploma course */
+}
+
+.c-type141,
+.c-type146,
+.c-type151 {
+    background-color: #8080c0;
+    /*LOPS2021 - local optional course */
+}
+
+.c-type112,
+.c-type66,
+.c-type26,
+.c-type65 {
+    background-color: #e8e8ff;
+    /*LOPS2016 - local optional course */
+}
+
+.c-type27 {
+    background-color: #ffc1c1;
+    /*LOPS2016 - global optional course */
+}
+````
+
+<br>
+
+## `/lops/:<lops>/courses/get/:<code>`
+#### Returns information about the course. The 'lops' can be either `LOPS2021` or `LOPS2016`, and the 'code' can be any course that exists in specified LOPS
+
+## Required headers
+`none`
+## Example request
+`GET /lops/LOPS2021/courses/get/MAA01`
+
+## Example response
+#### Thanks to how Wilma's API is, the response may not or may contain more fields. The 
+````json5
+{
+    "subject": "Matematiikan pitkä oppimäärä", // Subject of the course
+    "code": "MAA01", // Code of the course
+    "type": "c-type136", // Type of the course (see. 'color-code map' above)
+    "name": "Luvut ja yhtälöt (MAY1)", // Name of the course
+    "Tyyppi": "Lu21 pakollinen moduuli", // Type of the course
+    "Opintopisteitä?": "2", // Points from the course. Field might not exists
+    "Sisältö?": "Keskeiset sisällöt<br>polynomifunktio ja -yhtälö sekä polynomiepäyhtälö<br>2. asteen yhtälön ratkaisukaava<br>polynomien tulo ja binomikaavat (summan neliö, summan ja erotuksen tulo)<br>polynomien tekijät<br>potenssifunktio ja potenssiyhtälö (eksponenttina positiivinen kokonaisluku)<br>rationaalifunktiot ja -yhtälöt<br>juurifunktiot ja -yhtälöt", // Information about the course in html. Field might not exists
+    "Tavoitteet?": "TavoitteetModuulin tavoitteena on, että opiskelija<br>tutustuu ilmiöiden matemaattiseen mallintamiseen polynomi-, rationaali- jajuurifunktioiden avulla, tuntee polynomi-, rationaali- ja juurifunktioiden ominaisuudet ja osaa ratkaista niihin liittyviä yhtälöitä sekä tietää polynomifunktion nollakohtien ja polynomin tekijöiden välisen yhteyden<br>osaa ratkaista yksinkertaisia polynomiepäyhtälöitä<br>osaa käyttää ohjelmistoja polynomi-, rationaali- ja juurifunktioiden tutkimisessa sekä polynomi-, rationaali- ja juuriyhtälöiden ja polynomiepäyhtälöidenratkaisemisessa sovellusten yhteydessä.", // More information about the course in html. Field might not exists
+    "OPS?": "huomautus LOPS2021" // OPS information about the course. Field might not exists
 }
 ````

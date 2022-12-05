@@ -150,6 +150,10 @@ const parseGrades = (raw, limit, filter) => {
         'Muut opinnot'
     ]
 
+    const ignoredSubjectList = [
+        'Ruotsi, B1-oppimäärä' // B-ruotsi is not a real subject
+    ]
+
     // Good fucking luck debugging this
 
     const c = []; // Courses
@@ -198,7 +202,7 @@ const parseGrades = (raw, limit, filter) => {
                             if (!r[s[s.length - 1]].grade && s[s.length - 1] != 'Teknologia') {
 
                                 if (Number.isInteger(Number.parseInt(d))) {
-                                    if (!optionalSubjectList.includes(s[s.length - 1])) {
+                                    if (!optionalSubjectList.includes(s[s.length - 1]) && !ignoredSubjectList.includes(s[s.length - 1])) {
                                         am.push(Number.parseInt(d));
                                     }
 

@@ -130,14 +130,14 @@ const parseSchedule = (raw, dateTimes, weekNumber, exams) => {
                                     caption: teacher.Caption,
                                     name: teacher.LongCaption
                                 }
-                            }) : null,
+                            }) : [],
                             rooms: group.Rooms ? group.Rooms.map(room => {
                                 return {
                                     id: room.Id,
                                     caption: room.Caption,
                                     name: room.LongCaption
                                 }
-                            }) : null
+                            }) : []
                         }
                     })
                 }

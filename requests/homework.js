@@ -54,11 +54,11 @@ const getHomework = (auth) => {
                 name: group.CourseName,
                 code: group.CourseCode,
                 caption: group.Caption,
-                teachers: group.Teachers.map(teacher => {return {
+                teachers: group.Teachers ? group.Teachers.map(teacher => {return {
                     teacher: teacher.TeacherCode,
                     name: teacher.TeacherName,
                     href: teacher.TeacherId,
-                }}),
+                }}) : [],
                 homework: group.Homework.map(h => {return {
                     date: h.Date,
                     assignment: h.Homework
