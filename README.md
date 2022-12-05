@@ -25,7 +25,7 @@ Wilma's public api uses mainly two methods of authentication: `Wilma2SID` and `S
 #### All the errors in Otawilma-api contain the same fields. All the successfull requests also will always return statuscode `200`. Invalid requests to endpoints will contain information about what went wrong.
 
 ### Example `401` error
-````json
+````json5
 {
     "err": "Received invalid jwt token",
     "status": 401
@@ -33,13 +33,13 @@ Wilma's public api uses mainly two methods of authentication: `Wilma2SID` and `S
 ````
 
 ### Example `400` error
-````json
+````json5
 {
     "err": "Missing authentication parameters: [\"token\"]",
     "status": 401
 }
 ````
-````json
+````json5
 {
     "err": "\"test\" is not allowed",
     "status": 400
@@ -58,14 +58,14 @@ etc.
 
 ### Example request
 `POST /login`
-````json
+````json5
 {
     "username": "matti.heikkinen", // Wilma-user's username
     "password": "koira123" // Wilma-user's password
 }
 ````
 ### Response
-````json
+````json5
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoibm8gYml0Y2hlcyJ9.I7CS2JRvZ-KZsNYtQwfHIcoc_tJVzzXl5-VzyscbVTs" // valid encypted jwt-token
 }
@@ -73,7 +73,7 @@ etc.
 
 ### jwt-token
 #### Returned jwt-token will **only** contain the following fields
-````json
+````json5
 {
     "Wilma2SID": "f3e836e3653b766c0b9947704e940fa7",
     "StudentID": "student:271885:52024bac759892b02210915fg987f056",
@@ -82,19 +82,19 @@ etc.
 }
 ````
 #### The returned jwt-token will live as long as your Wilma-session. Most of the other endpoints will require this token as authentication. This can be achieved by including a valid jwt-token in headers. eg.
-````json
+````json5
 {
 
-    ...
+    //...
     "Content-Type": "application/json", // other headers
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbmZvIjoibm8gYml0Y2hlcyJ9.I7CS2JRvZ-KZsNYtQwfHIcoc_tJVzzXl5-VzyscbVTs" // "token" header, with jwt-token as the value
-    ...
+    //...
 }
 ````
 
 <br>
 
-## `/Logout`
+## `/logout`
 #### Logs out of Wilma, invalidating the current jwt-token
 ## Required headers
 `token`
@@ -102,11 +102,31 @@ etc.
 `POST /logout`
 
 ## Example response
-````json
+````json5
 {
     "success": true
 }
 ````
+
+<br>
+
+## `/authenticate`
+#### Validate the current session
+## Required headers
+`token`
+## Example request
+`POST /authenticate`
+
+## Example response
+````json5
+{
+    "valid": true,
+    "iat": 1670229214, // Time of creation in [epoch]-format
+    "username": "matti.heikkinen" // Username linked to the session
+}
+````
+
+<br>
 
 ## Message endpoints
 
@@ -121,9 +141,9 @@ etc.
 `GET /messages/inbox`
 
 ## Example response
-````json
+````json5
 [
-    ...
+    //...
     {
         "isEvent": false, // Is this message marked as appointment
         "id": 14120905, // Unique id of the message
@@ -138,7 +158,7 @@ etc.
             }
         ] // List of senders, can be an empty list, and the 'href'-field can be invalid
     }
-    ...
+    //...
 ]
 ````
 
@@ -153,9 +173,9 @@ etc.
 `GET /messages/outbox`
 
 ## Example response
-````json
+````json5
 [
-    ...
+    //...
     {
         "isEvent": false, // Is this message marked as appointment
         "id": 14120905, // Unique id of the message
@@ -170,7 +190,7 @@ etc.
             }
         ] // List of senders, can be an empty list, and the 'href'-field can be invalid
     }
-    ...
+    //...
 ]
 ````
 
@@ -185,9 +205,9 @@ etc.
 `GET /messages/appointments`
 
 ## Example response
-````json
+````json5
 [
-    ...
+    //...
     {
         "isEvent": true, // Is this message marked as appointment
         "id": 13941302, // Unique id of the message
@@ -201,7 +221,7 @@ etc.
         ], // List of senders, can be an empty list, and the 'href'-field can be invalid
         "status": "ExpiredReg" // Wilma's appointment status (hence the weird values)
     },
-    ...
+    //...
 ]
 ````
 #### Field 'status' can get the following values
@@ -220,9 +240,9 @@ etc.
 `GET /messages/14120905`
 
 ## Example response
-````json
+````json5
 [ // Wilma (for some reason) returns a list of messages when requesting a single 
-    ...
+    //...
     {
         "fromWilma": true, // is the message from Wilma, insidicates weather the 'id' field is valid or not
         "id": 14009307, // Unique id of the message
@@ -240,7 +260,7 @@ etc.
             }
         ]
     }
-    ...
+    //...
 ] 
 ````
 
@@ -259,7 +279,7 @@ etc.
 `GET /schedule/week/12-04-2022`
 
 ## Example response
-````json
+````json5
 {
     "week": 49, // Week-number based on Wilma's api. Not accurate
     "weekRange": [ // List of the weekdays that are contained in week. Yyou only need to know one of these to know the rest, which is mainly used for caching purposes.
@@ -316,11 +336,11 @@ etc.
                         }
                     ]
                 },
-                ...
+                //...
             ],
             "exams": [] // List of the exams
         },
-        ...
+        //...
     }
 }
 ````
