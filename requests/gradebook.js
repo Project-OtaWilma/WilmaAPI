@@ -45,12 +45,10 @@ const getGradeBook = (auth, limit, filter) => {
 */
 
 const parseGrades = (raw, limit, filter) => {
-    const result = {
-        'overview': {
-            
-        }
-    };
+    const result = {'overview': {}};
     const titles = [];
+    const om = [];
+    const am = [];
 
     const grades = [
         '4',
@@ -65,6 +63,26 @@ const parseGrades = (raw, limit, filter) => {
         'S'
     ]
 
+    const optionalSubjectList = [
+        'Liikunta',
+        'Musiikki',
+        'Kuvataide',
+        'Opinto-ohjaus',
+        'Teatteri',
+        'Media',
+        'Lukiodiplomit',
+        'Temaattiset opinnot',
+        'Teknologia',
+        'OTA-opinnot',
+        'Korkeakouluopinnot',
+        'Talous ja nuoret',
+        'Muut opinnot'
+    ]
+
+    const ignoredSubjectList = [
+        'Ruotsi, B1-oppimäärä'
+    ]
+
     const document = parse(raw);
 
     const appendTitle = (titleElement, value) => {
@@ -74,6 +92,10 @@ const parseGrades = (raw, limit, filter) => {
         switch(info.length) {
             case 2:
                 titles.push(title);
+
+                if(info[0] && !ignoredSubjectList.includes(title)) om.push(info[0].textContent.trim());
+                if(info[0] && !optionalSubjectList.includes(title) && !ignoredSubjectList.includes(title)) am.push(info[0].textContent.trim());
+
                 result[title] =  {
                     grade: info[0] ? info[0].textContent.trim() : null,
                     points: info[1] ? info[1].textContent.trim() : null,
@@ -102,7 +124,7 @@ const parseGrades = (raw, limit, filter) => {
         const d = title.childNodes.filter(t => t.textContent.trim())[0];
         const [codeElement, nameElement] = d.childNodes;
         const code = codeElement.textContent.trim();
-        const name = codeElement.textContent.trim();
+        //const name = codeElement.textContent.trim();
 
         const info = value.filter(t => t.textContent.trim());
 
@@ -184,6 +206,9 @@ const parseGrades = (raw, limit, filter) => {
                 } 
         }
     })
+
+    result['overview']['Keskiarvo'] = (om.filter(g => !isNaN(+g)).reduce((sum, g) => (sum + parseInt(g)), 0) / om.length).toFixed(2)
+    result['overview']['Lukuaineiden keskiarvo'] = (am.filter(g => !isNaN(+g)).reduce((sum, g) => (sum + parseInt(g)), 0) / am.length).toFixed(2)
 
     return result
 }

@@ -2,7 +2,7 @@ const request = require('request');
 const utility = require('../utility/utility');
 const authentication = require('../database/authentication');
 
-const whitelist = require('./whitelist.json');
+// const whitelist = require('./whitelist.json');
 
 const { account } = require('../requests/responses');
 
