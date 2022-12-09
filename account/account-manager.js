@@ -36,7 +36,7 @@ const GenerateSessiondDetails = () => {
 const Login = (login = { Username: String, Password: String, SessionID: String, Wilma2LoginID: String }) => {
     return new Promise((resolve, reject) => {
 
-        if (!whitelist.includes(login.Username)) return reject({ err: 'You are not whitelisted for OtaWilma [CLOSED BETA]', status: 401 });
+        // if (!whitelist.includes(login.Username)) return reject({ err: 'You are not whitelisted for OtaWilma [CLOSED BETA]', status: 401 });
 
         const options = {
             'method': 'POST',
