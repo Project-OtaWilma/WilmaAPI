@@ -96,8 +96,6 @@ const getCourseByID = (auth, target, static) => {
         request(options, function (error, response) {
             if (error) return reject({ error: 'Failed to retrieve the course information', message: response, status: 501 });
 
-            // Wilma2SID was incorrect
-
             courseTray.validateCourseTrayGetCourse(response)
                 .then(() => {
                     try {
@@ -117,7 +115,6 @@ const getCourseByID = (auth, target, static) => {
 }
 
 const getSelectedCourses = (auth) => {
-    //https://espoo.inschool.fi/trays
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'GET',

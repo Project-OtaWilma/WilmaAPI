@@ -171,22 +171,17 @@ const Authenticate = (auth) => {
                 case 200:
                     if (!response.body) return reject({ err: 'Invalid credentials', status: 401 });
 
-                    utility.parsers.parseName(response.body)
-                        .then(name => {
-                            return resolve(name);
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            return resolve({ err: 'Failed to auhenticate user', status: 500 });
-                        })
-
-                    break;
+                    return resolve({
+                        valid: true,
+                        iat: auth['iat'],
+                        username: auth['username']
+                    });
                 case 302:
                     return reject({ err: 'Invalid credentials', status: 401 });
                 case 403:
-                    return reject({ err: 'Invalid credentials', info: 'Two existing login-instances', status: 401 });
+                    return reject({ err: 'Invalid credentials', message: 'Two existing login-instances', status: 401 });
                 default:
-                    return reject({ err: 'Wilma responded with an unknown status.', info: response.statusCode, status: 501 });
+                    return reject({ err: 'Wilma responded with an unknown status.', status: response.statusCode });
             }
 
         });

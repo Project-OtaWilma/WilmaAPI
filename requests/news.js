@@ -72,11 +72,6 @@ const getNewsById = (auth, NewsID) => {
 const parseNewsInbox = (raw, path, limit) => {
     const document = parse(raw);
     const sections = ['Pysyvät tiedotteet', 'Vanhat tiedotteet']
-    const translations = {
-        'Pysyvät tiedotteet': 'static',
-        'Vanhat tiedotteet': 'old',
-        'Nykyiset tiedotteet': 'current'
-    };
     const titles = [];
     const result = { 'Nykyiset tiedotteet': {} };
 
