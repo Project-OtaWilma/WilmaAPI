@@ -16,7 +16,7 @@ const getCourseById = (lops, id) => {
 
             const query = { code: id }
 
-            db.collection(lops).find(query).project({ '_id': 0 }).toArray((err, res) => {
+            db.collection(`${lops}-v2`).find(query).project({ '_id': 0 }).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
@@ -51,7 +51,7 @@ const getCourseType = (lops, id) => {
                 'OPS': 0,
             }
 
-            db.collection(lops).find(query).project(projection).toArray((err, res) => {
+            db.collection(`${lops}-v2`).find(query).project(projection).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
@@ -84,7 +84,7 @@ const getCourseList = (lops) => {
                 "OPS": 0
             }
 
-            db.collection(lops).find({}).project(projection).toArray((err, res) => {
+            db.collection(`${lops}-v2`).find({}).project(projection).toArray((err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
