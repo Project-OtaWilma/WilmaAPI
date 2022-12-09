@@ -45,216 +45,147 @@ const getGradeBook = (auth, limit, filter) => {
 */
 
 const parseGrades = (raw, limit, filter) => {
+    const result = {
+        'overview': {
+            
+        }
+    };
+    const titles = [];
+
+    const grades = [
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        'P',
+        'K',
+        'S'
+    ]
+
     const document = parse(raw);
 
-    const grades = ['P', 'S', 'K'];
-    const sections = [
-        'Suoritukset kurssityypeittäin',
-        'ECTS',
-        'Lu21 pakollinen moduuli',
-        'Lu21 valtakunnallinen valinnainen moduuli',
-        'Lu21 paikallinen opintojakso',
-        'Lu21 temaattiset opinnot -opintojakso',
-        'Yhteensä'
-    ];
+    const appendTitle = (titleElement, value) => {
+        const title = titleElement.textContent.trim();
+        const info = value.filter(t => t.textContent.trim());
 
-    const subjectList = [
-        'Äidinkieli ja kirjallisuus, suomen kieli ja kirjallisuus',
-        'Äidinkieli ja kirjallisuus, suomi toisena kielenä ja kirjallisuus',
-        'Ruotsi, B1-oppimäärä',
-        'Ruotsi, A1-oppimäärä',
-        'Englanti, A-oppimäärä',
-        'Espanja, A-oppimäärä',
-        'Espanja, B2-oppimäärä',
-        'Espanja, B3-oppimäärä',
-        'Italia, B3-oppimäärä',
-        'Ranska, A-oppimäärä',
-        'Ranska, B2-oppimäärä',
-        'Ranska, B3-oppimäärä',
-        'Saksa, A-oppimäärä',
-        'Saksa, B2-oppimäärä',
-        'Saksa, B3-oppimäärä',
-        'Venäjä, A-oppimäärä',
-        'Venäjä, B2-oppimäärä',
-        'Venäjä, B3-oppimäärä',
-        'Kiina, B3-oppimäärä',
-        'Japani, B3-oppimäärä',
-        'Matematiikan yhteinen opintokokonaisuus',
-        'Matematiikan pitkä oppimäärä',
-        'Matematiikan lyhyt oppimäärä',
-        'Biologia',
-        'Maantiede',
-        'Fysiikka',
-        'Kemia',
-        'Filosofia',
-        'Psykologia',
-        'Historia',
-        'Yhteiskuntaoppi',
-        'Uskonto/elämänkatsomustieto',
-        'Terveystieto',
-        'Liikunta',
-        'Musiikki',
-        'Kuvataide',
-        'Opinto-ohjaus',
-        'Teemaopinnot',
-        'Monitieteinen ajattelu',
-        'Tutkiva työskentely teknologialla',
-        'Osaaminen arjessa',
-        'Lukiodiplomikurssit',
-        'Taiteiden väliset kurssit',
-        'Espoo-opinnot',
-        'Teatteri ja ilmaisu',
-        'Media',
-        'Teatteri',
-        'Media',
-        'Lukiodiplomit',
-        'Temaattiset opinnot',
-        'Teknologia',
-        'Kotitalous',
-        'Käsityö',
-        'OTA-opinnot',
-        'Korkeakouluopinnot',
-        'Lukiokoulutusta täydentävä oma äidinkieli (unkari)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (albania)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (englanti)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (espanja)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (portugali)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (puola)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (ranska)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (saksa)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (venäjä)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (arabia)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (farsi/dari)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (kurdi)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (mandariinikiina)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (somali)',
-        'Lukiokoulutusta täydentävä oma äidinkieli (venäjä)',
-        'Talous ja nuoret',
-        'Muut opinnot',
-        'Muualla suoritetut kurssit'
-    ]
-
-    const optionalSubjectList = [
-        'Liikunta',
-        'Musiikki',
-        'Kuvataide',
-        'Opinto-ohjaus',
-        'Teatteri',
-        'Media',
-        'Lukiodiplomit',
-        'Temaattiset opinnot',
-        'Teknologia',
-        'OTA-opinnot',
-        'Korkeakouluopinnot',
-        'Talous ja nuoret',
-        'Muut opinnot'
-    ]
-
-    // Good fucking luck debugging this
-
-    const c = []; // Courses
-    const titles = []; // Titles
-    const s = []; // Subjects
-    const am = []; // Average (mandatory)
-    const om = []; // Average (optional)
-    let r = {}; // Result
-
-    document.getElementsByTagName('tr').forEach(tr => {
-        tr.childNodes.filter(td => td.rawText.trim()).forEach(td => {
-
-            td.childNodes.filter(td => (td.rawText.trim())).forEach(td => {
-                const d = td.rawText.trim();
-
-                if (sections.includes(d)) {
-                    titles.push(d);
-                    r['overview'] = r['overview'] ? r['overview'] : {};
-                    r['overview'][d] = null;
+        switch(info.length) {
+            case 2:
+                titles.push(title);
+                result[title] =  {
+                    grade: info[0] ? info[0].textContent.trim() : null,
+                    points: info[1] ? info[1].textContent.trim() : null,
+                    courses: {}
                 }
-                else if (td.nodeType == 1 && Object.keys(r).length < (limit + 1)) {
-                    if (subjectList.includes(d)) {
-                        s.push(d);
-                        r[d] = { grade: null, points: null, courses: {} }
-                    }
-                    else {
-                        const h = d.split(' ')[0].trim();
-                        c.push(d);
-                        r[s[s.length - 1]].courses[d] = { code: h, grade: null, points: null, date: null, teacher: null, info: null }
-                    }
+                break;
+            case 1:
+                titles.push(title);
+                result[title] =  {
+                    grade: null,
+                    points: info[1] ? info[1].textContent.trim() : null,
+                    courses: {}
                 }
-                else if (td.nodeType == 3) {
-                    if (titles.length > 0) {
-                        r['overview'][titles[titles.length - 1]] = d;
-                    }
-                    else if (Object.keys(r).length < (limit + 1)) {
-
-                        if (d.split('.').length > 1) {
-                            if (Object.keys(r[s[s.length - 1]].courses).length > 0) {
-                                if (!r[s[s.length - 1]].courses[c[c.length - 1]].date) {
-                                    r[s[s.length - 1]].courses[c[c.length - 1]].date = d;
-                                }
-                            }
-                        }
-                        else if (Number.isInteger(Number.parseInt(d)) || grades.includes(d)) {
-                            if (!r[s[s.length - 1]].grade && s[s.length - 1] != 'Teknologia') {
-
-                                if (Number.isInteger(Number.parseInt(d))) {
-                                    if (!optionalSubjectList.includes(s[s.length - 1])) {
-                                        am.push(Number.parseInt(d));
-                                    }
-
-                                    om.push(Number.parseInt(d));
-                                }
-                                r[s[s.length - 1]].grade = d;
-                            }
-                            else if (!r[s[s.length - 1]].points && s[s.length - 1] != 'Teknologia') {
-                                r[s[s.length - 1]].points = d;
-                            }
-                            else if (Object.keys(r[s[s.length - 1]].courses).length > 0) {
-                                if (!r[s[s.length - 1]].courses[c[c.length - 1]].grade) {
-                                    r[s[s.length - 1]].courses[c[c.length - 1]].grade = d;
-                                }
-                                else if (!r[s[s.length - 1]].courses[c[c.length - 1]].points) {
-                                    r[s[s.length - 1]].courses[c[c.length - 1]].points = d;
-                                }
-                            }
-
-                        }
-                        else {
-                            if (Object.keys(r[s[s.length - 1]].courses).length > 0) {
-                                if (!r[s[s.length - 1]].courses[c[c.length - 1]].teacher) {
-                                    r[s[s.length - 1]].courses[c[c.length - 1]].teacher = d;
-                                }
-                                else if (!r[s[s.length - 1]].courses[c[c.length - 1]].info) {
-                                    r[s[s.length - 1]].courses[c[c.length - 1]].info = d;
-                                }
-                            }
-                        }
-                    }
+                break;
+            default:
+                titles.push(title);
+                result[title] =  {
+                    grade: null,
+                    points: null,
+                    courses: {}
                 }
-            });
-
-
-        })
-
-    });
-
-    if (s.length > limit) {
-        delete r[s[s.length - 1]]
+        }
     }
 
-    Object.keys(r).forEach(t => {
-        if (!r[t]) {
-            delete r[t];
-        }
-        else if (Object.keys(r[t]).includes(filter)) {
-            delete r[t][filter];
-        }
-    });
+    const appendCourse = (title, value) => {
+        const d = title.childNodes.filter(t => t.textContent.trim())[0];
+        const [codeElement, nameElement] = d.childNodes;
+        const code = codeElement.textContent.trim();
+        const name = codeElement.textContent.trim();
 
-    r['overview']['Keskiarvo'] = (om.reduce((a, b) => a + b, 0) / om.length).toFixed(2);
-    r['overview']['Lukuaineiden keskiarvo'] = (am.reduce((a, b) => a + b, 0) / am.length).toFixed(2);
+        const info = value.filter(t => t.textContent.trim());
 
-    return r;
+        switch(info.length) {
+            case 4:
+                result[titles.at(-1)]['courses'][code] = {
+                    grade: info[0] ? info[0].textContent.trim() : null,
+                    points: info[1] ? info[1].textContent.trim() : null,
+                    date: info[2] ? info[2].textContent.trim() : null,
+                    teacher: info[3] ? info[3].textContent.trim() : null,
+                }
+            case 3:
+                // why the fuck would you leave fields empty....
+                let data = info.filter(c => c).map(c => c.textContent.trim());
+                
+                const grade = data.filter(c => grades.includes(c))[0];
+                if(grade) data.splice(data.indexOf(grade), 1);
+
+                const points = data.filter(c => !Number.isNaN(+c))[0];
+                if(points) data.splice(data.indexOf(points), 1);
+
+                result[titles.at(-1)]['courses'][code] = {
+                    grade: grade ? grade : null,
+                    points: points ? points : null,
+                    date: data[0] ? data[0] : null,
+                    teacher: data[1] ? data[1] : null
+                }
+        }
+    }
+
+
+    //regular courses
+    document.getElementsByTagName('tr').filter(tr => tr.childNodes.length == 11).forEach(tr => {
+        const d = tr.childNodes.filter(td => td.textContent.trim());
+
+
+        const [title, ...value] = d;
+
+        switch(title.attrs['style']) {
+            case 'padding-left : 1.8em;': // titles
+                if(value.length >= 3) {
+                    appendCourse(title, value);
+                }
+                else {
+                    appendTitle(title, value)
+                }
+                break;
+            case 'padding-left : 2.8em;': // courses
+                appendCourse(title, value);
+                break;
+        }
+    })
+
+    document.getElementsByTagName('tr').filter(tr => tr.childNodes.length != 11).forEach(tr => {
+        //console.log([tr.toString(), tr.childNodes.length])
+        const d = tr.childNodes.filter(td => td.textContent.trim() && !td.attrs['class']);
+
+        const [key, ...values] = d;
+        
+        switch(values.length) {
+            case 1:
+                const [value] = values;
+                const num = value.textContent.trim();
+                result['overview'][key.textContent.trim()] = !isNaN(+num) ? parseInt(num) : num;
+                break;
+            default:
+                const [data] = d;
+                if(d.length != 0) {
+                    let c = data.childNodes.filter(t => t.textContent.trim()).map(t => t.textContent.trim());
+                    
+                    const by_type = c.filter(t => grades.includes(t))[0];
+                    if(by_type) c.splice(c.indexOf(by_type), 1);
+
+                    const ects = c.filter(t => grades.includes(t))[0];
+                    if(ects) c.splice(c.indexOf(by_type), 1);
+                    
+                    result['overview']['ETCS'] = ects;
+                    result['overview']['Suoritukset kurssityypeittäin'] = by_type;
+                } 
+        }
+    })
+
+    return result
 }
 
 module.exports = {
