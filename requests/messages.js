@@ -168,6 +168,41 @@ const getMessageInbox = (auth, limit) => {
     });
 }
 
+const getNewMessages = (auth, limit) => {
+    return new Promise((resolve, reject) => {
+        const options = {
+            'method': 'GET',
+            'url': `https://espoo.inschool.fi/messages/list`,
+            'headers': {
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            'followRedirect': false,
+        };
+
+        request(options, async function (error, response) {
+            if (error) return reject({ error: 'Failed to retrieve inbox', message: response, status: 501 });
+
+            // Validate response
+            messages.validateMessageGet(response)
+                .then(() => {
+                    try {
+                        const json = JSON.parse(response.body);
+                        const parsed = parseNewMessages(json.Messages, limit);
+                        return resolve(parsed);
+                    } catch (err) {
+                        console.log(err);
+                        return reject({ err: 'Failed to parse message-inbox', status: 500 })
+                    }
+                })
+                .catch(err => {
+                    return reject(err);
+                });
+
+        });
+    });
+}
+
 const getMessageOutbox = (auth, limit) => {
     return new Promise((resolve, reject) => {
         const options = {
@@ -323,6 +358,12 @@ const parseMessageList = (raw, limit) => {
     }).slice(0, limit)
 }
 
+const parseNewMessages = (raw, limit) => {
+    if(!raw) return [];
+
+    return parseMessageList(raw.filter(message => message.Status == 1), limit);
+}
+
 const parseAppointmentList = (raw, limit) => {
     return raw.map(appointment => {
         return {
@@ -369,6 +410,7 @@ module.exports = {
     getReceiverList,
     sendMessage,
     getMessageInbox,
+    getNewMessages,
     getMessageOutbox,
     getAppointments,
     getAnnouncements,
