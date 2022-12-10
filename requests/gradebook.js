@@ -207,8 +207,8 @@ const parseGrades = (raw, limit, filter) => {
         }
     })
 
-    result['overview']['Keskiarvo'] = (om.filter(g => !isNaN(+g)).reduce((sum, g) => (sum + parseInt(g)), 0) / om.length).toFixed(2)
-    result['overview']['Lukuaineiden keskiarvo'] = (am.filter(g => !isNaN(+g)).reduce((sum, g) => (sum + parseInt(g)), 0) / am.length).toFixed(2)
+    result['overview']['Keskiarvo'] = (om.filter(g => !isNaN(+g)).reduce((sum, g) => (sum + parseInt(g)), 0) / om.filter(g => !isNaN(+g)).length).toFixed(2)
+    result['overview']['Lukuaineiden keskiarvo'] = (am.filter(g => !isNaN(+g)).reduce((sum, g) => (sum + parseInt(g)), 0) / am.filter(g => !isNaN(+g)).length).toFixed(2)
 
     return result
 }
