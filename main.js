@@ -12,6 +12,7 @@ const lops = require('./routers/lops');
 const teachers = require('./routers/teachers')
 const version = require('./routers/version');
 const homework = require('./routers/homework');
+const rooms = require('./routers/rooms');
 
 const limiter = require('./routers/rate-limit');
 
@@ -35,6 +36,7 @@ app.use('/api/', lops, limiter.standard);
 app.use('/api/', teachers, limiter.standard);
 app.use('/api/', version, limiter.standard);
 app.use('/api/', homework, limiter.standard);
+app.use('/api/', rooms, limiter.standard);
 
 app.listen(PORT, () => {
     console.log(`Listening on ${PORT}...`);

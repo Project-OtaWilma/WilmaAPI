@@ -76,6 +76,11 @@ const getTeacherById = Joi.object({
     id: Joi.string().required()
 });
 
+const getRoomById = Joi.object({
+    id: Joi.string().required().max(9),
+    date: Joi.date().required()
+})
+
 const validateRequestParameters = (req, res, schema = {}) => {
     const result = schema.validate(req.params);
     if (result.error) {
@@ -149,6 +154,9 @@ module.exports = {
             postCommentRemove,
             getTeacherByName,
             getTeacherById
+        },
+        rooms: {
+            getRoomById,
         }
     },
     validators: {
