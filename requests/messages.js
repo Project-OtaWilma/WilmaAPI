@@ -34,7 +34,7 @@ const sendMessage = (Wilma2SID, studentID, receiverType, receiver, subject, cont
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to post message', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to post message', status: 501 });
 
             // Validate response
             messages.validateMessagePost(response)
@@ -84,7 +84,7 @@ const deleteMessage = (Wilma2SID, studentID, content) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to post message', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to post message', status: 501 });
 
             // Validate response
             messages.validateMessagePost(response)
@@ -111,7 +111,7 @@ const getReceiverList = (Wilma2SID) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the list containing receivers', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve the list containing receivers', status: 501 });
 
             // Validate response
             messages.validateMessageGet(response)
@@ -146,7 +146,7 @@ const getMessageInbox = (auth, limit) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
 
             // Validate response
             messages.validateMessageGet(response)
@@ -181,7 +181,7 @@ const getNewMessages = (auth, limit) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
 
             // Validate response
             messages.validateMessageGet(response)
@@ -216,7 +216,7 @@ const getMessageOutbox = (auth, limit) => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
 
             // Validate response
             messages.validateMessageGet(response)
@@ -250,7 +250,7 @@ const getAppointments = (auth, limit) => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
 
             // Validate response
             messages.validateMessageGet(response)
@@ -292,7 +292,7 @@ const getMessageByID = (auth, id) => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
 
 
             messages.validateMessageGetByID(response)

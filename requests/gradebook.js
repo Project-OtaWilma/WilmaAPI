@@ -18,7 +18,7 @@ const getGradeBook = (auth, limit, filter) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve gradebook', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve gradebook', status: 501 });
 
             // Wilma2SID was incorrect
             grades.validateGradebookGet(response)
