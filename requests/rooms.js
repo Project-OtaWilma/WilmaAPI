@@ -73,8 +73,7 @@ const parseSchedule = (raw, date) => {
 
     const document = parse(raw)
     const title = document.getElementsByTagName('title')[0];
-    const [roomNumber, ...nameRaw] = title.textContent.trim().split(' ').slice(1)
-    const name = nameRaw.join(' ').replace(' - Wilma', '');
+    const [roomNumber, ...nameRaw] = title.textContent.trim().split(' ').slice(1);
 
     result['roomNumber'] = roomNumber;
     result['name'] = nameRaw.join(' ').replace(' - Wilma', '');
@@ -89,14 +88,15 @@ const parseSchedule = (raw, date) => {
     result['weekRange'] = range.map(d => d.toLocaleDateString('FI-fi', options));
  
     result.days = range.reduce((a, v) => ({...a, [v.toLocaleDateString('FI-fi', options)]: {
-        day: {date: v.getDay() + 1},
+        day: {date: v.getDay(),
         caption: `${weekdays[v.getDay()].substring(0, 2)} ${v.getDate()}.${v.getMonth()}`,
         full: `${weekdays[v.getDay()]} ${v.getDate()}.${v.getMonth()}.${v.getFullYear()}`,
-        lessons: []
+    },
+    lessons: []
     }}), {});
 
     list.forEach(lesson => {
-        const weekday = [(lesson.X1 / 10000) + 1];
+        const weekday = [(lesson.X1 / 10000)];
         const date = range[weekday];
         const dateString = date.toLocaleDateString('FI-fi', options);
 

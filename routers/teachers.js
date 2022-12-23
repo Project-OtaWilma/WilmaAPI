@@ -3,7 +3,7 @@ const router = express.Router();
 const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 
-const { teachers } = require('../database/database');
+const { teachers } = require('../database/teachers');
 
 router.get('/teachers/list', limiter.cacheable, async (req, res) => {
 

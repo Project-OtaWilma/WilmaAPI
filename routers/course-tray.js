@@ -5,7 +5,6 @@ const { schemas, validators } = require('./validator');
 const authentication = require('../database/authentication');
 
 const { getTrayList, getTrayByPeriod, getCourseByID, selectCourse, deSelectCourse, getSelectedCourses } = require('../requests/course-tray');
-const { courseTray } = require('../database/database');
 
 router.get('/course-tray/list', async (req, res) => {
     // validation

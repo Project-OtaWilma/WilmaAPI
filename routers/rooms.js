@@ -4,6 +4,7 @@ const { schemas, validators } = require('./validator');
 const authentication = require('../database/authentication');
 
 const { getRoomSchedule, getRoomList } = require('../requests/rooms');
+const { rooms } = require('../database/rooms');
 
 router.get('/rooms/list', async (req, res) => {
     // validation
@@ -28,15 +29,28 @@ router.get('/rooms/:id/schedule/week/:date', async (req, res) => {
     const result = validators.validateRequestParameters(req, res, schemas.rooms.getRoomById);
     if (!result) return
 
-
-    getRoomSchedule(auth, result.id, result.date)
-        .then(data => {
-            res.json(data);
+    rooms.getCachedRoom(result.id, result.date)
+        .then(cached => {
+            return res.json({cached: true, ...cached});
         })
         .catch(err => {
-            console.log(err);
-            return res.status(err.status).json(err)
-        });
+            switch(err.status) {
+                case 404:
+                    getRoomSchedule(auth, result.id, result.date)
+                        .then(async (data) => {
+                            await rooms.cacheRoom({...data, hash: result.id})
+                            return res.json({cached: false, ...data});
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            return res.status(err.status).json(err)
+                        });   
+                    break;
+                default:
+                    console.log(err);
+                    return res.status(err.status).json(err)
+            }
+        })
 });
 
 
