@@ -76,6 +76,7 @@ const parseSchedule = (raw, date) => {
     const [roomNumber, ...nameRaw] = title.textContent.trim().split(' ').slice(1);
 
     result['roomNumber'] = roomNumber;
+    result['img'] = `http://localhost:3001/rooms/${roomNumber}.jpg`;
     result['name'] = nameRaw.join(' ').replace(' - Wilma', '');
 
     const jRaw = (document.getElementsByTagName('script').at(-1).textContent.trim());
@@ -89,8 +90,8 @@ const parseSchedule = (raw, date) => {
  
     result.days = range.reduce((a, v) => ({...a, [v.toLocaleDateString('FI-fi', options)]: {
         day: {date: v.getDay(),
-        caption: `${weekdays[v.getDay()].substring(0, 2)} ${v.getDate()}.${v.getMonth()}`,
-        full: `${weekdays[v.getDay()]} ${v.getDate()}.${v.getMonth()}.${v.getFullYear()}`,
+        caption: `${weekdays[v.getDay()].substring(0, 2)} ${v.getDate()}.${v.getMonth() + 1}`,
+        full: `${weekdays[v.getDay()]} ${v.getDate()}.${v.getMonth() + 1}.${v.getFullYear()}`,
     },
     lessons: []
     }}), {});
