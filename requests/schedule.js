@@ -23,7 +23,7 @@ const fetchSchedule = (Wilma2SID, studentID, date) => {
 
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve schedule', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve schedule', status: 501 });
 
             schedule.validateScheduleGet(response)
                 .then(() => {

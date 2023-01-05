@@ -17,7 +17,7 @@ const getNewsInbox = (auth, path, limit) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve news', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve news', status: 501 });
 
             news.validateNewsGet(response)
                 .then(() => {
@@ -50,7 +50,7 @@ const getNewsById = (auth, NewsID) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve news', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve news', status: 501 });
 
             news.validateNewsGetByID(response)
                 .then(() => {

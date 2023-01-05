@@ -16,7 +16,7 @@ const getTrayList = (auth) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve list of available trays', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve list of available trays', status: 501 });
 
             courseTray.validateCourseTrayGetList(response)
                 .then(() => {
@@ -57,7 +57,7 @@ const getTrayByPeriod = (auth, target) => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the tray', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve the tray', status: 501 });
 
             // Wilma2SID was incorrect
 
@@ -94,7 +94,7 @@ const getCourseByID = (auth, target, static) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the course information', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve the course information', status: 501 });
 
             courseTray.validateCourseTrayGetCourse(response)
                 .then(() => {
@@ -128,7 +128,7 @@ const getSelectedCourses = (auth) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve list of available trays', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve list of available trays', status: 501 });
 
             courseTray.validateCourseTrayGetSelectedCourses(response)
                 .then(() => {
@@ -169,7 +169,7 @@ const selectCourse = (auth, target) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the tray', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve the tray', status: 501 });
 
             courseTray.validateCourseTrayGetByPeriod(response)
                 .then(() => {
@@ -212,7 +212,7 @@ const deSelectCourse = (auth, target) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the tray', message: response, status: 501 });
+            if (error) return reject({ error: 'Failed to retrieve the tray', status: 501 });
 
 
             courseTray.validateCourseTrayGetByPeriod(response)
