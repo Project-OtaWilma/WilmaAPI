@@ -109,7 +109,7 @@ const StartSession = async (login = { Username: String, Password: String, Curren
             }).then(session => {
                 generateStudentID(session.value[0])
                     .then(studentID => {
-                        const token = authentication.signToken({ Wilma2SID: session.value[0], StudentID: studentID, username: login.Username })
+                        const token = authentication.signToken({ Wilma2SID: session.value[0], StudentID: studentID, username: login.Username.toLowerCase() })
                         return resolve({ token: token, reset: true });
                     })
                     .catch(err => {
