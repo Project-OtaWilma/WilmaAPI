@@ -174,7 +174,7 @@ const Authenticate = (auth) => {
                     return resolve({
                         valid: true,
                         iat: auth['iat'],
-                        username: auth['username']
+                        username: auth['username'].toLowerCase()
                     });
                 case 302:
                     return reject({ err: 'Invalid credentials', status: 401 });
