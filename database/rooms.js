@@ -9,7 +9,6 @@ const cacheRoom = (room) => {
     return new Promise((resolve, reject) => {
         
         MongoClient.connect(url, (err, database) => {
-            console.log(err);
             if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
             const db = database.db('Wilma');
@@ -37,12 +36,10 @@ const cacheRoom = (room) => {
             }
 
             db.collection(`rooms`).updateOne(query, update, {upsert: true}, (err, res) => {
-                console.log(err);
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
 
-                console.log(res);
                 return resolve(res);
             });
         })
@@ -54,7 +51,6 @@ const getCachedRoom = (id, date = new Date) => {
     return new Promise((resolve, reject) => {
 
         MongoClient.connect(url, (err, database) => {
-            console.log(err);
             if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
             const db = database.db('Wilma');
@@ -68,7 +64,6 @@ const getCachedRoom = (id, date = new Date) => {
             }
 
             db.collection(`rooms`).find(query).toArray((err, res) => {
-                console.log(res);
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
                 database.close();
 

@@ -39,6 +39,8 @@ router.get('/rooms/:id/schedule/week/:date', async (req, res) => {
                     getRoomSchedule(auth, result.id, result.date)
                         .then(async (data) => {
                             await rooms.cacheRoom({...data, hash: result.id})
+                            data['schedule'] = data['days'];
+                            delete data['days'];
                             return res.json({cached: false, ...data});
                         })
                         .catch(err => {
