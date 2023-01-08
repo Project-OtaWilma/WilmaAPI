@@ -31,6 +31,8 @@ router.get('/rooms/:id/schedule/week/:date', async (req, res) => {
 
     rooms.getCachedRoom(result.id, result.date)
         .then(cached => {
+            cached['info'] = cached['info'] ? cached['info'] : 'ei lisätietoja';
+
             return res.json({cached: true, ...cached});
         })
         .catch(err => {
@@ -41,6 +43,9 @@ router.get('/rooms/:id/schedule/week/:date', async (req, res) => {
                             await rooms.cacheRoom({...data, hash: result.id})
                             data['schedule'] = data['days'];
                             delete data['days'];
+
+                            data['info'] = data['info'] ? data['info'] : 'ei lisätietoja';
+
                             return res.json({cached: false, ...data});
                         })
                         .catch(err => {
