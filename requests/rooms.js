@@ -76,7 +76,7 @@ const parseSchedule = (raw, date) => {
     const [roomNumber, ...nameRaw] = title.textContent.trim().split(' ').slice(1);
 
     result['roomNumber'] = roomNumber;
-    result['img'] = `http://localhost:3001/rooms/${roomNumber}.jpg`;
+    result['img'] = `https://beta.wilma-api.tuukk.dev/rooms/${roomNumber}.jpg`;
     result['name'] = nameRaw.join(' ').replace(' - Wilma', '');
 
     const jRaw = (document.getElementsByTagName('script').at(-1).textContent.trim());
