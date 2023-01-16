@@ -7,14 +7,14 @@ const url = `mongodb://${user}:${password}@${host}:${port}/?authMechanism=DEFAUL
 
 const cacheRoom = (room) => {
     return new Promise((resolve, reject) => {
-        
+
         MongoClient.connect(url, (err, database) => {
             if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
             const db = database.db('Wilma');
 
             // TODO use these later to see weather room is occupied
-            const currentDate = (new Date).toLocaleDateString('Fi-fi', {day: '2-digit', month: '2-digit', year: 'numeric'});
+            const currentDate = (new Date).toLocaleDateString('Fi-fi', { day: '2-digit', month: '2-digit', year: 'numeric' });
             const currentTime = toMinutes((new Date).toLocaleTimeString('FI-fi').replaceAll('.', ':'));
 
             const weekNumber = room['week'];
@@ -31,11 +31,11 @@ const cacheRoom = (room) => {
                 $set: {
                     ...room,
                     [`schedule.${weekNumber}`]: days,
-                    ...weekrange.reduce((a, v) => ({...a, [`weekrange.${v.replaceAll('.', '-')}`]: weekNumber}), {})
+                    ...weekrange.reduce((a, v) => ({ ...a, [`weekrange.${v.replaceAll('.', '-')}`]: weekNumber }), {})
                 }
             }
 
-            db.collection(`rooms`).updateOne(query, update, {upsert: true}, (err, res) => {
+            db.collection(`rooms`).updateOne(query, update, { upsert: true }, (err, res) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
                 database.close();
@@ -54,7 +54,7 @@ const getCachedRoom = (id, date = new Date) => {
             if (err) return reject({ err: 'Failed to connect to database', status: 500 });
 
             const db = database.db('Wilma');
-            const queryDate = date.toLocaleDateString('Fi-fi', {day: '2-digit', month: '2-digit', year: 'numeric'}).replaceAll('.', '-');
+            const queryDate = date.toLocaleDateString('Fi-fi', { day: '2-digit', month: '2-digit', year: 'numeric' }).replaceAll('.', '-');
 
             const query = {
                 hash: id,
@@ -67,15 +67,17 @@ const getCachedRoom = (id, date = new Date) => {
                 if (err) return reject({ err: 'Failed to connect to database', status: 500 });
                 database.close();
 
-                if(res.length == 0) return reject({err: "Room-cache didn't contain requested resource", status: 404});
+                if (res.length == 0) return reject({ err: "Room-cache didn't contain requested resource", status: 404 });
 
                 const weekNumber = res[0].weekrange[queryDate];
-                const result = {...res[0], ...{
-                    week: weekNumber,
-                    weekrange: Object.keys(res[0].weekrange).filter(d => res[0].weekrange[d] == weekNumber),
-                    schedule: res[0].schedule[`${weekNumber}`],
-                    _id: undefined
-                }}
+                const result = {
+                    ...res[0], ...{
+                        week: weekNumber,
+                        weekrange: Object.keys(res[0].weekrange).filter(d => res[0].weekrange[d] == weekNumber),
+                        schedule: res[0].schedule[`${weekNumber}`],
+                        _id: undefined
+                    }
+                }
 
                 return resolve(result);
             });

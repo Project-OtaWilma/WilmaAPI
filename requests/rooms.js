@@ -23,9 +23,9 @@ const getRoomSchedule = (auth, roomId, date) => {
                     try {
                         const parsed = parseSchedule(response.body, date);
                         return resolve(parsed);
-                    } catch(e) {
+                    } catch (e) {
                         console.log(e);
-                        return reject({err: 'Failed to parse schedule', status: 500});
+                        return reject({ err: 'Failed to parse schedule', status: 500 });
                     }
                 })
                 .catch(err => {
@@ -55,9 +55,9 @@ const getRoomList = (auth) => {
                     try {
                         const parsed = parseRoomList(response.body);
                         return resolve(parsed);
-                    } catch(e) {
+                    } catch (e) {
                         console.log(e);
-                        return reject({err: 'Failed to parse schedule', status: 500});
+                        return reject({ err: 'Failed to parse schedule', status: 500 });
                     }
                 })
                 .catch(err => {
@@ -68,7 +68,7 @@ const getRoomList = (auth) => {
 }
 
 const parseSchedule = (raw, date) => {
-    const options = {'day': '2-digit', 'month': '2-digit', 'year': 'numeric'};
+    const options = { 'day': '2-digit', 'month': '2-digit', 'year': 'numeric' };
     const result = {};
 
     const document = parse(raw)
@@ -83,22 +83,25 @@ const parseSchedule = (raw, date) => {
     const list = JSON.parse(`[${jRaw.split('};')[0].split('[').pop().split(']')[0]}]`);
     const weekdays = ['Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai'];
 
-    const {range, number} = calculateWeekRange(date);
+    const { range, number } = calculateWeekRange(date);
 
     result['week'] = number;
     result['weekRange'] = range.map(d => d.toLocaleDateString('FI-fi', options));
- 
-    result.days = range.reduce((a, v) => ({...a, [v.toLocaleDateString('FI-fi', options)]: {
-        day: {date: v.getDay(),
-        caption: `${weekdays[v.getDay()].substring(0, 2)} ${v.getDate()}.${v.getMonth() + 1}`,
-        full: `${weekdays[v.getDay()]} ${v.getDate()}.${v.getMonth() + 1}.${v.getFullYear()}`,
-    },
-    lessons: []
-    }}), {});
+
+    result.days = range.reduce((a, v) => ({
+        ...a, [v.toLocaleDateString('FI-fi', options)]: {
+            day: {
+                date: v.getDay(),
+                caption: `${weekdays[v.getDay()].substring(0, 2)} ${v.getDate()}.${v.getMonth() + 1}`,
+                full: `${weekdays[v.getDay()]} ${v.getDate()}.${v.getMonth() + 1}.${v.getFullYear()}`,
+            },
+            lessons: []
+        }
+    }), {});
 
     list.forEach(lesson => {
         const weekday = [(lesson.X1 / 10000)];
-        const date = range[weekday];
+        const date = range[Math.floor(weekday)];
         const dateString = date.toLocaleDateString('FI-fi', options);
 
         result.days[dateString].lessons.push({
