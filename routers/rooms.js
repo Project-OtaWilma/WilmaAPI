@@ -17,7 +17,7 @@ router.get('/rooms/list', async (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -50,12 +50,12 @@ router.get('/rooms/:id/schedule/week/:date', async (req, res) => {
                         })
                         .catch(err => {
                             console.log(err);
-                            return res.status(err.status).json(err)
+                            return res.status(err.status ?? 500).json(err)
                         });   
                     break;
                 default:
                     console.log(err);
-                    return res.status(err.status).json(err)
+                    return res.status(err.status ?? 500).json(err)
             }
         })
 });

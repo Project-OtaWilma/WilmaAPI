@@ -401,9 +401,11 @@ const parseCourseStudents = (raw) => {
 
 const parsePostResponse = (raw) => {
     return new Promise((resolve, reject) => {
-        console.log(raw);
         if (raw.includes('srvError')) {
-            return reject({ err: "Couldn't update your selection", message: raw.trim().split('srvEndOfResponse()')[0].trim(), status: 400 });
+            const split = raw.trim().split("'");
+            const parsed = split.at(-2).trim();
+
+            return reject({ err: "Couldn't update your selection", error: parsed, status: 400 });
         }
 
         return resolve({ success: true });

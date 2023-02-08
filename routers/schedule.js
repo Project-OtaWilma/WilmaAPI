@@ -20,7 +20,7 @@ router.get('/schedule/week/:date', async (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 

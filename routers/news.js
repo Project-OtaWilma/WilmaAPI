@@ -18,7 +18,7 @@ router.get('/news/current', async (req, res) => {
             return res.json(news);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 
 });
@@ -35,7 +35,7 @@ router.get('/news/static', async (req, res) => {
             return res.json(news);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 
 });
@@ -52,7 +52,7 @@ router.get('/news/old', async (req, res) => {
             return res.json(news);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 
 });
@@ -70,7 +70,7 @@ router.get('/news/:id=?', async (req, res) => {
             return res.json(news);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 

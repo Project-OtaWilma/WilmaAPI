@@ -18,7 +18,7 @@ router.get('/messages/inbox', async (req, res) => {
             res.json(session);
         })
         .catch(err => {
-            res.status(err.status).json(err);
+            res.status(err.status ?? 500).json(err);
         });
 });
 
@@ -33,7 +33,7 @@ router.get('/messages/new', async (req, res) => {
             res.json(session);
         })
         .catch(err => {
-            res.status(err.status).json(err);
+            res.status(err.status ?? 500).json(err);
         });
 });
 
@@ -48,7 +48,7 @@ router.get('/messages/outbox', async (req, res) => {
             res.json(session);
         })
         .catch(err => {
-            res.status(err.status).json(err);
+            res.status(err.status ?? 500).json(err);
         });
 });
 
@@ -63,7 +63,7 @@ router.get('/messages/appointments', async (req, res) => {
             res.json(session);
         })
         .catch(err => {
-            res.status(err.status).json(err);
+            res.status(err.status ?? 500).json(err);
         });
 });
 
@@ -78,7 +78,7 @@ router.get('/messages/announcements', async (req, res) => {
             res.json(session);
         })
         .catch(err => {
-            res.status(err.status).json(err);
+            res.status(err.status ?? 500).json(err);
         });
 });
 
@@ -94,7 +94,7 @@ router.get('/messages/:id', async (req, res) => {
             res.json(session);
         })
         .catch(err => {
-            res.status(err.status).json(err);
+            res.status(err.status ?? 500).json(err);
         });
 });
 

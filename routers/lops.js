@@ -17,7 +17,7 @@ router.get('/lops/:lops/courses/get/:id', async (req, res) => {
             res.json(course);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -32,7 +32,7 @@ router.get('/lops/:lops/courses/subject/:id', async (req, res) => {
             res.json(course);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -48,7 +48,7 @@ router.get('/lops/:lops/courses/list/', limiter.cacheable, async (req, res) => {
             res.json(list);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 

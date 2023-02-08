@@ -18,7 +18,7 @@ router.get('/course-tray/list', async (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -34,7 +34,7 @@ router.get('/course-tray/:id', async (req, res) => {
             res.json(tray);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -51,7 +51,7 @@ router.get('/course-tray/courses/:id', async (req, res) => {
             res.json(status);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -67,7 +67,7 @@ router.get('/course-tray/courses/info/:id', async (req, res) => {
             res.json(status);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -83,7 +83,7 @@ router.post('/course-tray/select/:id', async (req, res) => {
             res.json(status);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -100,7 +100,7 @@ router.post('/course-tray/deselect/:id', async (req, res) => {
             res.json(status);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 
@@ -113,7 +113,7 @@ router.get('/course-tray/selected/list', async (req, res) => {
             res.json(status);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 

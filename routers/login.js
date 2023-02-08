@@ -12,7 +12,7 @@ router.post('/login', limiter.strict, async (req, res) => {
 
     if (!request) return;
 
-    const session = await StartSession({ Username: request.username, Password: request.password }).catch(err => { res.status(err.status).json(err); });
+    const session = await StartSession({ Username: request.username, Password: request.password }).catch(err => { res.status(err.status ?? 500).json(err); });
     res.json(session);
 });
 
@@ -25,7 +25,7 @@ router.post('/logout', async (req, res) => {
         .then(status => {
             res.json(status);
         })
-        .catch(err => { res.status(err.status).json(err); });
+        .catch(err => { res.status(err.status ?? 500).json(err); });
 });
 
 router.post('/authenticate', async (req, res) => {
@@ -37,7 +37,7 @@ router.post('/authenticate', async (req, res) => {
         .then(status => {
             res.json(status);
         })
-        .catch(err => { res.status(err.status).json(err); });
+        .catch(err => { res.status(err.status ?? 500).json(err); });
 });
 
 
