@@ -252,9 +252,11 @@ const parseTrayList = (raw) => {
             case 'ul':
                 e.childNodes.filter(c => c.childNodes.length > 0 && c.childNodes).forEach(cc => {
                     const data = cc.childNodes.filter(ccc => ccc.rawTagName == 'a')[0];
-
+                    const status = data.attrs['title'] ?? 'Ilmoittautuminen mahdollista';
                     const tray = {
                         name: data.textContent.trim(),
+                        status: status,
+                        closed: status.includes('päättynyt'),
                         href: data.attrs.href
                     };
 
