@@ -256,7 +256,7 @@ const parseTrayList = (raw) => {
                     const tray = {
                         name: data.textContent.trim(),
                         status: status,
-                        closed: status.includes('päättynyt'),
+                        closed: status.includes('päättynyt') ||status.includes('alkaa'),
                         href: data.attrs.href
                     };
 
