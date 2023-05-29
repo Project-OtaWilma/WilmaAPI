@@ -3,7 +3,7 @@ const router = express.Router();
 const limiter = require('./rate-limit');
 const { schemas, validators } = require('./validator');
 
-const { teachers } = require('../database/database');
+const { teachers } = require('../database/teachers');
 
 router.get('/teachers/list', limiter.cacheable, async (req, res) => {
 
@@ -13,7 +13,7 @@ router.get('/teachers/list', limiter.cacheable, async (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(err.status).json(err);
+            return res.status(err.status ?? 500).json(err);
         })
 
 });
@@ -30,7 +30,7 @@ router.post('/teachers/rate', limiter.ignore, async (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(err.status).json(err);
+            return res.status(err.status ?? 500).json(err);
         })
 
 });
@@ -47,7 +47,7 @@ router.post('/teachers/comments/delete', limiter.ignore, async (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(err.status).json(err);
+            return res.status(err.status ?? 500).json(err);
         })
 
 });
@@ -66,7 +66,7 @@ router.get('/teachers/name/:name', async (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(err.status).json(err);
+            return res.status(err.status ?? 500).json(err);
         })
 });
 
@@ -86,7 +86,7 @@ router.get('/teachers/id/:id', async (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(err.status).json(err);
+            return res.status(err.status ?? 500).json(err);
         })
 });
 

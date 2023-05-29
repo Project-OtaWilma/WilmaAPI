@@ -1,6 +1,6 @@
 const request = require('request');
 const { homework } = require('../requests/responses');
-const { lops } = require('../database/database');
+const { lops } = require('../database/lops');
 
 
 const fetchHomework = (auth) => {

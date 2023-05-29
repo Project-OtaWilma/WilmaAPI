@@ -18,7 +18,7 @@ router.get('/gradebook', async (req, res) => {
             res.json(grades);
         })
         .catch(err => {
-            return res.status(err.status).json(err)
+            return res.status(err.status ?? 500).json(err)
         });
 });
 

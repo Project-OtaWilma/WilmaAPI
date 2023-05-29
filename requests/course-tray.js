@@ -118,7 +118,7 @@ const getSelectedCourses = (auth) => {
     return new Promise((resolve, reject) => {
         const options = {
             'method': 'GET',
-            'url': `https://espoo.inschool.fi/trays`,
+            'url': `https://espoo.inschool.fi/trays?viewall`,
             'headers': {
                 'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -252,9 +252,11 @@ const parseTrayList = (raw) => {
             case 'ul':
                 e.childNodes.filter(c => c.childNodes.length > 0 && c.childNodes).forEach(cc => {
                     const data = cc.childNodes.filter(ccc => ccc.rawTagName == 'a')[0];
-
+                    const status = data.attrs['title'] ?? 'Ilmoittautuminen mahdollista';
                     const tray = {
                         name: data.textContent.trim(),
+                        status: status,
+                        closed: status.includes('päättynyt') ||status.includes('alkaa'),
                         href: data.attrs.href
                     };
 
@@ -374,21 +376,33 @@ const parseCourseData = (raw) => {
 const parseSelectedList = (raw) => {
     const document = parse(raw);
     const result = [];
-    document.getElementsByTagName('tr').filter(tr => tr.childNodes.length >= 6 && tr.childNodes.length <= 7 ).forEach(tr => {
+
+    const ignore = [
+        '1899-1900(Otaniemen lukio, Espoo)'
+    ]
+
+    let current = null;
+
+    document.getElementsByTagName('tr').filter(tr => tr.childNodes.length >= 6 && tr.childNodes.length <= 8 ).forEach(tr => {
+        if (tr.childNodes.length == 8) {
+            current = tr.childNodes[0].textContent.trim();
+            return;
+        }
+
         const code = tr.childNodes.length == 6 ? tr.childNodes[2].textContent : tr.childNodes[3].textContent;
         const period = tr.childNodes.length == 6 ? tr.childNodes[1].textContent : tr.childNodes[2].textContent;
         const bar = tr.childNodes.length == 6 ? tr.childNodes[0].textContent : tr.childNodes[1].textContent;
 
-        if(!result.includes(code)) result.push({
+        if(!result.includes(code) && !ignore.includes(current)) result.push({
             code: code,
             period: period,
-            bar: bar
+            bar: bar,
+            tray: current
         }); 
     })
 
     return result
 }
-
 const parseCourseStudents = (raw) => {
     const field = raw.split('<th>').filter(c => c.includes('Ilmoittautuneita'));
 
@@ -401,9 +415,11 @@ const parseCourseStudents = (raw) => {
 
 const parsePostResponse = (raw) => {
     return new Promise((resolve, reject) => {
-
         if (raw.includes('srvError')) {
-            return reject({ err: "Couldn't update your selection", message: raw.trim().split('srvEndOfResponse()')[0].trim(), status: 303 });
+            const split = raw.trim().split("'");
+            const parsed = split.at(-2).trim();
+
+            return reject({ err: "Couldn't update your selection", error: parsed, status: 400 });
         }
 
         return resolve({ success: true });

@@ -23,9 +23,9 @@ const getRoomSchedule = (auth, roomId, date) => {
                     try {
                         const parsed = parseSchedule(response.body, date);
                         return resolve(parsed);
-                    } catch(e) {
+                    } catch (e) {
                         console.log(e);
-                        return reject({err: 'Failed to parse schedule', status: 500});
+                        return reject({ err: 'Failed to parse schedule', status: 500 });
                     }
                 })
                 .catch(err => {
@@ -55,9 +55,9 @@ const getRoomList = (auth) => {
                     try {
                         const parsed = parseRoomList(response.body);
                         return resolve(parsed);
-                    } catch(e) {
+                    } catch (e) {
                         console.log(e);
-                        return reject({err: 'Failed to parse schedule', status: 500});
+                        return reject({ err: 'Failed to parse schedule', status: 500 });
                     }
                 })
                 .catch(err => {
@@ -68,36 +68,40 @@ const getRoomList = (auth) => {
 }
 
 const parseSchedule = (raw, date) => {
-    const options = {'day': '2-digit', 'month': '2-digit', 'year': 'numeric'};
+    const options = { 'day': '2-digit', 'month': '2-digit', 'year': 'numeric' };
     const result = {};
 
     const document = parse(raw)
     const title = document.getElementsByTagName('title')[0];
-    const [roomNumber, ...nameRaw] = title.textContent.trim().split(' ').slice(1)
-    const name = nameRaw.join(' ').replace(' - Wilma', '');
+    const [roomNumber, ...nameRaw] = title.textContent.trim().split(' ').slice(1);
 
     result['roomNumber'] = roomNumber;
+    result['img'] = `https://beta.wilma-api.tuukk.dev/rooms/${roomNumber}.jpg`;
     result['name'] = nameRaw.join(' ').replace(' - Wilma', '');
 
     const jRaw = (document.getElementsByTagName('script').at(-1).textContent.trim());
     const list = JSON.parse(`[${jRaw.split('};')[0].split('[').pop().split(']')[0]}]`);
     const weekdays = ['Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai'];
 
-    const {range, number} = calculateWeekRange(date);
+    const { range, number } = calculateWeekRange(date);
 
     result['week'] = number;
     result['weekRange'] = range.map(d => d.toLocaleDateString('FI-fi', options));
- 
-    result.days = range.reduce((a, v) => ({...a, [v.toLocaleDateString('FI-fi', options)]: {
-        day: {date: v.getDay() + 1},
-        caption: `${weekdays[v.getDay()].substring(0, 2)} ${v.getDate()}.${v.getMonth()}`,
-        full: `${weekdays[v.getDay()]} ${v.getDate()}.${v.getMonth()}.${v.getFullYear()}`,
-        lessons: []
-    }}), {});
+
+    result.days = range.reduce((a, v) => ({
+        ...a, [v.toLocaleDateString('FI-fi', options)]: {
+            day: {
+                date: v.getDay(),
+                caption: `${weekdays[v.getDay()].substring(0, 2)} ${v.getDate()}.${v.getMonth() + 1}`,
+                full: `${weekdays[v.getDay()]} ${v.getDate()}.${v.getMonth() + 1}.${v.getFullYear()}`,
+            },
+            lessons: []
+        }
+    }), {});
 
     list.forEach(lesson => {
-        const weekday = [(lesson.X1 / 10000) + 1];
-        const date = range[weekday];
+        const weekday = [(lesson.X1 / 10000)];
+        const date = range[Math.floor(weekday)];
         const dateString = date.toLocaleDateString('FI-fi', options);
 
         result.days[dateString].lessons.push({
