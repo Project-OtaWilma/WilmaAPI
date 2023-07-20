@@ -62,13 +62,36 @@ const getScheduleByWeek = (auth, date) => {
                     return reject(err);
                 })
 
-            const parsed = parseSchedule(dateTimes, weekRange.dateRange, weekRange.number, exams)
+            const parsed = parseSchedule(dateTimes, weekRange.dateRange, weekRange.number, exams, true)
             return resolve(parsed);
         }
     });
 }
 
-const parseSchedule = (raw, dateTimes, weekNumber, exams) => {
+const getScheduleByMonth = (auth, date) => {
+    return new Promise(async (resolve, reject) => {
+        let dateTimes = [];
+        let exams = [];
+
+        const dateTime = new Date(date.getFullYear(), date.getMonth(), 1);
+        const dateRange = calculateDaysInMonth(date.getMonth(), date.getFullYear());
+
+        
+        await fetchSchedule(auth.Wilma2SID, auth.StudentID, dateTime)
+        .then(schedule => {
+            dateTimes = [...dateTimes, ...schedule.Schedule];
+            exams = [...exams, ...schedule.Exams];
+        })
+        .catch(err => {
+            return reject(err);
+        })
+        
+        const parsed = parseSchedule(dateTimes, dateRange, date.getMonth() + 1, exams, false)
+        return resolve(parsed);
+    });
+}
+
+const parseSchedule = (raw, dateTimes, number, exams, week) => {
     const options = {
         year: "numeric",
         month: "2-digit",
@@ -85,9 +108,13 @@ const parseSchedule = (raw, dateTimes, weekNumber, exams) => {
         'Launtai'
     ]
 
-    const result = {
-        week: weekNumber,
+    const result = week ? {
+        week: number,
         weekRange: dateTimes.map(d => d.toLocaleDateString('fi-FI', options)),
+        days: {}
+    } : {
+        month: number,
+        monthRange: dateTimes.map(d => d.toLocaleDateString('fi-FI', options)),
         days: {}
     }
 
@@ -188,8 +215,21 @@ const calculateWeekRange = (date) => {
     return result;
 }
 
+const calculateDaysInMonth = (month, year) => {
+    const date = new Date(year, month, 1);
+    const days = [];
+
+    while (date.getMonth() === month) {
+        days.push(new Date(date));
+        date.setDate(date.getDate() + 1);
+    }
+
+    return days;
+}
+
 const toMinutes = (timeStamp) => timeStamp.split(':').map(i => Number.parseInt(i)).reduce((i, j) => i * 60 + j);
 
 module.exports = {
-    getScheduleByWeek
+    getScheduleByWeek,
+    getScheduleByMonth
 }
