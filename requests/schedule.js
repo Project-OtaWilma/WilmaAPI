@@ -1,5 +1,6 @@
 const request = require('request');
 const { schedule } = require('../requests/responses');
+const { fetchCalendar } = require('./calendar');
 
 
 const fetchSchedule = (Wilma2SID, studentID, date) => {
@@ -62,13 +63,37 @@ const getScheduleByWeek = (auth, date) => {
                     return reject(err);
                 })
 
-            const parsed = parseSchedule(dateTimes, weekRange.dateRange, weekRange.number, exams)
+            const parsed = parseSchedule(dateTimes, weekRange.dateRange, weekRange.number, exams, {}, true)
             return resolve(parsed);
         }
     });
 }
 
-const parseSchedule = (raw, dateTimes, weekNumber, exams) => {
+const getScheduleByMonth = (auth, date) => {
+    return new Promise(async (resolve, reject) => {
+        let dateTimes = [];
+        let exams = [];
+        let events = {};
+
+        const dateTime = new Date(date.getFullYear(), date.getMonth(), 1);
+        const dateRange = calculateDaysInMonth(date.getMonth(), date.getFullYear());
+
+        Promise.all([fetchSchedule(auth.Wilma2SID, auth.StudentID, dateTime), fetchCalendar(dateRange.at(0), dateRange.at(-1))])
+        .then(result => {
+            const [schedule, events] = result;
+
+            const parsed = parseSchedule(schedule.Schedule, dateRange, date.getMonth() + 1, exams, events, false)
+            return resolve(parsed);
+        })
+        .catch(err => {
+            console.log(err);
+            return reject(err);
+        })
+
+    });
+}
+
+const parseSchedule = (raw, dateTimes, number, exams, events, week) => {
     const options = {
         year: "numeric",
         month: "2-digit",
@@ -85,9 +110,13 @@ const parseSchedule = (raw, dateTimes, weekNumber, exams) => {
         'Launtai'
     ]
 
-    const result = {
-        week: weekNumber,
+    const result = week ? {
+        week: number,
         weekRange: dateTimes.map(d => d.toLocaleDateString('fi-FI', options)),
+        days: {}
+    } : {
+        month: number,
+        monthRange: dateTimes.map(d => d.toLocaleDateString('fi-FI', options)),
         days: {}
     }
 
@@ -104,7 +133,8 @@ const parseSchedule = (raw, dateTimes, weekNumber, exams) => {
                     full: `${weekday} ${d}`
                 },
                 lessons: [],
-                exams: []
+                exams: [],
+                events: ((events ?? {})[d] ?? {}).events ?? []
             };
         }
 
@@ -188,8 +218,21 @@ const calculateWeekRange = (date) => {
     return result;
 }
 
+const calculateDaysInMonth = (month, year) => {
+    const date = new Date(year, month, 1);
+    const days = [];
+
+    while (date.getMonth() === month) {
+        days.push(new Date(date));
+        date.setDate(date.getDate() + 1);
+    }
+
+    return days;
+}
+
 const toMinutes = (timeStamp) => timeStamp.split(':').map(i => Number.parseInt(i)).reduce((i, j) => i * 60 + j);
 
 module.exports = {
-    getScheduleByWeek
+    getScheduleByWeek,
+    getScheduleByMonth
 }

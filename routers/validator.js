@@ -15,6 +15,10 @@ const getScheduleByDate = Joi.object({
     date: Joi.date().required()
 })
 
+const getEventsByDate = Joi.object({
+    start: Joi.date().required(),
+    end: Joi.date().required()
+})
 
 const sendMessage = Joi.object({
     receiverType: Joi.string().valid('personnel', 'teacher').required(),
@@ -135,6 +139,7 @@ module.exports = {
         },
         schedule: {
             getScheduleByDate,
+            getEventsByDate
         },
         messages: {
             sendMessage,
