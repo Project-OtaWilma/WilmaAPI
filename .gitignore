@@ -18,3 +18,7 @@ config.json
 
 #whitelist
 account/whitelist.json
+
+#google credentials
+google/credentials.json
+google/token.json
