@@ -62,7 +62,10 @@ const parseAbsences = (raw) => {
         const date = l.find(cc => !(!cc.attrs['align'])).textContent.trim().split('.').reverse().join('-');
         const raw = (new Date(date)).toLocaleDateString('Fi-fi', {year: 'numeric', month: '2-digit', day: '2-digit'}).split('.').reverse().join('-');
 
-        if (!result[raw]) result[raw] = [];
+        if (!result[raw]) result[raw] = {
+            groups: [],
+            events: []
+        };
 
         l.filter(cc => (cc.attrs['class'] ?? '').includes('event')).forEach(cc => {
             let code = null;
@@ -92,7 +95,8 @@ const parseAbsences = (raw) => {
                 description: description ?? null,
             };
 
-            result[raw].push(event)
+            result[raw].groups.push(code);
+            result[raw].events.push(event);
         });
 
     })
