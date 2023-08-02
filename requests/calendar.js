@@ -2,44 +2,64 @@ const { authorize } = require('../google/authorize');
 const { google } = require('googleapis');
 
 const SCHOOL_CALENDAR_ID = 'edu.espoo.fi_eesj9p9mldus3sdabj39m306gg@group.calendar.google.com';
+const SESSION_CACHE = {
+    dateRange: [],
+    events: [],
+    cacheAge: new Date()
+};
 
 const fetchCalendar = (start = new Date(), end = new Date()) => {
-    return new Promise((resolve, reject) => {
-        const dateOptions = {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit"
-        };
+    const timeOptions = {
+        hour: '2-digit',
+        minute: '2-digit'
+    };
 
-        const timeOptions = {
-            hour: '2-digit',
-            minute: '2-digit'
-        };
+    return new Promise((resolve, reject) => {
+        const dateRange = calculateDateRange(start, end).map(date => toWilmaFormat(date));
 
         const result = {};
 
         authorize().then(async auth => {
             const calendar = google.calendar({version: 'v3', auth});
+            let events = [];
 
-            const res = await calendar.events.list({
-                calendarId: SCHOOL_CALENDAR_ID,
-                timeMin: start,
-                timeMax: end,
-                maxResults: 50,
-                singleEvents: true,
-                orderBy: 'startTime',
-            });
+            const s = toWilmaFormat(start);
+            const e = toWilmaFormat(end);
 
-            const events = res.data.items;
+            const cached = SESSION_CACHE.dateRange.includes(s) && SESSION_CACHE.dateRange.includes(e);
+            
+            if (cached) {
+                events = SESSION_CACHE.events;
+            } else {
+                await calendar.events.list({
+                    calendarId: SCHOOL_CALENDAR_ID,
+                    timeMin: start,
+                    timeMax: end,
+                    maxResults: 50,
+                    singleEvents: true,
+                    orderBy: 'startTime',
+                }).then(res => {
+                    console.log(`> Fetch calendar for ${s} - ${e}`);
+                    events = res.data.items;
+                    SESSION_CACHE.events = events;
+                    SESSION_CACHE.dateRange = [...SESSION_CACHE.dateRange, ...dateRange.filter(d => !SESSION_CACHE.dateRange.includes(d))];
+                })
+                .catch(err => {
+                    console.log(err);
+                    return reject({err: "failed to fetch Google's calendar API", status: 500});
+                });
+            }
+
+
             if (!events || events.length === 0) {
                 return resolve(result);
             }
         
-            events.forEach((event, i) => {
+            events.forEach(event => {
                 if (event.start.dateTime) {
                     const start = new Date(event.start.dateTime);
                     const end = new Date(event.end.dateTime);
-                    const raw = start.toLocaleDateString('fi-FI', dateOptions).split('.').reverse().join('-');
+                    const raw = toWilmaFormat(start);
 
                     const startRaw = start.toLocaleTimeString('fi-FI', timeOptions);
                     const endRaw = end.toLocaleTimeString('fi-FI', timeOptions);
@@ -58,11 +78,11 @@ const fetchCalendar = (start = new Date(), end = new Date()) => {
                     const end = new Date(event.end.date);
                     const dateRange = calculateDateRange(start, end);
 
-                    const startRaw = start.toLocaleDateString('fi-FI', dateOptions).split('.').reverse().join('-');
-                    const endRaw = end.toLocaleDateString('fi-FI', dateOptions).split('.').reverse().join('-');
+                    const startRaw = toWilmaFormat(start);
+                    const endRaw = toWilmaFormat(end);
 
                     dateRange.forEach(date => {
-                        const raw = date.toLocaleDateString('fi-FI', dateOptions).split('.').reverse().join('-');
+                        const raw = toWilmaFormat(date);
 
                         if (!result[raw]) result[raw] = {date: raw, events: []}
                         result[raw].events.push({
@@ -98,6 +118,14 @@ const calculateDateRange = (start = new Date(), end = new Date()) => {
 
     return result.length <= 2 ? [start] : result;
 }
+
+
+
+const toWilmaFormat = date => date.toLocaleDateString('Fi-fi', {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+}).split('.').reverse().join('-');
 
 module.exports = {
     fetchCalendar

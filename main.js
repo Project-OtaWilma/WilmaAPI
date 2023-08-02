@@ -13,6 +13,9 @@ const teachers = require('./routers/teachers')
 const version = require('./routers/version');
 const homework = require('./routers/homework');
 const rooms = require('./routers/rooms');
+const absences = require('./routers/absences');
+
+const { authorize } = require('./google/authorize');
 
 const limiter = require('./routers/rate-limit');
 
@@ -38,8 +41,17 @@ app.use('/api/', teachers, limiter.standard);
 app.use('/api/', version, limiter.standard);
 app.use('/api/', homework, limiter.standard);
 app.use('/api/', rooms, limiter.standard);
+app.use('/api/', absences, limiter.standard);
 
-app.listen(PORT, () => {
-    console.log(`Listening on ${PORT}...`);
-});
+// initialize google calendar authorization
+authorize()
+.then(() => {
+    app.listen(PORT, () => {
+        console.log(`Listening on ${PORT}...`);
+    });
+})
+.catch(err => {
+    throw err;
+})
+
 
