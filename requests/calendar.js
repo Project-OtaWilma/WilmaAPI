@@ -38,6 +38,7 @@ const fetchCalendar = (start = new Date(), end = new Date()) => {
                     maxResults: 50,
                     singleEvents: true,
                     orderBy: 'startTime',
+                    timeZone: 'EEST'
                 }).then(res => {
                     console.log(`> Fetch calendar for ${s} - ${e}`);
                     events = res.data.items;
