@@ -41,7 +41,7 @@ const fetchCalendar = (start = new Date(), end = new Date()) => {
                 }).then(res => {
                     console.log(`> Fetch calendar for ${s} - ${e}`);
                     events = res.data.items;
-                    SESSION_CACHE.events = events;
+                    SESSION_CACHE.events = [...SESSION_CACHE.events, ...events.filter(e => !SESSION_CACHE.events.find(event => event.id == e.id))];
                     SESSION_CACHE.dateRange = [...SESSION_CACHE.dateRange, ...dateRange.filter(d => !SESSION_CACHE.dateRange.includes(d))];
                 })
                 .catch(err => {
