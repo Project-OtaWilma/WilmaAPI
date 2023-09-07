@@ -35,9 +35,6 @@ const GenerateSessiondDetails = () => {
 
 const Login = (login = { Username: String, Password: String, SessionID: String, Wilma2LoginID: String }) => {
     return new Promise((resolve, reject) => {
-
-        // if (!whitelist.includes(login.Username)) return reject({ err: 'You are not whitelisted for OtaWilma [CLOSED BETA]', status: 401 });
-
         const options = {
             'method': 'POST',
             'url': 'https://espoo.inschool.fi/login',
@@ -105,7 +102,7 @@ const StartSession = async (login = { Username: String, Password: String, Curren
                 Username: login.Username,
                 Password: login.Password,
                 SessionID: details.value[0],
-                Wilma2LoginID: details.value.raw,
+                Wilma2LoginID: details.raw, // You gotta be fucking kidding me
             }).then(session => {
                 generateStudentID(session.value[0])
                     .then(studentID => {
