@@ -40,6 +40,42 @@ const getGradeBook = (auth, limit, filter) => {
     });
 }
 
+const getYOresults = (auth) => {
+    return new Promise((resolve, reject) => {
+        var options = {
+            'method': 'GET',
+            'url': `https://espoo.inschool.fi/forms/49`,
+            'headers': {
+                'Cookie': `Wilma2SID=${auth.Wilma2SID}`,
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            'followRedirect': false,
+        };
+
+
+        request(options, function (error, response) {
+            if (error) return reject({ error: 'Failed to retrieve gradebook', status: 501 });
+
+            // Wilma2SID was incorrect
+            grades.validateGradebookGet(response)
+                .then(() => {
+                    try {
+                        const gradebook = parseYOreults(response.body);
+                        return resolve(gradebook);
+                    } catch (err) {
+                        console.log(err);
+                        return reject({ err: 'Failed to parse yo-info', message: err, status: 500 });
+                    }
+                })
+                .catch(err => {
+
+                    return reject(err);
+                })
+
+        });
+    });
+}
+
 /*
     Have fun...
 */
@@ -213,6 +249,30 @@ const parseGrades = (raw, limit, filter) => {
     return result
 }
 
+const parseYOreults = (raw) => {
+    const document = parse(raw);
+    const result = [];
+
+    const table = document.getElementsByTagName('table').at(1);
+    table.getElementsByTagName('tr').slice(1).forEach(column => {
+        const [subject, date, info, grade, rejected, points] = column.childNodes.map(c => c.textContent);
+
+        result.push({
+            subject: {
+                full: subject,
+                short: subject.split(' ').at(0)
+            },
+            date: date == '----' ? null : date,
+            info: info == '----' ? null : info,
+            grade: grade == '----' ? null : grade,
+            rejected: rejected == '----' ? null : rejected,
+            points: points == '----' ? null : points
+        })
+    })
+    return result;
+}
+
 module.exports = {
     getGradeBook,
+    getYOresults
 }
