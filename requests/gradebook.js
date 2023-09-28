@@ -60,7 +60,7 @@ const getYOresults = (auth) => {
             grades.validateGradebookGet(response)
                 .then(() => {
                     try {
-                        const gradebook = parseYOreults(response.body);
+                        const gradebook = parseYOresults(response.body);
                         return resolve(gradebook);
                     } catch (err) {
                         console.log(err);
@@ -249,13 +249,15 @@ const parseGrades = (raw, limit, filter) => {
     return result
 }
 
-const parseYOreults = (raw) => {
+const parseYOresults = (raw) => {
     const document = parse(raw);
     const result = [];
 
     const table = document.getElementsByTagName('table').at(1);
     table.getElementsByTagName('tr').slice(1).forEach(column => {
         const [subject, date, info, grade, rejected, points] = column.childNodes.map(c => c.textContent);
+
+        const [pointsOverview, totalPoints] = points.split('=').map(n => n.trim());
 
         result.push({
             subject: {
@@ -266,7 +268,8 @@ const parseYOreults = (raw) => {
             info: info == '----' ? null : info,
             grade: grade == '----' ? null : grade,
             rejected: rejected == '----' ? null : rejected,
-            points: points == '----' ? null : points
+            points: points == '----' ? null : +totalPoints,
+            pointsOvreview: points == '----' ? null : pointsOverview
         })
     })
     return result;
