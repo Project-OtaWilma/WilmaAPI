@@ -9,7 +9,7 @@ const message = { err: 'rate-limit violation', status: 429 }
 */
 const standard = rateLimit({
     windowMs: 10 * 1000,
-    max: 100,
+    max: 200,
     standardHeaders: true,
     message: {...message, ...{info: 'standard'}}
 });
@@ -30,8 +30,8 @@ const cacheable = rateLimit({
     (25 request / 1 hour)
 */
 const strict = rateLimit({
-    windowMs: 60 * 60 * 1000,
-    max: 25,
+    windowMs: 30 * 60 * 1000,
+    max: 50,
     standardHeaders: true,
     message: {...message, ...{info: 'strict'}}
 })
