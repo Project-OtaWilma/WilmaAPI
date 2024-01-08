@@ -1,10 +1,12 @@
 const request = require('request');
 const { schedule } = require('../requests/responses');
 const { parse } = require('node-html-parser')
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
 
 
 const getRoomSchedule = (auth, roomId, date) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/profiles/rooms/${roomId}?date=${date.toLocaleDateString('FI-fi')}`,
@@ -16,15 +18,20 @@ const getRoomSchedule = (auth, roomId, date) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve schedule', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve schedule', status: 501 });
+            }
 
-            schedule.validateScheduleGet(response)
+            schedule.validateScheduleGet(response, req)
                 .then(() => {
                     try {
                         const parsed = parseSchedule(response.body, date);
+                        req.onRequestFinished();
                         return resolve(parsed);
                     } catch (e) {
                         console.log(e);
+                        req.onRequestError(500, e);
                         return reject({ err: 'Failed to parse schedule', status: 500 });
                     }
                 })
@@ -37,6 +44,7 @@ const getRoomSchedule = (auth, roomId, date) => {
 
 const getRoomList = (auth) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/profiles/rooms/`,
@@ -48,15 +56,20 @@ const getRoomList = (auth) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve schedule', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve schedule', status: 501 });
+            }
 
-            schedule.validateScheduleGet(response)
+            schedule.validateScheduleGet(response, req)
                 .then(() => {
                     try {
                         const parsed = parseRoomList(response.body);
+                        req.onRequestFinished();
                         return resolve(parsed);
                     } catch (e) {
                         console.log(e);
+                        req.onRequestError(500, e);
                         return reject({ err: 'Failed to parse schedule', status: 500 });
                     }
                 })

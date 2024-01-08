@@ -1,11 +1,14 @@
 const { object } = require('joi');
 const { parse } = require('node-html-parser');
 const request = require('request');
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
 
 const { grades } = require('../requests/responses');
 
 const getGradeBook = (auth, limit, filter) => {
     return new Promise((resolve, reject) => {
+
+        const req = new MultipartNetworkRequest().init();
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/choices?view=gradebook`,
@@ -18,21 +21,26 @@ const getGradeBook = (auth, limit, filter) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve gradebook', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve gradebook', status: 501 });
+            }
 
             // Wilma2SID was incorrect
-            grades.validateGradebookGet(response)
+            grades.validateGradebookGet(response, req)
                 .then(() => {
                     try {
                         const gradebook = parseGrades(response.body, limit, filter);
+
+                        req.onRequestFinished();
                         return resolve(gradebook);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse grades', message: err, status: 500 });
                     }
                 })
                 .catch(err => {
-
                     return reject(err);
                 })
 
@@ -42,6 +50,7 @@ const getGradeBook = (auth, limit, filter) => {
 
 const getYOresults = (auth) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/forms/49`,
@@ -57,13 +66,15 @@ const getYOresults = (auth) => {
             if (error) return reject({ error: 'Failed to retrieve gradebook', status: 501 });
 
             // Wilma2SID was incorrect
-            grades.validateGradebookGet(response)
+            grades.validateGradebookGet(response, req)
                 .then(() => {
                     try {
                         const gradebook = parseYOresults(response.body);
+                        req.onRequestFinished();
                         return resolve(gradebook);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse yo-info', message: err, status: 500 });
                     }
                 })

@@ -1,10 +1,12 @@
 const request = require('request');
 const { schedule } = require('../requests/responses');
 const { fetchCalendar } = require('./calendar');
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
 
 
 const fetchSchedule = (Wilma2SID, studentID, date) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const form = {
             'date': `${1}.${date.getMonth() + 1}.${date.getFullYear()}`,
             'getfullmonth': true,
@@ -24,15 +26,19 @@ const fetchSchedule = (Wilma2SID, studentID, date) => {
 
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve schedule', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve schedule', status: 501 });
+            }
 
-            schedule.validateScheduleGet(response)
+            schedule.validateScheduleGet(response, req)
                 .then(() => {
                     try {
                         const schedule = JSON.parse(response.body);
-                        return resolve(schedule);
+                        return resolve([schedule, req]);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse schedule', message: err, status: 500 });
                     }
                 })
@@ -47,6 +53,7 @@ const getScheduleByWeek = (auth, date) => {
     return new Promise(async (resolve, reject) => {
         let dateTimes = [];
         let exams = [];
+        let request = null;
 
         const weekRange = calculateWeekRange(date);
 
@@ -55,7 +62,8 @@ const getScheduleByWeek = (auth, date) => {
             const dateTime = new Date(date.getFullYear(), (month - 1), 2);
 
             await fetchSchedule(auth.Wilma2SID, auth.StudentID, dateTime)
-                .then(schedule => {
+                .then(([schedule, req]) => {
+                    request = req;
                     dateTimes = [...dateTimes, ...schedule.Schedule];
                     exams = [...exams, ...schedule.Exams];
                 })
@@ -64,6 +72,7 @@ const getScheduleByWeek = (auth, date) => {
                 })
 
             const parsed = parseSchedule(dateTimes, weekRange.dateRange, weekRange.number, exams, {}, true)
+            if (request) request.onRequestFinished();
             return resolve(parsed);
         }
     });
@@ -80,9 +89,10 @@ const getScheduleByMonth = (auth, date) => {
 
         Promise.all([fetchSchedule(auth.Wilma2SID, auth.StudentID, dateTime), fetchCalendar(dateRange.at(0), dateRange.at(-1))])
         .then(result => {
-            const [schedule, events] = result;
+            const [[schedule, req], events] = result;
 
             const parsed = parseSchedule(schedule.Schedule, dateRange, date.getMonth() + 1, exams, events, false)
+            req.onRequestFinished();
             return resolve(parsed);
         })
         .catch(err => {

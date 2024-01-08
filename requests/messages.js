@@ -1,5 +1,6 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
 
 const { messages } = require('./responses');
 
@@ -12,6 +13,7 @@ const sendMessage = (Wilma2SID, studentID, receiverType, receiver, subject, cont
     }
 
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const form = {
             'formkey': studentID,
             'wysiwyg': 'ckeditor',
@@ -34,14 +36,19 @@ const sendMessage = (Wilma2SID, studentID, receiverType, receiver, subject, cont
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to post message', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to post message', status: 501 });
+            }
 
             // Validate response
-            messages.validateMessagePost(response)
+            messages.validateMessagePost(response, req)
                 .then(() => {
+                    req.requestFinished();
                     return resolve({ status: response.statusCode });
                 })
                 .catch(err => {
+                    req.onRequestError(500, err);
                     return reject(err)
                 });
         });
@@ -100,6 +107,7 @@ const deleteMessage = (Wilma2SID, studentID, content) => {
 
 const getReceiverList = (Wilma2SID) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/recipients?select_recipients&format=json`,
@@ -111,17 +119,22 @@ const getReceiverList = (Wilma2SID) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the list containing receivers', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve the list containing receivers', status: 501 });
+            }
 
             // Validate response
-            messages.validateMessageGet(response)
+            messages.validateMessageGet(response, req)
                 .then(() => {
                     try {
                         const json = JSON.parse(response.body);
                         const parsed = parseReceiverList(json);
+                        req.onRequestFinished();
                         return resolve(parsed);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse list of recipients', status: 500 })
                     }
                 })
@@ -135,6 +148,7 @@ const getReceiverList = (Wilma2SID) => {
 
 const getMessageInbox = (auth, limit) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/list`,
@@ -146,17 +160,22 @@ const getMessageInbox = (auth, limit) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            }
 
             // Validate response
-            messages.validateMessageGet(response)
+            messages.validateMessageGet(response, req)
                 .then(() => {
                     try {
                         const json = JSON.parse(response.body);
                         const parsed = parseMessageList(json.Messages, limit);
+                        req.onRequestFinished();
                         return resolve(parsed);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse message-inbox', status: 500 })
                     }
                 })
@@ -170,6 +189,7 @@ const getMessageInbox = (auth, limit) => {
 
 const getNewMessages = (auth, limit) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/list`,
@@ -181,17 +201,22 @@ const getNewMessages = (auth, limit) => {
         };
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve new messages', status: 501 });
+            }
 
             // Validate response
-            messages.validateMessageGet(response)
+            messages.validateMessageGet(response, req)
                 .then(() => {
                     try {
                         const json = JSON.parse(response.body);
                         const parsed = parseNewMessages(json.Messages, limit);
+                        req.onRequestFinished();
                         return resolve(parsed);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse message-inbox', status: 500 })
                     }
                 })
@@ -205,6 +230,7 @@ const getNewMessages = (auth, limit) => {
 
 const getMessageOutbox = (auth, limit) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/list/outbox`,
@@ -216,17 +242,22 @@ const getMessageOutbox = (auth, limit) => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            }
 
             // Validate response
-            messages.validateMessageGet(response)
+            messages.validateMessageGet(response, req)
                 .then(() => {
                     try {
                         const json = JSON.parse(response.body);
                         const parsed = parseMessageList(json.Messages, limit);
+                        req.onRequestFinished();
                         return resolve(parsed);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse message-outbox', status: 500 })
                     }
                 })
@@ -239,6 +270,7 @@ const getMessageOutbox = (auth, limit) => {
 
 const getAppointments = (auth, limit) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/list/appointments`,
@@ -250,16 +282,21 @@ const getAppointments = (auth, limit) => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            }
 
             // Validate response
-            messages.validateMessageGet(response)
+            messages.validateMessageGet(response, req)
                 .then(() => {
                     try {
                         const json = JSON.parse(response.body);
                         const parsed = parseAppointmentList(json.Messages, limit);
+                        req.onRequestFinished();
                         return resolve(parsed);
                     } catch (err) {
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse appointments-list', status: 500 })
                     }
                 })
@@ -278,9 +315,9 @@ const getAnnouncements = (limit) => {
 
 const getMessageByID = (auth, id) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
 
         if (Object.keys(announcements.messages).includes(id)) return resolve([announcements.messages[id]]);
-
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/messages/${id}?format=json`,
@@ -292,18 +329,22 @@ const getMessageByID = (auth, id) => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve inbox', status: 501 });
+            }
 
-
-            messages.validateMessageGetByID(response)
+            messages.validateMessageGetByID(response, req)
                 .then(() => {
                     try {
                         const content = JSON.parse(response.body);
                         const parsed = parseMessageContent(content.messages);
+                        req.onRequestFinished();
                         return resolve(parsed);
 
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse message content', message: err, status: 500 })
                     }
                 })

@@ -1,9 +1,11 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
 const { courseTray } = require('../requests/responses');
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
 
 const getTrayList = (auth) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/selection/view`,
@@ -16,14 +18,19 @@ const getTrayList = (auth) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve list of available trays', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve list of available trays', status: 501 });
+            }
 
-            courseTray.validateCourseTrayGetList(response)
+            courseTray.validateCourseTrayGetList(response, req)
                 .then(() => {
                     try {
                         const list = parseTrayList(response.body);
+                        req.onRequestFinished();
                         return resolve(list);
                     } catch (err) {
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse course-tray', message: err, status: 500 });
                     }
                 })
@@ -36,6 +43,7 @@ const getTrayList = (auth) => {
 
 const getTrayByPeriod = (auth, target) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const form = {
             'message': 'open-tray',
             'target': target,
@@ -57,17 +65,22 @@ const getTrayByPeriod = (auth, target) => {
         };
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the tray', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve the tray', status: 501 });
+            }
 
             // Wilma2SID was incorrect
 
-            courseTray.validateCourseTrayGetByPeriod(response)
+            courseTray.validateCourseTrayGetByPeriod(response, req)
                 .then(() => {
                     try {
                         const list = parseTray(response.body);
+                        req.onRequestFinished();
                         return resolve(list);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse course-tray', message: err, status: 500 });
                     }
                 })
@@ -81,7 +94,7 @@ const getTrayByPeriod = (auth, target) => {
 
 const getCourseByID = (auth, target, static) => {
     return new Promise((resolve, reject) => {
-
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/selection/getback?message=group-info&target=${target}`,
@@ -94,15 +107,20 @@ const getCourseByID = (auth, target, static) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the course information', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve the course information', status: 501 });
+            }
 
-            courseTray.validateCourseTrayGetCourse(response)
+            courseTray.validateCourseTrayGetCourse(response, req)
                 .then(() => {
                     try {
                         const list = static ? parseCourseData(response.body) : parseCourseStudents(response.body);
+                        req.onRequestFinished();
                         return resolve(list);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse the course information', message: err, status: 500 });
                     }
                 })
@@ -116,6 +134,7 @@ const getCourseByID = (auth, target, static) => {
 
 const getSelectedCourses = (auth) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/trays?viewall`,
@@ -128,14 +147,19 @@ const getSelectedCourses = (auth) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve list of available trays', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve list of available trays', status: 501 });
+            }
 
-            courseTray.validateCourseTrayGetSelectedCourses(response)
+            courseTray.validateCourseTrayGetSelectedCourses(response, req)
                 .then(() => {
                     try {
                         const list = parseSelectedList(response.body);
+                        req.onRequestFinished();
                         return resolve(list);
                     } catch (err) {
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse course-tray', message: err, status: 500 });
                     }
                 })
@@ -148,6 +172,7 @@ const getSelectedCourses = (auth) => {
 
 const selectCourse = (auth, target) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const form = {
             'message': 'pick-group',
             'target': target,
@@ -169,15 +194,20 @@ const selectCourse = (auth, target) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the tray', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve the tray', status: 501 });
+            }
 
-            courseTray.validateCourseTrayGetByPeriod(response)
+            courseTray.validateCourseTrayGetByPeriod(response, req)
                 .then(() => {
                     try {
                         const status = parsePostResponse(response.body);
+                        req.onRequestFinished();
                         return resolve(status);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse response', message: err, status: 500 });
                     }
                 })
@@ -191,6 +221,7 @@ const selectCourse = (auth, target) => {
 
 const deSelectCourse = (auth, target) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const form = {
             'message': 'unpick-group',
             'target': target,
@@ -212,16 +243,21 @@ const deSelectCourse = (auth, target) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve the tray', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve the tray', status: 501 });
+            }
 
 
-            courseTray.validateCourseTrayGetByPeriod(response)
+            courseTray.validateCourseTrayGetByPeriod(response, req)
                 .then(() => {
                     try {
                         const status = parsePostResponse(response.body);
+                        req.onRequestFinished();
                         return resolve(status);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse response', message: err, status: 500 });
                     }
                 })

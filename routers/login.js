@@ -19,7 +19,7 @@ router.post('/login', limiter.strict, async (req, res) => {
 router.post('/logout', async (req, res) => {
     // validation
     const auth = await authentication.validateToken(req, res);
-    if (!auth) return;
+    if (!auth) return;  
 
     Logout(auth)
         .then(status => {

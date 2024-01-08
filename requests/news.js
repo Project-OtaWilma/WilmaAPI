@@ -1,10 +1,12 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
 
 const { news } = require('../requests/responses');
 
 const getNewsInbox = (auth, path, limit) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/news`,
@@ -17,15 +19,20 @@ const getNewsInbox = (auth, path, limit) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve news', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve news', status: 501 });
+            }
 
-            news.validateNewsGet(response)
+            news.validateNewsGet(response, req)
                 .then(() => {
                     try {
                         const list = parseNewsInbox(response.body, path, limit);
+                        req.onRequestFinished();
                         return resolve(list);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse the list of news', message: err, status: 500 });
                     }
                 })
@@ -38,6 +45,7 @@ const getNewsInbox = (auth, path, limit) => {
 
 const getNewsById = (auth, NewsID) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/news/printable/${NewsID}`,
@@ -50,14 +58,19 @@ const getNewsById = (auth, NewsID) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve news', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve news', status: 501 });
+            }
 
-            news.validateNewsGetByID(response)
+            news.validateNewsGetByID(response, req)
                 .then(() => {
                     try {
                         const list = parseNewsById(response.body);
+                        req.onRequestFinished();
                         return resolve(list);
                     } catch (err) {
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse the contant of the news', message: err, status: 500 });
                     }
                 })

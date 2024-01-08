@@ -1,5 +1,6 @@
 const { authorize } = require('../google/authorize');
 const { google } = require('googleapis');
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
 
 const SCHOOL_CALENDAR_ID = 'edu.espoo.fi_eesj9p9mldus3sdabj39m306gg@group.calendar.google.com';
 const SESSION_CACHE = {
@@ -15,11 +16,13 @@ const fetchCalendar = (start = new Date(), end = new Date()) => {
     };
 
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const dateRange = calculateDateRange(start, end).map(date => toWilmaFormat(date));
 
         const result = {};
 
         authorize().then(async auth => {
+            req.onRequestHandled();
             const calendar = google.calendar({version: 'v3', auth});
             let events = [];
 
@@ -98,6 +101,7 @@ const fetchCalendar = (start = new Date(), end = new Date()) => {
 
             });
 
+            req.onRequestFinished();
             return resolve(result);
         })
         .catch(err => {

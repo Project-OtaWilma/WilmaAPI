@@ -2,8 +2,11 @@ const { parse } = require('node-html-parser');
 const request = require('request');
 const { absences } = require('./responses');
 
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
+
 const getAbsenceList = (auth, start = new Date(), end = new Date()) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         var options = {
             'method': 'GET',
             'url': `https://espoo.inschool.fi/attendance/view?range=-3&first=${start.toLocaleDateString('Fi-fi')}&last=${end.toLocaleDateString('Fi-fi')}`,
@@ -16,16 +19,20 @@ const getAbsenceList = (auth, start = new Date(), end = new Date()) => {
 
 
         request(options, function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve gradebook', status: 501 });
-
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve gradebook', status: 501 });
+            }
             
-            absences.validateAbsencesGet(response)
+            absences.validateAbsencesGet(response, req)
                 .then(() => {
                     try {
                         const list = parseAbsences(response.body);
+                        req.onRequestFinished();
                         return resolve(list);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse absences', message: err, status: 500 });
                     }
                 })

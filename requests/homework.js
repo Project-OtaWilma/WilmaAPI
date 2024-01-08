@@ -1,10 +1,12 @@
 const request = require('request');
 const { homework } = require('../requests/responses');
 const { lops } = require('../database/lops');
+const { MultipartNetworkRequest } = require('express-runtime-dependency');
 
 
 const fetchHomework = (auth) => {
     return new Promise((resolve, reject) => {
+        const req = new MultipartNetworkRequest().init();
         const date = new Date();
 
         const form = {
@@ -26,15 +28,20 @@ const fetchHomework = (auth) => {
 
 
         request(options, async function (error, response) {
-            if (error) return reject({ error: 'Failed to retrieve schedule', status: 501 });
+            if (error) {
+                req.onRequestError(404);
+                return reject({ error: 'Failed to retrieve schedule', status: 501 });
+            }
 
-            homework.validateHomeworkGet(response)
+            homework.validateHomeworkGet(response, req)
                 .then(() => {
                     try {
                         const overview = JSON.parse(response.body);
+                        req.onRequestFinished();
                         return resolve(overview.Groups);
                     } catch (err) {
                         console.log(err);
+                        req.onRequestError(500, err);
                         return reject({ err: 'Failed to parse schedule', message: err, status: 500 });
                     }
                 })
