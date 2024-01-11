@@ -1,7 +1,7 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
 const { courseTray } = require('../requests/responses');
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 
 const getTrayList = (auth) => {
     return new Promise((resolve, reject) => {

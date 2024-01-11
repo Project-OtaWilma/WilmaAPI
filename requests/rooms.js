@@ -1,7 +1,7 @@
 const request = require('request');
 const { schedule } = require('../requests/responses');
 const { parse } = require('node-html-parser')
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 
 
 const getRoomSchedule = (auth, roomId, date) => {

@@ -1,6 +1,6 @@
 const { parse } = require('node-html-parser');
 const request = require('request');
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 
 const { news } = require('../requests/responses');
 

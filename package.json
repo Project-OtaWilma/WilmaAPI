@@ -10,10 +10,11 @@
     "license": "ISC",
     "dependencies": {
         "@google-cloud/local-auth": "^2.1.0",
+        "@tuukezu/express-runtime-dependency": "github:tuukezu/express-runtime-dependency",
+        "@tuukezu/joi-express": "github:TuuKeZu/joi-express",
         "cors": "^2.8.5",
         "express": "^4.18.1",
         "express-rate-limit": "^6.4.0",
-        "express-runtime-dependency": "file:../../express-runtime-dependency",
         "googleapis": "^105.0.0",
         "joi": "^17.6.0",
         "jsonwebtoken": "^8.5.1",

@@ -2,7 +2,7 @@ const { parse } = require('node-html-parser');
 const request = require('request');
 const { absences } = require('./responses');
 
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 
 const getAbsenceList = (auth, start = new Date(), end = new Date()) => {
     return new Promise((resolve, reject) => {

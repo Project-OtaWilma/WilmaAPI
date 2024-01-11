@@ -1,4 +1,4 @@
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 const utility = require('../utility/utility');
 
 

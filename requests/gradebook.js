@@ -1,7 +1,7 @@
 const { object } = require('joi');
 const { parse } = require('node-html-parser');
 const request = require('request');
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 
 const { grades } = require('../requests/responses');
 

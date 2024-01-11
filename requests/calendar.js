@@ -1,6 +1,6 @@
 const { authorize } = require('../google/authorize');
 const { google } = require('googleapis');
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 
 const SCHOOL_CALENDAR_ID = 'edu.espoo.fi_eesj9p9mldus3sdabj39m306gg@group.calendar.google.com';
 const SESSION_CACHE = {

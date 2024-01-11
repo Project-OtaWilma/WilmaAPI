@@ -1,7 +1,7 @@
 const request = require('request');
 const { schedule } = require('../requests/responses');
 const { fetchCalendar } = require('./calendar');
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 
 
 const fetchSchedule = (Wilma2SID, studentID, date) => {

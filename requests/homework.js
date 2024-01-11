@@ -1,7 +1,7 @@
 const request = require('request');
 const { homework } = require('../requests/responses');
 const { lops } = require('../database/lops');
-const { MultipartNetworkRequest } = require('express-runtime-dependency');
+const { MultipartNetworkRequest } = require('@tuukezu/express-runtime-dependency');
 
 
 const fetchHomework = (auth) => {
